@@ -4,10 +4,43 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "footer-brand": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
+        },
+        "footer-contact": {
+          "type": "text",
+          "settings": {
+            "heading": "Contact Details",
+            "subtext": "<p>3/57 Dandenong Street, Dandenong VIC 3175</p><p>drbdiff@gmail.com<br>(03) 9792 4834</p><p>Mon–Fri: 8:30am–5:00pm<br>Sat–Sun: By Appointment</p>"
+          }
+        },
+        "footer-services": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Our Services",
+            "menu": "footer-services"
+          }
+        },
+        "footer-products": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Our Products",
+            "menu": "footer-products"
+          }
+        }
+      },
+      "block_order": [
+        "footer-brand",
+        "footer-contact",
+        "footer-services",
+        "footer-products"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
         "newsletter_enable": true,
         "newsletter_heading": "Subscribe to our emails",
         "enable_follow_on_shop": true,

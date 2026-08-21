@@ -9,61 +9,61 @@
           "settings": {
             "background": "#FFFFFF",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
+            "text": "#111111",
+            "button": "#111111",
             "button_label": "#FFFFFF",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "secondary_button_label": "#111111",
+            "shadow": "#111111"
           }
         },
         "scheme-2": {
           "settings": {
-            "background": "#F3F3F3",
+            "background": "#F5F5F5",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
-            "button_label": "#F3F3F3",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "text": "#111111",
+            "button": "#FF0000",
+            "button_label": "#FFFFFF",
+            "secondary_button_label": "#111111",
+            "shadow": "#111111"
           }
         },
         "scheme-3": {
           "settings": {
-            "background": "#242833",
+            "background": "#000000",
             "background_gradient": "",
             "text": "#FFFFFF",
-            "button": "#FFFFFF",
-            "button_label": "#000000",
+            "button": "#FF0000",
+            "button_label": "#FFFFFF",
             "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "shadow": "#000000"
           }
         },
         "scheme-4": {
           "settings": {
-            "background": "#121212",
+            "background": "#FF0000",
             "background_gradient": "",
             "text": "#FFFFFF",
             "button": "#FFFFFF",
-            "button_label": "#121212",
+            "button_label": "#FF0000",
             "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "shadow": "#000000"
           }
         },
         "scheme-5": {
           "settings": {
-            "background": "#334FB4",
+            "background": "#FFFFFF",
             "background_gradient": "",
-            "text": "#FFFFFF",
+            "text": "#111111",
             "button": "#FFFFFF",
-            "button_label": "#334FB4",
-            "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "button_label": "#FF0000",
+            "secondary_button_label": "#FF0000",
+            "shadow": "#111111"
           }
         }
       },
-      "type_header_font": "assistant_n4",
+      "type_header_font": "poppins_n7",
       "heading_scale": 100,
-      "type_body_font": "assistant_n4",
+      "type_body_font": "poppins_n4",
       "body_scale": 100,
       "page_width": 1200,
       "spacing_sections": 0,
@@ -156,11 +156,11 @@
       "badge_corner_radius": 40,
       "sale_badge_color_scheme": "scheme-4",
       "sold_out_badge_color_scheme": "scheme-3",
-      "brand_headline": "",
-      "brand_description": "<p></p>",
+      "brand_headline": "One Stop Differential Service Solution",
+      "brand_description": "<p>Melbourne's differential repair, 9″ conversion, and custom build specialists. Quality diff parts, axles, and reconditioned diffs since day one.</p>",
       "brand_image_width": 100,
       "social_twitter_link": "",
-      "social_facebook_link": "",
+      "social_facebook_link": "https://www.facebook.com/DiffKing.Official/",
       "social_pinterest_link": "",
       "social_instagram_link": "",
       "social_tiktok_link": "",

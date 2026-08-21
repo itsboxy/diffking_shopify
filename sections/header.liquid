@@ -205,7 +205,14 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <img
+            class="header__heading-logo motion-reduce"
+            src="{{ 'diff-king-logo.png' | asset_url }}"
+            alt="{{ shop.name }}"
+            width="{{ settings.logo_width }}"
+            height="{{ settings.logo_width | times: 0.925 | round }}"
+            loading="eager"
+          >
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -248,7 +255,14 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <img
+            class="header__heading-logo motion-reduce"
+            src="{{ 'diff-king-logo.png' | asset_url }}"
+            alt="{{ shop.name }}"
+            width="{{ settings.logo_width }}"
+            height="{{ settings.logo_width | times: 0.925 | round }}"
+            loading="eager"
+          >
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
