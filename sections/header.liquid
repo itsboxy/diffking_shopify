@@ -45,8 +45,22 @@
             class: 'header__logo',
             alt: shop.name | escape
         }}
+      {%- elsif section.settings.use_asset_logo -%}
+        <img
+          class="header__logo"
+          src="{{ 'diffking-logo.png' | asset_url }}"
+          alt="{{ shop.name | escape }}"
+          width="220"
+          height="218"
+          loading="eager"
+        >
       {%- else -%}
-        <span class="header__wordmark">{{ shop.name }}</span>
+        {%- assign name_parts = shop.name | split: ' ' -%}
+        <span class="header__wordmark">
+          {%- for part in name_parts -%}
+            <span{% if forloop.last and name_parts.size > 1 %} class="header__wordmark-accent"{% endif %}>{{ part }}</span>{%- unless forloop.last %} {% endunless -%}
+          {%- endfor -%}
+        </span>
       {%- endif -%}
     </a>
 
@@ -153,17 +167,19 @@
   .header--sticky { position: sticky; top: 0; }
   .header--scrolled { box-shadow: var(--shadow-md); }
 
-  .header__inner { display: flex; align-items: center; gap: 1.25rem; min-height: 4.75rem; }
-  .header__logo-link { display: inline-flex; align-items: center; margin-right: auto; }
-  .header__logo { max-height: 2.75rem; width: auto; }
+  .header__inner { display: flex; align-items: center; gap: 1.25rem; min-height: 5rem; }
+  .header__logo-link { display: inline-flex; align-items: center; margin-right: auto; padding-block: 0.35rem; }
+  .header__logo { max-height: 3.5rem; width: auto; }
+  @media (min-width: 990px) { .header__logo { max-height: 4rem; } }
   .header__wordmark {
     font-family: var(--font-heading), sans-serif;
     font-weight: 800;
     font-size: 1.5rem;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
+    color: rgb(var(--color-text));
   }
-  .header__wordmark::first-letter { color: rgb(var(--color-primary-dark)); }
+  .header__wordmark-accent { color: rgb(var(--color-primary)); }
 
   .header__nav { margin-right: auto; align-self: stretch; display: flex; }
   .header__menu { display: flex; height: 100%; gap: 0.35rem; list-style: none; margin: 0; padding: 0; }
@@ -281,6 +297,7 @@
   "name": "t:sections.header.name",
   "settings": [
     { "type": "image_picker", "id": "logo", "label": "t:sections.header.logo" },
+    { "type": "checkbox", "id": "use_asset_logo", "label": "Use bundled logo file", "info": "Uses assets/diffking-logo.png when no logo image is picked above", "default": true },
     { "type": "link_list", "id": "menu", "label": "t:sections.header.menu", "default": "main-menu" },
     { "type": "checkbox", "id": "sticky", "label": "t:sections.header.sticky", "default": true },
     { "type": "header", "content": "Utility bar" },

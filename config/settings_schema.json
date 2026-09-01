@@ -20,25 +20,25 @@
         "type": "color",
         "id": "color_text",
         "label": "t:settings.colors.text",
-        "default": "#212934"
+        "default": "#111111"
       },
       {
         "type": "color",
         "id": "color_primary",
         "label": "t:settings.colors.primary",
-        "default": "#65bc7b"
+        "default": "#e10600"
       },
       {
         "type": "color",
         "id": "color_primary_contrast",
         "label": "t:settings.colors.primary_contrast",
-        "default": "#0d1b12"
+        "default": "#ffffff"
       },
       {
         "type": "color",
         "id": "color_dark",
         "label": "Dark surface",
-        "default": "#212934"
+        "default": "#0e0e0e"
       }
     ]
   },
