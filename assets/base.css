@@ -236,12 +236,30 @@ select {
 
 /* Surfaces & utilities ------------------------------------------------ */
 
-.surface-alt { background: rgb(var(--color-surface)); }
+.surface-alt {
+  background: rgb(var(--color-surface));
+  border-top: 1px solid rgb(var(--color-line));
+  border-bottom: 1px solid rgb(var(--color-line));
+}
 .surface-dark {
+  position: relative;
   background: rgb(var(--color-dark));
-  background-image: linear-gradient(180deg, rgb(var(--color-dark)), rgb(var(--color-darker)));
+  background-image:
+    radial-gradient(90% 60% at 85% -10%, rgb(var(--color-primary) / 0.14) 0%, transparent 60%),
+    linear-gradient(180deg, rgb(var(--color-dark)), rgb(var(--color-darker)));
   color: #fff;
 }
+.surface-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.6), transparent 65%);
+  mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.6), transparent 65%);
+}
+.surface-dark > * { position: relative; }
 .surface-dark h1, .surface-dark h2, .surface-dark h3 { color: #fff; }
 .surface-dark a:not(.button) { color: #fff; }
 

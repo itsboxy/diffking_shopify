@@ -3,7 +3,7 @@
   assign limit = section.settings.products_to_show
 -%}
 
-<div class="section featured-collection">
+<div class="section featured-collection{% if section.settings.color_scheme == 'alt' %} surface-alt{% elsif section.settings.color_scheme == 'dark' %} surface-dark{% endif %}">
   <div class="page-width">
     <div class="featured-collection__head">
       <div>
@@ -73,7 +73,15 @@
       "type": "select", "id": "columns", "label": "t:sections.featured_collection.columns", "default": "4",
       "options": [ { "value": "3", "label": "3" }, { "value": "4", "label": "4" } ]
     },
-    { "type": "checkbox", "id": "show_view_all", "label": "t:sections.featured_collection.show_view_all", "default": true }
+    { "type": "checkbox", "id": "show_view_all", "label": "t:sections.featured_collection.show_view_all", "default": true },
+    {
+      "type": "select", "id": "color_scheme", "label": "Background", "default": "default",
+      "options": [
+        { "value": "default", "label": "White" },
+        { "value": "alt", "label": "Light grey" },
+        { "value": "dark", "label": "Black" }
+      ]
+    }
   ],
   "presets": [{ "name": "t:sections.featured_collection.name" }]
 }
