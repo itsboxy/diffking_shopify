@@ -2,18 +2,11 @@
   "sections": {
     "hero": {
       "type": "hero",
-      "blocks": {
-        "t1": { "type": "trust", "settings": { "icon": "shield", "text": "1yr / 20,000km warranty" } },
-        "t2": { "type": "trust", "settings": { "icon": "truck", "text": "Shipped Australia wide" } },
-        "t3": { "type": "trust", "settings": { "icon": "clock", "text": "Same day service available" } }
-      },
-      "block_order": ["t1", "t2", "t3"],
       "settings": {
-        "height": "medium",
-        "overlay": 55,
-        "eyebrow": "Melbourne workshop",
-        "heading": "One stop differential service solution",
-        "text": "Diff repairs, servicing, 9″ conversions, custom axles and fabrication, built by specialists.",
+        "height": "slim",
+        "eyebrow": "Diff King, Dandenong",
+        "heading": "Melbourne's differential specialists",
+        "text": "",
         "primary_label": "Book a service",
         "secondary_label": "Shop parts"
       }
