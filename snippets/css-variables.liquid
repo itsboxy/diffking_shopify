@@ -14,7 +14,10 @@
   assign background = settings.color_background | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
   assign primary_contrast = settings.color_primary_contrast | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
   assign dark = settings.color_dark | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
-  assign darker = settings.color_dark | color_darken: 6 | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
+  assign darker = settings.color_dark | color_darken: 4 | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
+  assign charcoal = settings.color_dark | color_lighten: 5 | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
+  assign elevated = settings.color_dark | color_lighten: 9 | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
+  assign hairline = settings.color_dark | color_lighten: 20 | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
   assign muted = settings.color_dark | color_lighten: 62 | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
 -%}
 {% style %}
@@ -24,11 +27,14 @@
     --color-primary-contrast: {{ primary_contrast }};
     --color-text: {{ text }};
     --color-background: {{ background }};
-    --color-surface: 245 245 246;
+    --color-surface: 246 246 247;
     --color-dark: {{ dark }};
     --color-darker: {{ darker }};
+    --color-charcoal: {{ charcoal }};
+    --color-elevated: {{ elevated }};
+    --color-dark-hairline: {{ hairline }};
     --color-muted: {{ muted }};
-    --color-line: 224 224 226;
+    --color-line: 228 228 230;
 
     --font-heading: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
     --font-body: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
@@ -44,9 +50,9 @@
     --border-radius-sm: {{ settings.border_radius | times: 0.62 | round | at_least: 4 }}px;
     --border-radius-lg: {{ settings.border_radius | times: 1.5 | round }}px;
 
-    --shadow-sm: 0 1px 2px rgb(15 23 32 / 0.06), 0 1px 3px rgb(15 23 32 / 0.05);
-    --shadow-md: 0 6px 16px rgb(15 23 32 / 0.08), 0 2px 6px rgb(15 23 32 / 0.05);
-    --shadow-lg: 0 24px 48px -12px rgb(15 23 32 / 0.18);
+    --shadow-sm: 0 1px 2px rgb(13 14 16 / 0.06), 0 1px 3px rgb(13 14 16 / 0.05);
+    --shadow-md: 0 8px 24px -6px rgb(13 14 16 / 0.12), 0 2px 6px rgb(13 14 16 / 0.06);
+    --shadow-lg: 0 32px 64px -16px rgb(13 14 16 / 0.28);
 
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }

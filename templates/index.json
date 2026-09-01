@@ -1,15 +1,24 @@
 {
   "sections": {
     "hero": {
-      "type": "hero",
+      "type": "hero-feature",
       "settings": {
-        "height": "slim",
-        "eyebrow": "Diff King, Dandenong",
-        "heading": "Melbourne's differential specialists",
-        "text": "",
+        "eyebrow": "Melbourne differential specialists",
+        "heading": "Differentials, built and backed by specialists",
+        "text": "Repairs, servicing, 9 inch conversions, custom axles and our own Disc Trac helical LSD. Shipped Australia wide from Dandenong.",
         "primary_label": "Book a service",
-        "secondary_label": "Shop parts"
-      }
+        "secondary_label": "Shop parts",
+        "show_products": true,
+        "shelf_title": "Featured parts",
+        "products_to_show": 4
+      },
+      "blocks": {
+        "d1": { "type": "badge", "settings": { "icon": "shield", "label": "1 year warranty", "sublabel": "20,000 km workmanship guarantee" } },
+        "d2": { "type": "badge", "settings": { "icon": "truck", "label": "Australia wide shipping", "sublabel": "Parts sent nationwide from Dandenong" } },
+        "d3": { "type": "badge", "settings": { "icon": "clock", "label": "Same day service", "sublabel": "Diff repair and service while you wait" } },
+        "d4": { "type": "badge", "settings": { "icon": "gear", "label": "9 inch conversions", "sublabel": "Our specialisation since 2007" } }
+      },
+      "block_order": ["d1", "d2", "d3", "d4"]
     },
     "welcome": {
       "type": "intro-statement",

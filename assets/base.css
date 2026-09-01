@@ -251,23 +251,27 @@ select {
   position: relative;
   background: rgb(var(--color-dark));
   background-image:
-    radial-gradient(90% 60% at 85% -10%, rgb(var(--color-primary) / 0.14) 0%, transparent 60%),
-    linear-gradient(180deg, rgb(var(--color-dark)), rgb(var(--color-darker)));
-  color: #fff;
+    radial-gradient(75% 55% at 88% -5%, rgb(var(--color-primary) / 0.12) 0%, transparent 60%),
+    linear-gradient(180deg, rgb(var(--color-charcoal) / 0.6), rgb(var(--color-dark)) 40%, rgb(var(--color-darker)));
+  color: rgb(255 255 255 / 0.82);
+  border-top: 1px solid rgb(var(--color-dark-hairline) / 0.35);
+  border-bottom: 1px solid rgb(var(--color-dark-hairline) / 0.35);
 }
 .surface-dark::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px);
-  background-size: 22px 22px;
-  -webkit-mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.6), transparent 65%);
-  mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.6), transparent 65%);
+  background-image: radial-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.5), transparent 70%);
+  mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.5), transparent 70%);
 }
 .surface-dark > * { position: relative; }
-.surface-dark h1, .surface-dark h2, .surface-dark h3 { color: #fff; }
+.surface-dark h1, .surface-dark h2, .surface-dark h3, .surface-dark h4 { color: #fff; }
 .surface-dark a:not(.button) { color: #fff; }
+/* header/footer use surface-dark but manage their own borders */
+.header.surface-dark, .footer.surface-dark { border: 0; }
 
 .rte > :first-child { margin-top: 0; }
 .rte > :last-child { margin-bottom: 0; }
