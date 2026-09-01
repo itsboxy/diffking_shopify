@@ -1,0 +1,16 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "sticky": true,
+        "show_announcement": true,
+        "announcement_text": "Australia-wide shipping — diff repairs, service & 9″ conversions",
+        "show_book_button": true
+      }
+    }
+  },
+  "order": ["header"]
+}

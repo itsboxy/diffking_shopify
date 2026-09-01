@@ -1,0 +1,42 @@
+{% doc %}
+  Renders a heading.
+
+  @example
+  {% content_for 'block', type: 'heading', id: 'heading' %}
+{% enddoc %}
+
+{%- if block.settings.text != blank -%}
+  <{{ block.settings.tag }} class="heading-block" {{ block.shopify_attributes }}>
+    {{ block.settings.text }}
+  </{{ block.settings.tag }}>
+{%- endif -%}
+
+{% stylesheet %}
+  .heading-block { margin-bottom: 1rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:blocks.heading.name",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "t:blocks.heading.text",
+      "default": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "tag",
+      "label": "HTML tag",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "t:blocks.heading.name" }]
+}
+{% endschema %}

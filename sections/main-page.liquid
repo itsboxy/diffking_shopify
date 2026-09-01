@@ -1,0 +1,23 @@
+<div class="section page-main">
+  <div class="page-width page-main__inner">
+    <header class="page-main__header">
+      <h1>{{ page.title }}</h1>
+    </header>
+    <div class="rte page-main__content">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .page-main__inner { max-width: 48rem; }
+  .page-main__header { margin-bottom: 1.5rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": [],
+  "tag": "section"
+}
+{% endschema %}

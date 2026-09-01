@@ -1,0 +1,89 @@
+<article class="section article-main">
+  <div class="page-width article-main__inner">
+    <nav class="breadcrumb"><a href="{{ blog.url }}">{{ blog.title }}</a> / <span>{{ article.title }}</span></nav>
+
+    <header class="article-main__header">
+      <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}" class="article-main__date">
+        {{ article.published_at | date: '%d %B %Y' }}
+      </time>
+      <h1>{{ article.title }}</h1>
+      {%- if article.author != blank -%}
+        <p class="article-main__author">{{ 'blogs.article.by_author' | t: author: article.author }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if article.image -%}
+      <div class="article-main__image">
+        {{ article.image | image_url: width: 1600 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1600', sizes: '100vw', alt: article.title | escape }}
+      </div>
+    {%- endif -%}
+
+    <div class="rte article-main__content">
+      {{ article.content }}
+    </div>
+
+    <footer class="article-main__footer">
+      <a href="{{ blog.url }}" class="button button--secondary">{{ 'blogs.article.back_to_blog' | t: title: blog.title }}</a>
+    </footer>
+  </div>
+
+  {%- if blog.comments_enabled? -%}
+    <div class="page-width article-main__inner article-comments">
+      {%- if article.comments_count > 0 -%}
+        <h2>{{ article.comments_count }} comments</h2>
+        {%- for comment in article.comments -%}
+          <div class="article-comment">
+            <p class="article-comment__meta">{{ comment.author }} — {{ comment.created_at | date: '%d %b %Y' }}</p>
+            <div class="rte">{{ comment.content }}</div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+
+      {% form 'new_comment', article, class: 'article-comment-form' %}
+        {%- if form.posted_successfully? -%}
+          <p class="form-status form-status--success" data-form-status>Thanks — your comment is awaiting moderation.</p>
+        {%- elsif form.errors -%}
+          <p class="form-status form-status--error" data-form-status>{{ form.errors | default_errors }}</p>
+        {%- endif -%}
+        <h2>Leave a comment</h2>
+        <div class="contact-form__row">
+          <div class="field">
+            <label for="CommentAuthor">Name</label>
+            <input type="text" id="CommentAuthor" name="comment[author]" value="{{ form.author }}" required>
+          </div>
+          <div class="field">
+            <label for="CommentEmail">Email</label>
+            <input type="email" id="CommentEmail" name="comment[email]" value="{{ form.email }}" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="CommentBody">Comment</label>
+          <textarea id="CommentBody" name="comment[body]" required>{{ form.body }}</textarea>
+        </div>
+        <button type="submit" class="button button--primary">Post comment</button>
+      {% endform %}
+    </div>
+  {%- endif -%}
+</article>
+
+{% stylesheet %}
+  .article-main__inner { max-width: 46rem; }
+  .article-main__header { margin-bottom: 1.5rem; }
+  .article-main__date { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: rgb(var(--color-text) / 0.55); }
+  .article-main__header h1 { margin: 0.4rem 0 0.5rem; }
+  .article-main__author { color: rgb(var(--color-text) / 0.6); font-size: 0.9rem; }
+  .article-main__image { margin-bottom: 2rem; }
+  .article-main__image img { width: 100%; border-radius: var(--border-radius); }
+  .article-main__footer { margin-top: 2.5rem; }
+  .article-comments { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgb(var(--color-text) / 0.12); }
+  .article-comment { padding: 1rem 0; border-bottom: 1px solid rgb(var(--color-text) / 0.1); }
+  .article-comment__meta { font-size: 0.82rem; color: rgb(var(--color-text) / 0.6); margin-bottom: 0.35rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": [],
+  "tag": "section"
+}
+{% endschema %}

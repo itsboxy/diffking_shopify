@@ -1,0 +1,130 @@
+<div class="section contact-section">
+  <div class="page-width">
+    <div class="contact-section__grid">
+      <div class="contact-section__intro">
+        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+
+        {%- if section.settings.show_details -%}
+          <ul class="contact-section__details" role="list">
+            {%- if settings.business_address != blank -%}
+              <li>{% render 'icon', name: 'pin', size: 18 %}
+                <a href="{{ settings.business_maps_link }}" target="_blank" rel="noopener">{{ settings.business_address | newline_to_br }}</a>
+              </li>
+            {%- endif -%}
+            {%- if settings.business_phone != blank -%}
+              <li>{% render 'icon', name: 'phone', size: 18 %} <a href="tel:{{ settings.business_phone | remove: ' ' }}">{{ settings.business_phone }}</a></li>
+            {%- endif -%}
+            {%- if settings.business_email != blank -%}
+              <li>{% render 'icon', name: 'mail', size: 18 %} <a href="mailto:{{ settings.business_email }}">{{ settings.business_email }}</a></li>
+            {%- endif -%}
+            {%- if section.settings.hours != blank -%}
+              <li>{% render 'icon', name: 'clock', size: 18 %} {{ section.settings.hours }}</li>
+            {%- endif -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      <div class="contact-section__form">
+        {% form 'contact', class: 'contact-form' %}
+          {%- if form.posted_successfully? -%}
+            <p class="form-status form-status--success" data-form-status>{{ 'contact.form.post_success' | t }}</p>
+          {%- elsif form.errors -%}
+            <div class="form-status form-status--error" data-form-status>
+              <p>{{ 'contact.form.error_heading' | t }}</p>
+              <ul>
+                {%- for field in form.errors -%}
+                  <li>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+
+          <div class="contact-form__row">
+            <div class="field">
+              <label for="ContactName">{{ 'contact.form.name' | t }}</label>
+              <input type="text" id="ContactName" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="ContactEmail">{{ 'contact.form.email' | t }}</label>
+              <input type="email" id="ContactEmail" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="contact-form__row">
+            <div class="field">
+              <label for="ContactPhone">{{ 'contact.form.phone' | t }}</label>
+              <input type="tel" id="ContactPhone" name="contact[phone]" value="{{ form.phone }}" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="ContactVehicle">{{ 'contact.form.vehicle' | t }}</label>
+              <input type="text" id="ContactVehicle" name="contact[vehicle]" value="{{ form.vehicle }}">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="ContactMessage">{{ 'contact.form.message' | t }}</label>
+            <textarea id="ContactMessage" name="contact[body]" required>{{ form.body }}</textarea>
+          </div>
+
+          <button type="submit" class="button button--primary">{{ 'contact.form.send' | t }}</button>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .contact-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  @media (min-width: 850px) {
+    .contact-section__grid { grid-template-columns: 0.9fr 1.1fr; gap: 3.5rem; }
+  }
+  .contact-section__intro p { color: rgb(var(--color-text) / 0.75); }
+  .contact-section__details { list-style: none; margin: 1.5rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.85rem; }
+  .contact-section__details li { display: flex; gap: 0.65rem; align-items: flex-start; }
+  .contact-section__details svg { color: rgb(var(--color-primary)); flex-shrink: 0; margin-top: 0.15rem; }
+  .contact-section__details a { text-decoration: none; }
+  .contact-form__row { display: grid; grid-template-columns: 1fr; gap: 0 1rem; }
+  @media (min-width: 600px) {
+    .contact-form__row { grid-template-columns: 1fr 1fr; }
+  }
+  .contact-form .button { margin-top: 0.5rem; }
+  .contact-form ul { margin: 0.5rem 0 0; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.contact_form.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.contact_form.heading",
+      "default": "Get in touch"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "t:sections.contact_form.text",
+      "default": "Tell us about your vehicle and what you need. Pickup and delivery available."
+    },
+    {
+      "type": "text",
+      "id": "hours",
+      "label": "Opening hours",
+      "default": "Mon – Fri: 8:00am – 5:00pm"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_details",
+      "label": "t:sections.contact_form.show_details",
+      "default": true
+    }
+  ],
+  "presets": [{ "name": "t:sections.contact_form.name" }]
+}
+{% endschema %}

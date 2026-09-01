@@ -1,0 +1,37 @@
+{% doc %}
+  Renders a formatted price for a product, including sale and "from" states.
+
+  @param {product} product - The product to price
+  @param {boolean} [show_from] - Prefix with "From" when the product has multiple prices
+
+  @example
+  {% render 'price', product: product %}
+  {% render 'price', product: product, show_from: true %}
+{% enddoc %}
+
+{%- liquid
+  assign target = product
+  assign compare_at = target.compare_at_price
+  assign price = target.price
+  assign on_sale = false
+  if compare_at > price
+    assign on_sale = true
+  endif
+  assign show_from_price = false
+  if show_from and target.price_varies
+    assign show_from_price = true
+  endif
+-%}
+
+<span class="price{% if on_sale %} price--on-sale{% endif %}">
+  {%- if show_from_price -%}
+    {{ 'products.product.from_price_html' | t: price: price | money }}
+  {%- elsif on_sale -%}
+    <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+    <s class="price__regular">{{ compare_at | money }}</s>
+    <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
+    <span class="price__sale">{{ price | money }}</span>
+  {%- else -%}
+    {{ price | money }}
+  {%- endif -%}
+</span>

@@ -1,0 +1,373 @@
+{%- liquid
+  assign menu = section.settings.menu
+-%}
+
+{%- if section.settings.show_announcement and section.settings.announcement_text != blank -%}
+  <div class="announcement-bar">
+    <div class="page-width announcement-bar__inner">
+      <p>{{ section.settings.announcement_text }}</p>
+      {%- if settings.business_phone != blank -%}
+        <a href="tel:{{ settings.business_phone | remove: ' ' | remove: '(' | remove: ')' }}" class="announcement-bar__phone">
+          {% render 'icon', name: 'phone', size: 15 %}
+          {{ settings.business_phone }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+<header
+  class="header{% if section.settings.sticky %} header--sticky{% endif %}"
+  data-header
+>
+  <div class="page-width header__inner">
+    <button
+      class="header__icon header__burger medium-hide"
+      type="button"
+      data-nav-toggle
+      aria-expanded="false"
+      aria-controls="MobileNav"
+      aria-label="{{ 'general.accessibility.open_menu' | t }}"
+    >
+      {% render 'icon', name: 'menu' %}
+    </button>
+
+    <a href="{{ routes.root_url }}" class="header__logo-link">
+      {%- if section.settings.logo != blank -%}
+        {{
+          section.settings.logo
+          | image_url: width: 400
+          | image_tag:
+            loading: 'eager',
+            widths: '150, 250, 400',
+            style: 'width:auto;height:auto',
+            sizes: '(min-width: 990px) 200px, 140px',
+            class: 'header__logo',
+            alt: shop.name | escape
+        }}
+      {%- else -%}
+        <span class="header__logo-text">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    <nav class="header__nav small-hide" aria-label="{{ 'header.menu' | t }}">
+      <ul class="header__menu" role="list">
+        {%- for link in menu.links -%}
+          <li class="header__menu-item{% if link.links != blank %} has-submenu{% endif %}">
+            <a
+              href="{{ link.url }}"
+              {% if link.current %}aria-current="page"{% endif %}
+            >
+              {{ link.title }}
+              {%- if link.links != blank %} {% render 'icon', name: 'chevron-down', size: 14 %}{% endif -%}
+            </a>
+            {%- if link.links != blank -%}
+              <ul class="header__submenu" role="list">
+                {%- for child in link.links -%}
+                  <li><a href="{{ child.url }}"{% if child.current %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      {%- if section.settings.show_book_button -%}
+        <a href="{{ section.settings.book_link }}" class="button button--primary header__book small-hide">
+          {{ 'header.book_now' | t }}
+        </a>
+      {%- endif -%}
+
+      <a href="{{ routes.search_url }}" class="header__icon" aria-label="{{ 'general.accessibility.search' | t }}">
+        {% render 'icon', name: 'search' %}
+      </a>
+
+      <a href="{{ routes.cart_url }}" class="header__icon header__cart" aria-label="{{ 'general.accessibility.cart' | t }}">
+        {% render 'icon', name: 'cart' %}
+        <span class="header__cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Mobile navigation drawer {%- endcomment -%}
+<div class="mobile-nav" id="MobileNav" hidden>
+  <div class="mobile-nav__backdrop" data-nav-close></div>
+  <div class="mobile-nav__panel" role="dialog" aria-label="{{ 'header.menu' | t }}" aria-modal="true">
+    <div class="mobile-nav__head">
+      <span class="mobile-nav__title">{{ 'header.menu' | t }}</span>
+      <button class="header__icon" type="button" data-nav-close aria-label="{{ 'general.accessibility.close' | t }}">
+        {% render 'icon', name: 'close' %}
+      </button>
+    </div>
+    <ul class="mobile-nav__menu" role="list">
+      {%- for link in menu.links -%}
+        <li>
+          {%- if link.links != blank -%}
+            <div class="mobile-nav__row">
+              <a href="{{ link.url }}">{{ link.title }}</a>
+              <button
+                type="button"
+                data-submenu-toggle
+                aria-expanded="false"
+                aria-label="{{ link.title | escape }}"
+              >
+                {% render 'icon', name: 'chevron-down', size: 18 %}
+              </button>
+            </div>
+            <ul class="mobile-nav__submenu" role="list" hidden>
+              {%- for child in link.links -%}
+                <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          {%- else -%}
+            <a class="mobile-nav__row" href="{{ link.url }}">{{ link.title }}</a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if section.settings.show_book_button -%}
+      <a href="{{ section.settings.book_link }}" class="button button--primary mobile-nav__cta">
+        {{ 'header.book_now' | t }}
+      </a>
+    {%- endif -%}
+    {%- if settings.business_phone != blank -%}
+      <a href="tel:{{ settings.business_phone | remove: ' ' }}" class="mobile-nav__phone">
+        {% render 'icon', name: 'phone', size: 18 %} {{ settings.business_phone }}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .announcement-bar {
+    background: rgb(var(--color-dark));
+    color: #fff;
+    font-size: 0.82rem;
+  }
+  .announcement-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 2.4rem;
+    text-align: center;
+  }
+  .announcement-bar p { margin: 0; }
+  .announcement-bar__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  @media (max-width: 749px) {
+    .announcement-bar__phone { display: none; }
+  }
+
+  .header {
+    background: rgb(var(--color-background));
+    border-bottom: 1px solid rgb(var(--color-text) / 0.1);
+    z-index: 50;
+  }
+  .header--sticky { position: sticky; top: 0; }
+  .header--scrolled { box-shadow: 0 4px 20px rgb(0 0 0 / 0.08); }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4.5rem;
+  }
+  .header__logo-link { display: inline-flex; align-items: center; margin-right: auto; }
+  .header__logo { max-height: 3rem; width: auto; }
+  .header__logo-text { font-family: var(--font-heading), sans-serif; font-weight: 700; font-size: 1.4rem; }
+
+  .header__nav { margin-right: auto; }
+  .header__menu {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .header__menu > li > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 1.5rem 0;
+    font-family: var(--font-heading), sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+  }
+  .header__menu > li > a:hover { color: rgb(var(--color-primary)); }
+
+  .header__menu-item { position: relative; }
+  .header__submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 15rem;
+    margin: 0;
+    padding: 0.5rem 0;
+    list-style: none;
+    background: rgb(var(--color-background));
+    border: 1px solid rgb(var(--color-text) / 0.12);
+    border-radius: var(--border-radius);
+    box-shadow: 0 12px 34px rgb(0 0 0 / 0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+    z-index: 60;
+  }
+  .header__menu-item:hover .header__submenu,
+  .header__menu-item:focus-within .header__submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .header__submenu a {
+    display: block;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+  .header__submenu a:hover { background: rgb(var(--color-text) / 0.05); }
+
+  .header__actions { display: flex; align-items: center; gap: 0.9rem; }
+  .header__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+    border-radius: var(--border-radius);
+  }
+  .header__icon:hover { background: rgb(var(--color-text) / 0.06); }
+  .header__cart-count {
+    position: absolute;
+    top: 0.15rem;
+    right: 0.15rem;
+    min-width: 1.15rem;
+    height: 1.15rem;
+    padding: 0 0.25rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1.15rem;
+    text-align: center;
+    background: rgb(var(--color-primary));
+    color: rgb(var(--color-primary-contrast));
+    border-radius: 999px;
+  }
+
+  /* Mobile drawer */
+  .mobile-nav { position: fixed; inset: 0; z-index: 100; }
+  .mobile-nav[hidden] { display: none; }
+  .mobile-nav__backdrop { position: absolute; inset: 0; background: rgb(0 0 0 / 0.45); }
+  .mobile-nav__panel {
+    position: absolute;
+    inset: 0 15% 0 0;
+    max-width: 22rem;
+    background: rgb(var(--color-background));
+    padding: 1.25rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .mobile-nav__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+  .mobile-nav__title { font-family: var(--font-heading), sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; }
+  .mobile-nav__menu { list-style: none; margin: 0; padding: 0; }
+  .mobile-nav__menu > li { border-bottom: 1px solid rgb(var(--color-text) / 0.1); }
+  .mobile-nav__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .mobile-nav__row a {
+    display: block;
+    flex: 1;
+    padding: 0.9rem 0;
+    font-family: var(--font-heading), sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .mobile-nav__row button {
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  .mobile-nav__row button[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .mobile-nav__submenu { list-style: none; margin: 0; padding: 0 0 0.5rem 0.75rem; }
+  .mobile-nav__submenu a { display: block; padding: 0.5rem 0; text-decoration: none; font-size: 0.92rem; }
+  .mobile-nav__cta { margin-top: 1rem; }
+  .mobile-nav__phone { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.75rem; font-weight: 700; text-decoration: none; }
+
+  @media (min-width: 990px) {
+    .header__book { margin-left: 0.5rem; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sections.header.logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:sections.header.menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "t:sections.header.sticky",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.name"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "t:sections.header.show_announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "t:sections.header.announcement_text",
+      "default": "Australia-wide shipping — diff repairs, service & 9″ conversions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_book_button",
+      "label": "Show 'Book now' button",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "book_link",
+      "label": "'Book now' link"
+    }
+  ]
+}
+{% endschema %}

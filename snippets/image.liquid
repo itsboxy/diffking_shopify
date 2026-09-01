@@ -1,0 +1,46 @@
+{% doc %}
+  Renders a responsive image, optionally wrapped in a link.
+
+  @param {image} image - The image to render
+  @param {string} [url] - Optional destination URL
+  @param {string} [class] - Optional class for the wrapper
+  @param {number} [width] - Highest resolution width to request
+  @param {string} [sizes] - The sizes attribute (default '100vw')
+  @param {string} [loading] - 'lazy' or 'eager' (default 'lazy')
+
+  @example
+  {% render 'image', image: section.settings.image, sizes: '100vw' %}
+{% enddoc %}
+
+{%- liquid
+  assign width = width | default: image.width | default: 1600
+  assign sizes = sizes | default: '100vw'
+  assign loading = loading | default: 'lazy'
+  if url
+    assign wrapper = 'a'
+  else
+    assign wrapper = 'div'
+  endif
+-%}
+
+<{{ wrapper }} class="image {{ class }}"{% if url %} href="{{ url }}"{% endif %}>
+  {%- if image -%}
+    {{
+      image
+      | image_url: width: width
+      | image_tag:
+        loading: loading,
+        widths: '400, 600, 800, 1200, 1600, 2000',
+        sizes: sizes,
+        alt: image.alt | escape
+    }}
+  {%- else -%}
+    {{ 'image' | placeholder_svg_tag: 'image__placeholder' }}
+  {%- endif -%}
+</{{ wrapper }}>
+
+{% stylesheet %}
+  .image { display: block; }
+  .image > img { width: 100%; height: auto; }
+  .image__placeholder { width: 100%; background: rgb(var(--color-text) / 0.06); }
+{% endstylesheet %}

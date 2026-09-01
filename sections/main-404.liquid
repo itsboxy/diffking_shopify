@@ -1,0 +1,32 @@
+<div class="section not-found">
+  <div class="page-width not-found__inner">
+    <p class="not-found__code">404</p>
+    <h1>{{ 'general.404.title' | t }}</h1>
+    <p>{{ 'general.404.subtext' | t }}</p>
+    <div class="not-found__actions">
+      <a href="{{ routes.root_url }}" class="button button--primary">{{ 'general.continue_shopping' | t }}</a>
+      <a href="{{ routes.search_url }}" class="button button--secondary">{{ 'general.search.search' | t }}</a>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .not-found__inner { max-width: 34rem; margin-inline: auto; text-align: center; padding-block: 3rem; }
+  .not-found__code {
+    font-family: var(--font-heading), sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: rgb(var(--color-primary));
+    margin: 0;
+  }
+  .not-found__actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "404 page",
+  "settings": [],
+  "tag": "section"
+}
+{% endschema %}

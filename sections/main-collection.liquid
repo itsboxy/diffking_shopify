@@ -1,0 +1,115 @@
+{%- paginate collection.products by section.settings.products_per_page -%}
+  <div class="section collection-main">
+    <div class="page-width">
+      <header class="collection-main__header">
+        <h1>{{ collection.title }}</h1>
+        {%- if collection.description != blank -%}
+          <div class="rte collection-main__description">{{ collection.description }}</div>
+        {%- endif -%}
+      </header>
+
+      <div class="collection-main__toolbar">
+        <p class="collection-main__count">
+          {{ 'collections.general.items_with_count' | t: count: collection.products_count }}
+        </p>
+        {%- liquid
+          assign current_sort = collection.sort_by
+          if current_sort == blank
+            assign current_sort = collection.default_sort_by
+          endif
+        -%}
+        <form method="get" class="collection-main__sort">
+          <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
+          <select name="sort_by" id="SortBy" onchange="this.form.submit()">
+            {%- assign sort_options = 'manual,best-selling,title-ascending,title-descending,price-ascending,price-descending,created-descending' | split: ',' -%}
+            {%- assign sort_labels = 'Featured,Best selling,A–Z,Z–A,Price: low to high,Price: high to low,Newest' | split: ',' -%}
+            {%- for opt in sort_options -%}
+              <option value="{{ opt }}" {% if current_sort == opt %}selected{% endif %}>
+                {{ sort_labels[forloop.index0] }}
+              </option>
+            {%- endfor -%}
+          </select>
+        </form>
+      </div>
+
+      {%- if collection.products.size > 0 -%}
+        <div class="product-grid product-grid--{{ section.settings.columns }}">
+          {%- for product in collection.products -%}
+            {% render 'product-card', product: product %}
+          {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination" aria-label="{{ 'general.pagination.label' | t }}">
+            {%- if paginate.previous -%}
+              <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">&lsaquo;</a>
+            {%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}">{{ part.title }}</a>
+              {%- elsif part.title == paginate.current_page -%}
+                <span class="pagination__current" aria-current="page">{{ part.title }}</span>
+              {%- else -%}
+                <span>{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}
+              <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}">&rsaquo;</a>
+            {%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- else -%}
+        <p class="collection-main__empty">{{ 'collections.general.no_matches' | t }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endpaginate -%}
+
+{% stylesheet %}
+  .collection-main__header { margin-bottom: 2rem; max-width: 44rem; }
+  .collection-main__header h1 { margin-bottom: 0.5rem; }
+  .collection-main__description { color: rgb(var(--color-text) / 0.75); }
+  .collection-main__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-block: 1rem;
+    border-block: 1px solid rgb(var(--color-text) / 0.12);
+    margin-bottom: 2rem;
+  }
+  .collection-main__count { margin: 0; font-size: 0.9rem; color: rgb(var(--color-text) / 0.7); }
+  .collection-main__sort { display: flex; align-items: center; gap: 0.5rem; }
+  .collection-main__sort label { font-size: 0.85rem; }
+  .collection-main__sort select { width: auto; }
+  .collection-main__empty { padding: 3rem 0; text-align: center; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection products",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 36,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns on desktop",
+      "default": "4",
+      "options": [
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ]
+    }
+  ],
+  "tag": "section"
+}
+{% endschema %}

@@ -1,0 +1,35 @@
+{% doc %}
+  Renders the theme's global CSS custom properties in a <style> tag.
+  Pulls values from theme settings so the storefront and theme editor stay in sync.
+
+  @example
+  {% render 'css-variables' %}
+{% enddoc %}
+
+{%- liquid
+  assign primary = settings.color_primary | color_to_rgb | remove: 'rgb(' | remove: ')'
+  assign text = settings.color_text | color_to_rgb | remove: 'rgb(' | remove: ')'
+  assign background = settings.color_background | color_to_rgb | remove: 'rgb(' | remove: ')'
+  assign primary_contrast = settings.color_primary_contrast | color_to_rgb | remove: 'rgb(' | remove: ')'
+  assign dark = settings.color_dark | color_to_rgb | remove: 'rgb(' | remove: ')'
+-%}
+{% style %}
+  :root {
+    --color-primary: {{ primary }};
+    --color-primary-contrast: {{ primary_contrast }};
+    --color-text: {{ text }};
+    --color-background: {{ background }};
+    --color-dark: {{ dark }};
+
+    --font-heading: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+    --font-body: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+    --heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
+
+    --page-width: {{ settings.page_width }}px;
+    --section-spacing: {{ settings.section_spacing }}px;
+    --border-radius: {{ settings.border_radius }}px;
+  }
+
+  {{ settings.heading_font | font_face: font_display: 'swap' }}
+  {{ settings.body_font | font_face: font_display: 'swap' }}
+{% endstyle %}

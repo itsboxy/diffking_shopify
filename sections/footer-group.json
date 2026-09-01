@@ -1,0 +1,16 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "tagline": "One stop differential service solution. Repairs, servicing, 9″ conversions, custom axles and fabrication.",
+        "hours": "Mon – Fri: 8:00am – 5:00pm",
+        "show_social": true,
+        "show_payment_icons": true
+      }
+    }
+  },
+  "order": ["footer"]
+}

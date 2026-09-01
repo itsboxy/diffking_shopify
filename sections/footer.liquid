@@ -1,0 +1,195 @@
+<footer class="footer surface-dark">
+  <div class="page-width footer__inner">
+    <div class="footer__brand">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 320 | image_tag: loading: 'lazy', class: 'footer__logo', alt: shop.name | escape }}
+      {%- else -%}
+        <span class="footer__logo-text">{{ shop.name }}</span>
+      {%- endif -%}
+      {%- if section.settings.tagline != blank -%}
+        <p class="footer__tagline">{{ section.settings.tagline }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.show_social -%}
+        <div class="footer__social">
+          {%- if settings.social_facebook != blank -%}
+            <a href="{{ settings.social_facebook }}" aria-label="Facebook" rel="noopener" target="_blank">{% render 'icon', name: 'facebook', size: 20 %}</a>
+          {%- endif -%}
+          {%- if settings.social_instagram != blank -%}
+            <a href="{{ settings.social_instagram }}" aria-label="Instagram" rel="noopener" target="_blank">{% render 'icon', name: 'instagram', size: 20 %}</a>
+          {%- endif -%}
+          {%- if settings.social_youtube != blank -%}
+            <a href="{{ settings.social_youtube }}" aria-label="YouTube" rel="noopener" target="_blank">{% render 'icon', name: 'youtube', size: 20 %}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.menu != blank and section.settings.menu.links.size > 0 -%}
+      <div class="footer__col">
+        <h2 class="footer__heading">{{ 'footer.quick_links' | t }}</h2>
+        <ul role="list">
+          {%- for link in section.settings.menu.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+    <div class="footer__col">
+      <h2 class="footer__heading">{{ 'footer.contact_title' | t }}</h2>
+      <ul role="list" class="footer__contact">
+        {%- if settings.business_address != blank -%}
+          <li>
+            {% render 'icon', name: 'pin', size: 17 %}
+            <a href="{{ settings.business_maps_link }}" rel="noopener" target="_blank">{{ settings.business_address | newline_to_br }}</a>
+          </li>
+        {%- endif -%}
+        {%- if settings.business_phone != blank -%}
+          <li>{% render 'icon', name: 'phone', size: 17 %} <a href="tel:{{ settings.business_phone | remove: ' ' }}">{{ settings.business_phone }}</a></li>
+        {%- endif -%}
+        {%- if settings.business_email != blank -%}
+          <li>{% render 'icon', name: 'mail', size: 17 %} <a href="mailto:{{ settings.business_email }}">{{ settings.business_email }}</a></li>
+        {%- endif -%}
+        {%- if section.settings.hours != blank -%}
+          <li>{% render 'icon', name: 'clock', size: 17 %} {{ section.settings.hours }}</li>
+        {%- endif -%}
+      </ul>
+    </div>
+
+    <div class="footer__col footer__newsletter">
+      <h2 class="footer__heading">{{ 'footer.newsletter_title' | t }}</h2>
+      <p>{{ 'footer.newsletter_text' | t }}</p>
+      {% form 'customer', class: 'newsletter-form' %}
+        {%- if form.posted_successfully? -%}
+          <p class="form-status form-status--success" data-form-status>{{ 'general.newsletter_form.confirmation' | t }}</p>
+        {%- endif -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-form__row">
+          <label class="visually-hidden" for="FooterEmail">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
+          <input
+            type="email"
+            name="contact[email]"
+            id="FooterEmail"
+            placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+            autocomplete="email"
+            required
+          >
+          <button type="submit" class="button button--primary">{{ 'general.newsletter_form.subscribe' | t }}</button>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+
+  <div class="footer__bar">
+    <div class="page-width footer__bar-inner">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ 'footer.copyright' | t }}</p>
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <ul class="footer__payments" role="list" aria-label="{{ 'footer.payment_methods' | t }}">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag: class: 'footer__payment-icon' }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .footer { margin-top: var(--section-spacing); }
+  .footer__inner {
+    display: grid;
+    gap: 2.5rem;
+    padding-block: 3.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 750px) {
+    .footer__inner { grid-template-columns: 1.4fr 1fr 1.2fr; }
+  }
+  @media (min-width: 990px) {
+    .footer__inner { grid-template-columns: 1.6fr 1fr 1.2fr 1.4fr; }
+  }
+  .footer__logo { max-height: 3.5rem; width: auto; margin-bottom: 1rem; }
+  .footer__logo-text { font-family: var(--font-heading), sans-serif; font-size: 1.4rem; font-weight: 700; display: block; margin-bottom: 1rem; }
+  .footer__tagline { color: rgb(255 255 255 / 0.7); max-width: 34ch; }
+  .footer__social { display: flex; gap: 0.75rem; margin-top: 1rem; }
+  .footer__social a {
+    display: grid; place-items: center;
+    width: 2.4rem; height: 2.4rem;
+    border: 1px solid rgb(255 255 255 / 0.25);
+    border-radius: 999px;
+  }
+  .footer__social a:hover { background: rgb(var(--color-primary)); border-color: transparent; color: rgb(var(--color-primary-contrast)); }
+  .footer__heading {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: rgb(255 255 255 / 0.6);
+  }
+  .footer__col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer__col a { text-decoration: none; }
+  .footer__col a:hover { text-decoration: underline; }
+  .footer__contact li { display: flex; gap: 0.6rem; align-items: flex-start; color: rgb(255 255 255 / 0.85); }
+  .footer__contact svg { flex-shrink: 0; margin-top: 0.15rem; color: rgb(var(--color-primary)); }
+  .footer__newsletter p { color: rgb(255 255 255 / 0.7); font-size: 0.92rem; }
+  .newsletter-form__row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+  .newsletter-form__row input { flex: 1 1 12rem; background: rgb(255 255 255 / 0.08); border-color: rgb(255 255 255 / 0.25); color: #fff; }
+  .newsletter-form__row input::placeholder { color: rgb(255 255 255 / 0.5); }
+  .footer__bar { border-top: 1px solid rgb(255 255 255 / 0.12); }
+  .footer__bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.25rem;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: rgb(255 255 255 / 0.6);
+  }
+  .footer__payments { display: flex; gap: 0.4rem; list-style: none; margin: 0; padding: 0; }
+  .footer__payment-icon { width: 2.2rem; height: auto; border-radius: 3px; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "One stop differential service solution. Repairs, servicing, 9″ conversions, custom axles and fabrication."
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "footer"
+    },
+    {
+      "type": "text",
+      "id": "hours",
+      "label": "t:footer.hours_title",
+      "default": "Mon – Fri: 8:00am – 5:00pm"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "t:sections.footer.show_social",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "t:sections.footer.show_payment_icons",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

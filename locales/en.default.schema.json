@@ -1,0 +1,165 @@
+{
+  "settings": {
+    "colors": {
+      "label": "Colors",
+      "background": "Background",
+      "text": "Text",
+      "primary": "Primary / accent",
+      "primary_contrast": "Text on primary"
+    },
+    "typography": {
+      "label": "Typography",
+      "heading_font": "Heading font",
+      "body_font": "Body font",
+      "heading_scale": "Heading size scale"
+    },
+    "layout": {
+      "label": "Layout",
+      "page_width": "Page width",
+      "section_spacing": "Spacing between sections"
+    },
+    "social": {
+      "label": "Social media",
+      "facebook": "Facebook URL",
+      "instagram": "Instagram URL",
+      "youtube": "YouTube URL"
+    },
+    "business": {
+      "label": "Business details",
+      "phone": "Phone number",
+      "email": "Email address",
+      "address": "Workshop address"
+    }
+  },
+  "sections": {
+    "header": {
+      "name": "Header",
+      "logo": "Logo image",
+      "logo_width": "Logo width",
+      "menu": "Menu",
+      "show_announcement": "Show announcement bar",
+      "announcement_text": "Announcement text",
+      "sticky": "Sticky header"
+    },
+    "footer": {
+      "name": "Footer",
+      "show_payment_icons": "Show payment icons",
+      "show_social": "Show social icons"
+    },
+    "hero": {
+      "name": "Hero banner",
+      "image": "Background image",
+      "eyebrow": "Eyebrow text",
+      "heading": "Heading",
+      "text": "Text",
+      "primary_label": "Primary button label",
+      "primary_link": "Primary button link",
+      "secondary_label": "Secondary button label",
+      "secondary_link": "Secondary button link",
+      "height": "Section height",
+      "overlay": "Image overlay opacity"
+    },
+    "services": {
+      "name": "Services grid",
+      "heading": "Heading",
+      "text": "Text",
+      "columns": "Columns on desktop"
+    },
+    "service_item": {
+      "name": "Service",
+      "icon": "Icon",
+      "title": "Title",
+      "text": "Text",
+      "link": "Link"
+    },
+    "featured_collection": {
+      "name": "Featured collection",
+      "heading": "Heading",
+      "collection": "Collection",
+      "products_to_show": "Products to show",
+      "columns": "Columns on desktop",
+      "show_view_all": "Show 'view all' button"
+    },
+    "why_choose_us": {
+      "name": "Why choose us",
+      "heading": "Heading"
+    },
+    "value_item": {
+      "name": "Value",
+      "title": "Title",
+      "text": "Text"
+    },
+    "image_with_text": {
+      "name": "Image with text",
+      "image": "Image",
+      "heading": "Heading",
+      "text": "Text",
+      "layout": "Image position",
+      "button_label": "Button label",
+      "button_link": "Button link"
+    },
+    "rich_text": {
+      "name": "Rich text",
+      "content": "Content",
+      "alignment": "Alignment"
+    },
+    "contact_form": {
+      "name": "Contact form",
+      "heading": "Heading",
+      "text": "Text",
+      "show_details": "Show business details"
+    },
+    "newsletter": {
+      "name": "Newsletter",
+      "heading": "Heading",
+      "text": "Text"
+    }
+  },
+  "blocks": {
+    "text": {
+      "name": "Text",
+      "text": "Text",
+      "style": "Style"
+    },
+    "button": {
+      "name": "Button",
+      "label": "Label",
+      "link": "Link",
+      "style": "Style"
+    },
+    "image": {
+      "name": "Image",
+      "image": "Image"
+    },
+    "heading": {
+      "name": "Heading",
+      "text": "Heading text"
+    }
+  },
+  "options": {
+    "alignment": {
+      "left": "Left",
+      "center": "Center",
+      "right": "Right"
+    },
+    "text_style": {
+      "eyebrow": "Eyebrow",
+      "heading": "Heading",
+      "body": "Body"
+    },
+    "button_style": {
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "link": "Text link"
+    },
+    "image_position": {
+      "left": "Image left",
+      "right": "Image right"
+    },
+    "height": {
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large"
+    }
+  }
+}

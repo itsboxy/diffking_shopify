@@ -1,0 +1,129 @@
+<div class="section cart-main">
+  <div class="page-width">
+    <h1>{{ 'cart.title' | t }}</h1>
+
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" id="CartForm" class="cart-main__form">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th scope="col">{{ 'cart.product' | t }}</th>
+              <th scope="col">{{ 'cart.quantity' | t }}</th>
+              <th scope="col" class="cart-table__right">{{ 'cart.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for item in cart.items -%}
+              <tr class="cart-item">
+                <td class="cart-item__detail">
+                  <a href="{{ item.url }}" class="cart-item__image">
+                    {%- if item.image -%}
+                      {{ item.image | image_url: width: 160 | image_tag: loading: 'lazy', alt: item.title | escape }}
+                    {%- endif -%}
+                  </a>
+                  <div>
+                    <a href="{{ item.url }}" class="cart-item__title">{{ item.product.title }}</a>
+                    {%- unless item.variant.title contains 'Default' -%}
+                      <p class="cart-item__variant">{{ item.variant.title }}</p>
+                    {%- endunless -%}
+                    {%- if item.original_price != item.final_price -%}
+                      <p class="cart-item__price"><s>{{ item.original_price | money }}</s> {{ item.final_price | money }}</p>
+                    {%- else -%}
+                      <p class="cart-item__price">{{ item.final_price | money }}</p>
+                    {%- endif -%}
+                  </div>
+                </td>
+                <td class="cart-item__qty">
+                  <div class="qty" data-qty>
+                    <button type="button" data-qty-change="down" aria-label="Decrease quantity">&minus;</button>
+                    <input
+                      type="number"
+                      name="updates[]"
+                      value="{{ item.quantity }}"
+                      min="0"
+                      data-cart-quantity
+                      aria-label="{{ 'cart.quantity' | t }} — {{ item.product.title | escape }}"
+                    >
+                    <button type="button" data-qty-change="up" aria-label="Increase quantity">+</button>
+                  </div>
+                  <a href="{{ item.url_to_remove }}" class="cart-item__remove">{{ 'cart.remove' | t }}</a>
+                </td>
+                <td class="cart-table__right cart-item__line-price">{{ item.final_line_price | money }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+
+        <div class="cart-main__footer">
+          <div class="cart-main__note field">
+            <label for="CartNote">{{ 'cart.note' | t }}</label>
+            <textarea id="CartNote" name="note" placeholder="{{ 'cart.note_placeholder' | t }}">{{ cart.note }}</textarea>
+          </div>
+
+          <div class="cart-main__summary">
+            <div class="cart-main__subtotal">
+              <span>{{ 'cart.subtotal' | t }}</span>
+              <strong>{{ cart.total_price | money }}</strong>
+            </div>
+            <p class="cart-main__tax">{{ 'cart.taxes_and_shipping_at_checkout' | t }}</p>
+            <button type="submit" name="update" class="button button--secondary">{{ 'cart.update' | t }}</button>
+            <button type="submit" name="checkout" class="button button--primary cart-main__checkout">{{ 'cart.checkout' | t }}</button>
+          </div>
+        </div>
+      </form>
+    {%- else -%}
+      <div class="cart-main__empty">
+        <p>{{ 'cart.empty' | t }}</p>
+        <p class="cart-main__empty-text">{{ 'cart.empty_text' | t }}</p>
+        <a href="{{ routes.all_products_collection_url }}" class="button button--primary">{{ 'general.continue_shopping' | t }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .cart-main h1 { margin-bottom: 2rem; }
+  .cart-table { width: 100%; border-collapse: collapse; }
+  .cart-table thead th {
+    text-align: left;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgb(var(--color-text) / 0.15);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgb(var(--color-text) / 0.6);
+  }
+  .cart-table__right { text-align: right; }
+  .cart-item td { padding: 1.25rem 0; border-bottom: 1px solid rgb(var(--color-text) / 0.1); vertical-align: top; }
+  .cart-item__detail { display: flex; gap: 1rem; }
+  .cart-item__image { flex-shrink: 0; width: 5rem; }
+  .cart-item__image img { border-radius: var(--border-radius); }
+  .cart-item__title { font-weight: 600; text-decoration: none; }
+  .cart-item__variant { font-size: 0.85rem; color: rgb(var(--color-text) / 0.6); margin: 0.2rem 0; }
+  .cart-item__price { font-size: 0.9rem; margin: 0.2rem 0 0; }
+  .cart-item__qty { white-space: nowrap; }
+  .cart-item__remove { display: inline-block; margin-top: 0.5rem; font-size: 0.8rem; }
+  .cart-item__line-price { font-weight: 700; }
+  .cart-main__footer {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  @media (min-width: 750px) {
+    .cart-main__footer { grid-template-columns: 1fr 20rem; }
+  }
+  .cart-main__summary { display: flex; flex-direction: column; gap: 0.75rem; }
+  .cart-main__subtotal { display: flex; justify-content: space-between; font-size: 1.15rem; }
+  .cart-main__tax { font-size: 0.82rem; color: rgb(var(--color-text) / 0.6); margin: 0; }
+  .cart-main__checkout { margin-top: 0.25rem; }
+  .cart-main__empty { padding: 4rem 0; text-align: center; }
+  .cart-main__empty-text { color: rgb(var(--color-text) / 0.65); margin-bottom: 1.5rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [],
+  "tag": "section"
+}
+{% endschema %}

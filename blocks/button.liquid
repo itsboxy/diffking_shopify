@@ -1,0 +1,52 @@
+{% doc %}
+  Renders a button/link.
+
+  @example
+  {% content_for 'block', type: 'button', id: 'button' %}
+{% enddoc %}
+
+{%- if block.settings.label != blank -%}
+  <div class="button-block" {{ block.shopify_attributes }}>
+    <a
+      href="{{ block.settings.link | default: '#' }}"
+      class="button button--{{ block.settings.style }}"
+    >
+      {{ block.settings.label }}
+    </a>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .button-block { margin-block: 1rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:blocks.button.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:blocks.button.label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:blocks.button.link"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "t:blocks.button.style",
+      "default": "primary",
+      "options": [
+        { "value": "primary", "label": "t:options.button_style.primary" },
+        { "value": "secondary", "label": "t:options.button_style.secondary" },
+        { "value": "link", "label": "t:options.button_style.link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "t:blocks.button.name" }]
+}
+{% endschema %}

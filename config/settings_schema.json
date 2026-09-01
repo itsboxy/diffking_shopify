@@ -1,0 +1,171 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Diff King",
+    "theme_version": "1.0.0",
+    "theme_author": "Diff King",
+    "theme_documentation_url": "https://www.diffking.com.au",
+    "theme_support_url": "https://www.diffking.com.au/contact-us/"
+  },
+  {
+    "name": "t:settings.colors.label",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "t:settings.colors.background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "t:settings.colors.text",
+        "default": "#212934"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "t:settings.colors.primary",
+        "default": "#65bc7b"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_contrast",
+        "label": "t:settings.colors.primary_contrast",
+        "default": "#0d1b12"
+      },
+      {
+        "type": "color",
+        "id": "color_dark",
+        "label": "Dark surface",
+        "default": "#212934"
+      }
+    ]
+  },
+  {
+    "name": "t:settings.typography.label",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "heading_font",
+        "label": "t:settings.typography.heading_font",
+        "default": "assistant_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "body_font",
+        "label": "t:settings.typography.body_font",
+        "default": "assistant_n4"
+      },
+      {
+        "type": "range",
+        "id": "heading_scale",
+        "label": "t:settings.typography.heading_scale",
+        "min": 90,
+        "max": 130,
+        "step": 5,
+        "unit": "%",
+        "default": 105
+      }
+    ]
+  },
+  {
+    "name": "t:settings.layout.label",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "label": "t:settings.layout.page_width",
+        "min": 1100,
+        "max": 1600,
+        "step": 20,
+        "unit": "px",
+        "default": 1280
+      },
+      {
+        "type": "range",
+        "id": "section_spacing",
+        "label": "t:settings.layout.section_spacing",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "default": 64
+      },
+      {
+        "type": "range",
+        "id": "border_radius",
+        "label": "Corner radius",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "default": 6
+      }
+    ]
+  },
+  {
+    "name": "t:settings.business.label",
+    "settings": [
+      {
+        "type": "text",
+        "id": "business_phone",
+        "label": "t:settings.business.phone",
+        "default": "(03) 9792 4834"
+      },
+      {
+        "type": "text",
+        "id": "business_email",
+        "label": "t:settings.business.email",
+        "default": "drbdiff@gmail.com"
+      },
+      {
+        "type": "textarea",
+        "id": "business_address",
+        "label": "t:settings.business.address",
+        "default": "3/57 Dandenong Street, Dandenong VIC 3175"
+      },
+      {
+        "type": "text",
+        "id": "business_maps_link",
+        "label": "Google Maps link",
+        "default": "https://maps.google.com/?q=3/57+Dandenong+Street+Dandenong+VIC+3175"
+      }
+    ]
+  },
+  {
+    "name": "t:settings.social.label",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "t:settings.social.facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "t:settings.social.instagram"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube",
+        "label": "t:settings.social.youtube"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart type",
+        "options": [
+          { "value": "page", "label": "Page" },
+          { "value": "drawer", "label": "Drawer" }
+        ],
+        "default": "page"
+      }
+    ]
+  }
+]

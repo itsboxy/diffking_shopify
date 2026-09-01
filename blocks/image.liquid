@@ -1,0 +1,38 @@
+{% doc %}
+  Renders an image block.
+
+  @example
+  {% content_for 'block', type: 'image', id: 'image' %}
+{% enddoc %}
+
+<div class="image-block" {{ block.shopify_attributes }}>
+  {%- if block.settings.image != blank -%}
+    {{
+      block.settings.image
+      | image_url: width: 1400
+      | image_tag: loading: 'lazy', widths: '400, 600, 900, 1400', sizes: '(min-width: 750px) 50vw, 100vw', alt: block.settings.image.alt | escape
+    }}
+  {%- else -%}
+    {{ 'image' | placeholder_svg_tag: 'image-block__placeholder' }}
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .image-block { margin-block: 1rem; }
+  .image-block img { border-radius: var(--border-radius); width: 100%; height: auto; }
+  .image-block__placeholder { width: 100%; background: rgb(var(--color-text) / 0.06); border-radius: var(--border-radius); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:blocks.image.name",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:blocks.image.image"
+    }
+  ],
+  "presets": [{ "name": "t:blocks.image.name" }]
+}
+{% endschema %}

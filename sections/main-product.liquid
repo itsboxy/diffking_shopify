@@ -1,0 +1,238 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+
+<div class="section product-main">
+  <div class="page-width">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a> /
+      {%- if collection -%}
+        <a href="{{ collection.url }}">{{ collection.title }}</a> /
+      {%- endif -%}
+      <span>{{ product.title }}</span>
+    </nav>
+
+    <div class="product-main__grid">
+      <div class="product-main__media">
+        {%- if product.media.size > 0 -%}
+          <div class="product-main__gallery">
+            {%- for media in product.media -%}
+              {%- liquid
+                assign loading = 'lazy'
+                if forloop.first
+                  assign loading = 'eager'
+                endif
+              -%}
+              <div class="product-main__media-item{% if forloop.first %} is-featured{% endif %}">
+                {{
+                  media
+                  | image_url: width: 1400
+                  | image_tag:
+                    loading: loading,
+                    widths: '400, 600, 900, 1400',
+                    sizes: '(min-width: 990px) 50vw, 100vw',
+                    alt: media.alt | default: product.title | escape
+                }}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'product-main__placeholder' }}
+        {%- endif -%}
+      </div>
+
+      <div class="product-main__info">
+        {%- if product.vendor != blank -%}
+          <p class="product-main__vendor">{{ product.vendor }}</p>
+        {%- endif -%}
+        <h1 class="product-main__title">{{ product.title }}</h1>
+
+        <div class="product-main__price">
+          {% render 'price', product: product %}
+          {%- if current_variant.sku != blank -%}
+            <span class="product-main__sku">{{ 'products.product.sku' | t }}: {{ current_variant.sku }}</span>
+          {%- endif -%}
+        </div>
+
+        {% form 'product', product, class: 'product-form', id: 'ProductForm' %}
+          {%- unless product.has_only_default_variant -%}
+            <div class="product-form__variants">
+              {%- for option in product.options_with_values -%}
+                <div class="field">
+                  <label for="Option{{ forloop.index }}">{{ option.name }}</label>
+                  <select
+                    id="Option{{ forloop.index }}"
+                    name="options[{{ option.name | escape }}]"
+                    data-variant-select
+                  >
+                    {%- for value in option.values -%}
+                      <option
+                        value="{{ value | escape }}"
+                        {% if option.selected_value == value %}selected{% endif %}
+                      >{{ value }}</option>
+                    {%- endfor -%}
+                  </select>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+
+          <select name="id" class="visually-hidden" data-variant-id-input>
+            {%- for variant in product.variants -%}
+              <option
+                value="{{ variant.id }}"
+                {% if variant == current_variant %}selected{% endif %}
+                {% unless variant.available %}disabled{% endunless %}
+              >{{ variant.title }}</option>
+            {%- endfor -%}
+          </select>
+
+          <div class="product-form__actions">
+            <div class="qty" data-qty>
+              <button type="button" data-qty-change="down" aria-label="Decrease quantity">&minus;</button>
+              <input type="number" name="quantity" value="1" min="1" aria-label="{{ 'products.product.quantity' | t }}">
+              <button type="button" data-qty-change="up" aria-label="Increase quantity">+</button>
+            </div>
+
+            <button
+              type="submit"
+              name="add"
+              class="button button--primary product-form__submit"
+              {% unless current_variant.available %}disabled{% endunless %}
+            >
+              {%- if current_variant.available -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </button>
+          </div>
+        {% endform %}
+
+        {%- if product.description != blank -%}
+          <div class="product-main__description rte">
+            {{ product.description }}
+          </div>
+        {%- endif -%}
+
+        <div class="product-main__meta">
+          {%- if settings.business_phone != blank -%}
+            <p>{% render 'icon', name: 'phone', size: 16 %} Questions on fitment? Call {{ settings.business_phone }}</p>
+          {%- endif -%}
+          <p>{% render 'icon', name: 'truck', size: 16 %} Shipped Australia-wide</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .product-main__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media (min-width: 990px) {
+    .product-main__grid { grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
+  }
+  .product-main__gallery { display: grid; gap: 1rem; }
+  .product-main__media-item img,
+  .product-main__placeholder {
+    width: 100%;
+    border-radius: var(--border-radius);
+    background: rgb(var(--color-text) / 0.05);
+  }
+  .product-main__vendor {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    color: rgb(var(--color-text) / 0.6);
+    margin-bottom: 0.35rem;
+  }
+  .product-main__title { margin: 0 0 1rem; }
+  .product-main__price {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  .product-main__sku { font-size: 0.8rem; font-weight: 400; color: rgb(var(--color-text) / 0.6); }
+  .product-form__variants { display: grid; gap: 1rem; margin-bottom: 1rem; }
+  .product-form__actions { display: flex; gap: 0.75rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
+  .qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgb(var(--color-text) / 0.25);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+  .qty button {
+    width: 2.75rem;
+    height: 3rem;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: inherit;
+  }
+  .qty input {
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    border: none;
+    border-inline: 1px solid rgb(var(--color-text) / 0.2);
+    -moz-appearance: textfield;
+    padding: 0;
+  }
+  .qty input::-webkit-outer-spin-button,
+  .qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .product-form__submit { flex: 1; min-width: 12rem; }
+  .product-main__description { margin-bottom: 1.5rem; }
+  .product-main__meta { border-top: 1px solid rgb(var(--color-text) / 0.12); padding-top: 1.25rem; }
+  .product-main__meta p { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: rgb(var(--color-text) / 0.75); margin: 0 0 0.5rem; }
+  .product-main__meta svg { color: rgb(var(--color-primary)); }
+{% endstylesheet %}
+
+<script>
+  (function () {
+    var form = document.getElementById('ProductForm');
+    if (!form) return;
+    var selects = form.querySelectorAll('[data-variant-select]');
+    var idInput = form.querySelector('[data-variant-id-input]');
+    var submit = form.querySelector('.product-form__submit');
+    if (!idInput) return;
+
+    var variants = {{ product.variants | json }};
+
+    function currentSelection() {
+      return Array.prototype.map.call(selects, function (s) { return s.value; });
+    }
+
+    function update() {
+      var chosen = currentSelection();
+      var match = variants.find(function (v) {
+        return v.options.every(function (opt, i) { return opt === chosen[i]; });
+      });
+      if (!match) return;
+      idInput.value = match.id;
+      if (submit) {
+        submit.disabled = !match.available;
+        submit.textContent = match.available ? {{ 'products.product.add_to_cart' | t | json }} : {{ 'products.product.sold_out' | t | json }};
+      }
+    }
+
+    selects.forEach(function (s) { s.addEventListener('change', update); });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product information",
+  "settings": [],
+  "blocks": [],
+  "tag": "section"
+}
+{% endschema %}

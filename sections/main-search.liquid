@@ -1,0 +1,73 @@
+{%- paginate search.results by 24 -%}
+  <div class="section search-main">
+    <div class="page-width">
+      <h1>{{ 'general.search.search' | t }}</h1>
+
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-main__form">
+        <input
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="{{ 'general.search.placeholder' | t }}"
+          aria-label="{{ 'general.search.search' | t }}"
+        >
+        <button type="submit" class="button button--primary">{{ 'general.search.search' | t }}</button>
+      </form>
+
+      {%- if search.performed -%}
+        {%- if search.results_count > 0 -%}
+          <p class="search-main__count">{{ 'general.search.results_with_count' | t: count: search.results_count }}</p>
+          <div class="product-grid product-grid--4 search-main__results">
+            {%- for item in search.results -%}
+              {%- if item.object_type == 'product' -%}
+                {% render 'product-card', product: item %}
+              {%- else -%}
+                <article class="search-result">
+                  <h2 class="search-result__title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
+                  {%- if item.content or item.excerpt -%}
+                    <p class="search-result__excerpt">{{ item.excerpt | default: item.content | strip_html | truncatewords: 30 }}</p>
+                  {%- endif -%}
+                </article>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            <nav class="pagination" aria-label="{{ 'general.pagination.label' | t }}">
+              {%- for part in paginate.parts -%}
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}">{{ part.title }}</a>
+                {%- elsif part.title == paginate.current_page -%}
+                  <span class="pagination__current">{{ part.title }}</span>
+                {%- else -%}
+                  <span>{{ part.title }}</span>
+                {%- endif -%}
+              {%- endfor -%}
+            </nav>
+          {%- endif -%}
+        {%- else -%}
+          <p class="search-main__empty">{{ 'general.search.no_results' | t: terms: search.terms }}</p>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+{%- endpaginate -%}
+
+{% stylesheet %}
+  .search-main h1 { margin-bottom: 1.5rem; }
+  .search-main__form { display: flex; gap: 0.5rem; margin-bottom: 2rem; max-width: 36rem; }
+  .search-main__count { color: rgb(var(--color-text) / 0.7); margin-bottom: 1.5rem; }
+  .search-result { grid-column: 1 / -1; padding: 1.25rem 0; border-bottom: 1px solid rgb(var(--color-text) / 0.1); }
+  .search-result__title { margin: 0 0 0.35rem; font-size: 1.1rem; }
+  .search-result__title a { text-decoration: none; }
+  .search-result__excerpt { margin: 0; color: rgb(var(--color-text) / 0.7); }
+  .search-main__empty { padding: 3rem 0; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Search results",
+  "settings": [],
+  "tag": "section"
+}
+{% endschema %}

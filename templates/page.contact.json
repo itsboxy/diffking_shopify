@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "page": {
+      "type": "main-page"
+    },
+    "contact": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Get in touch",
+        "text": "Tell us about your vehicle and what you need. Pickup and delivery available.",
+        "hours": "Mon – Fri: 8:00am – 5:00pm",
+        "show_details": true
+      }
+    }
+  },
+  "order": ["page", "contact"]
+}

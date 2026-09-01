@@ -1,0 +1,177 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close": "Close",
+      "menu": "Menu",
+      "open_menu": "Open menu",
+      "cart": "Cart",
+      "search": "Search",
+      "previous": "Previous",
+      "next": "Next",
+      "loading": "Loading",
+      "scroll_to_top": "Back to top",
+      "phone": "Call us",
+      "email": "Email us"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {{ number }}"
+    },
+    "search": {
+      "search": "Search",
+      "placeholder": "Search diffs, axles, parts...",
+      "reset": "Clear search",
+      "results_with_count": "{{ count }} result",
+      "results_with_count_plural": "{{ count }} results",
+      "no_results": "No results found for “{{ terms }}”. Check the spelling or use a different word or phrase.",
+      "results_for": "Search results for “{{ terms }}”"
+    },
+    "newsletter_form": {
+      "newsletter_email": "Email address",
+      "email_placeholder": "you@example.com",
+      "confirmation": "Thanks for subscribing.",
+      "subscribe": "Subscribe",
+      "success": "You are now subscribed."
+    },
+    "share": {
+      "copy_to_clipboard": "Copy link",
+      "share_url": "Link",
+      "success_message": "Link copied to clipboard"
+    },
+    "continue_shopping": "Continue shopping",
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you were looking for does not exist."
+    }
+  },
+  "header": {
+    "announcement": "Australia-wide shipping — diff repairs, service & 9″ conversions",
+    "call": "(03) 9792 4834",
+    "book_now": "Book now",
+    "menu": "Menu"
+  },
+  "footer": {
+    "quick_links": "Explore",
+    "contact_title": "Visit the workshop",
+    "hours_title": "Opening hours",
+    "hours": "Mon – Fri: 8:00am – 5:00pm",
+    "newsletter_title": "Get diff tips & offers",
+    "newsletter_text": "Occasional emails on builds, ratios and workshop specials. No spam.",
+    "copyright": "Diff King. All rights reserved.",
+    "payment_methods": "Payment methods"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "on_sale": "Sale",
+      "from_price_html": "From {{ price }}",
+      "regular_price": "Regular price",
+      "sale_price": "Sale price",
+      "quantity": "Quantity",
+      "vendor": "Brand",
+      "sku": "SKU",
+      "description": "Description",
+      "view_full_details": "View full details",
+      "share": "Share",
+      "no_media": "No image available",
+      "price_per_unit_html": "{{ price }} / {{ unit }}",
+      "included_taxes": "Tax included.",
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+    },
+    "card": {
+      "sold_out": "Sold out",
+      "sale": "Sale"
+    },
+    "facets": {
+      "filter_and_sort": "Filter and sort",
+      "filter_by_label": "Filter:",
+      "sort_by_label": "Sort by:",
+      "clear": "Clear",
+      "clear_all": "Clear all",
+      "apply": "Apply",
+      "product_count": "{{ product_count }} of {{ count }} products",
+      "product_count_simple": "{{ count }} products"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "No products found",
+      "items_with_count": "{{ count }} product",
+      "items_with_count_plural": "{{ count }} products",
+      "view_all": "View all"
+    }
+  },
+  "cart": {
+    "title": "Your cart",
+    "empty": "Your cart is empty",
+    "empty_text": "Browse diffs, axles and fabrication parts to get started.",
+    "checkout": "Check out",
+    "subtotal": "Subtotal",
+    "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout",
+    "remove": "Remove",
+    "product": "Product",
+    "quantity": "Quantity",
+    "total": "Total",
+    "update": "Update",
+    "note": "Order note",
+    "note_placeholder": "Vehicle, ratio, spline count, special instructions..."
+  },
+  "blogs": {
+    "article": {
+      "back_to_blog": "Back to {{ title }}",
+      "read_more": "Read more",
+      "posted_in": "Posted in",
+      "by_author": "by {{ author }}",
+      "share": "Share this article"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "vehicle": "Vehicle / diff details",
+      "message": "How can we help?",
+      "send": "Send enquiry",
+      "post_success": "Thanks for reaching out. We'll get back to you shortly.",
+      "error_heading": "Please fix the following:"
+    }
+  },
+  "sections": {
+    "hero": {
+      "eyebrow": "Melbourne • Est. workshop",
+      "heading": "One stop differential service solution",
+      "text": "Diff repairs, servicing, 9″ conversions, custom axles and fabrication — built by specialists, shipped Australia-wide.",
+      "primary_cta": "Book a service",
+      "secondary_cta": "Shop parts"
+    },
+    "services": {
+      "heading": "Our services",
+      "text": "Everything under one roof, backed by a 1 year / 20,000 km workmanship warranty."
+    },
+    "featured_collection": {
+      "heading": "Shop diff parts",
+      "view_all": "View all products"
+    },
+    "why_choose_us": {
+      "heading": "Why choose Diff King"
+    },
+    "image_with_text": {
+      "heading": "Built by differential specialists",
+      "text": "We have the experience, skills and tools to fix all differential problems — for every make and model."
+    },
+    "contact": {
+      "heading": "Get in touch",
+      "text": "Tell us about your vehicle and what you need. Pickup and delivery available."
+    }
+  }
+}

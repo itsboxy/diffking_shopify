@@ -1,0 +1,40 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>{{ shop.name }} — Gift card</title>
+    {% render 'css-variables' %}
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    <style>
+      .gift-card { max-width: 30rem; margin: 3rem auto; padding: 0 1.25rem; text-align: center; }
+      .gift-card__amount { font-size: 3rem; font-weight: 700; font-family: var(--font-heading), sans-serif; color: rgb(var(--color-primary)); }
+      .gift-card__code { display: inline-block; margin: 1rem 0; padding: 0.75rem 1.25rem; border: 2px dashed rgb(var(--color-text) / 0.3); border-radius: var(--border-radius); font-size: 1.2rem; letter-spacing: 0.15em; }
+      .gift-card__qr { margin: 1.5rem auto; }
+    </style>
+  </head>
+  <body>
+    <div class="gift-card">
+      <h1>{{ shop.name }}</h1>
+      <p>Here is your gift card!</p>
+      <p class="gift-card__amount">{{ gift_card.initial_value | money }}</p>
+      {%- if gift_card.enabled == false or gift_card.expired -%}
+        <p>This gift card is no longer valid.</p>
+      {%- else -%}
+        <div class="gift-card__code">{{ gift_card.code | format_code }}</div>
+        {%- # theme-check-disable RemoteAsset -%}
+        <img
+          class="gift-card__qr"
+          src="/services/gift_card/qr/{{ gift_card.qr_identifier }}"
+          alt="QR code"
+          width="160"
+          height="160"
+        >
+        {%- # theme-check-enable RemoteAsset -%}
+        <p><a class="button button--primary" href="{{ shop.url }}">Start shopping</a></p>
+      {%- endif -%}
+    </div>
+  </body>
+</html>
