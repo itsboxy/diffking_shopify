@@ -9,8 +9,9 @@
       },
       "block_order": ["t1", "t2", "t3"],
       "settings": {
+        "asset_image": "hero-workshop.jpg",
         "height": "large",
-        "overlay": 55,
+        "overlay": 60,
         "eyebrow": "Melbourne workshop • Australia-wide",
         "heading": "One stop differential service solution",
         "text": "Diff repairs, servicing, 9″ conversions, custom axles and fabrication — built by specialists.",

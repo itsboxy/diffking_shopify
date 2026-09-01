@@ -1,0 +1,98 @@
+<div class="section spec-grid-section{% if section.settings.color_scheme == 'dark' %} surface-dark{% elsif section.settings.color_scheme == 'alt' %} surface-alt{% endif %}">
+  <div class="page-width">
+    <div class="spec-grid__layout">
+      <div class="spec-grid__intro">
+        {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link | default: '#' }}" class="button button--primary spec-grid__cta">
+            {{ section.settings.button_label }} {% render 'icon', name: 'arrow-right', size: 16 %}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <dl class="spec-grid__list">
+        {%- for block in section.blocks -%}
+          <div class="spec-grid__row" {{ block.shopify_attributes }}>
+            <dt>{{ block.settings.label }}</dt>
+            <dd>{{ block.settings.value }}</dd>
+          </div>
+        {%- endfor -%}
+      </dl>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .spec-grid__layout { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+  @media (min-width: 900px) { .spec-grid__layout { grid-template-columns: 0.85fr 1.15fr; gap: 4rem; align-items: start; } }
+  .spec-grid__intro p { color: rgb(var(--color-text) / 0.72); }
+  .surface-dark .spec-grid__intro p { color: rgb(255 255 255 / 0.72); }
+  .spec-grid__cta { margin-top: 1.5rem; }
+
+  .spec-grid__list { margin: 0; }
+  .spec-grid__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.15rem 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgb(var(--color-line));
+  }
+  @media (min-width: 500px) { .spec-grid__row { grid-template-columns: 13rem 1fr; align-items: baseline; } }
+  .surface-dark .spec-grid__row { border-color: rgb(255 255 255 / 0.14); }
+  .spec-grid__row:first-child { border-top: 1px solid rgb(var(--color-line)); }
+  .surface-dark .spec-grid__row:first-child { border-top-color: rgb(255 255 255 / 0.14); }
+  .spec-grid__row dt {
+    font-family: var(--font-heading), sans-serif;
+    font-weight: 700;
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(var(--color-primary-dark));
+  }
+  .surface-dark .spec-grid__row dt { color: rgb(var(--color-primary)); }
+  .spec-grid__row dd { margin: 0; font-size: 1rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Spec grid",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Specifications" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Built to a spec, not a price" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    {
+      "type": "select", "id": "color_scheme", "label": "Background", "default": "alt",
+      "options": [
+        { "value": "default", "label": "White" },
+        { "value": "alt", "label": "Light grey" },
+        { "value": "dark", "label": "Black" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Spec",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Label" },
+        { "type": "text", "id": "value", "label": "Value", "default": "Value" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Spec grid",
+      "blocks": [
+        { "type": "spec" },
+        { "type": "spec" },
+        { "type": "spec" },
+        { "type": "spec" }
+      ]
+    }
+  ]
+}
+{% endschema %}

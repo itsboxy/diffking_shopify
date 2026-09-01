@@ -1,0 +1,98 @@
+<div class="section feature-columns{% if section.settings.color_scheme == 'dark' %} surface-dark{% elsif section.settings.color_scheme == 'alt' %} surface-alt{% endif %}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank or section.settings.text != blank -%}
+      <div class="section-heading section-heading--center">
+        {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="feature-columns__grid" style="--columns: {{ section.settings.columns }}">
+      {%- for block in section.blocks -%}
+        <article class="feature-col" {{ block.shopify_attributes }}>
+          <span class="feature-col__icon">{% render 'icon', name: block.settings.icon, size: 26 %}</span>
+          <h3 class="feature-col__title">{{ block.settings.title }}</h3>
+          {%- if block.settings.text != blank -%}<p class="feature-col__text">{{ block.settings.text }}</p>{%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .feature-columns__grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 700px) { .feature-columns__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .feature-columns__grid { grid-template-columns: repeat(var(--columns), 1fr); } }
+
+  .feature-col {
+    padding: 2rem 1.75rem;
+    border: 1px solid rgb(var(--color-line));
+    border-top: 3px solid rgb(var(--color-primary));
+    border-radius: var(--border-radius);
+    background: rgb(var(--color-background));
+  }
+  .surface-dark .feature-col { background: rgb(var(--color-dark)); border-color: rgb(255 255 255 / 0.14); border-top-color: rgb(var(--color-primary)); }
+  .feature-col__icon {
+    display: grid; place-items: center;
+    width: 3rem; height: 3rem;
+    border-radius: var(--border-radius-sm);
+    background: rgb(var(--color-dark));
+    color: #fff;
+  }
+  .surface-dark .feature-col__icon { background: rgb(var(--color-primary)); }
+  .feature-col__title { margin: 1.1rem 0 0.5rem; font-size: 1.2rem; }
+  .surface-dark .feature-col__title { color: #fff; }
+  .feature-col__text { margin: 0; color: rgb(var(--color-text) / 0.72); font-size: 0.95rem; line-height: 1.6; }
+  .surface-dark .feature-col__text { color: rgb(255 255 255 / 0.72); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Feature columns",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Key features" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "range", "id": "columns", "label": "Columns on desktop", "min": 2, "max": 4, "step": 1, "default": 3 },
+    {
+      "type": "select", "id": "color_scheme", "label": "Background", "default": "default",
+      "options": [
+        { "value": "default", "label": "White" },
+        { "value": "alt", "label": "Light grey" },
+        { "value": "dark", "label": "Black" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icon", "default": "gear",
+          "options": [
+            { "value": "gear", "label": "Gear" },
+            { "value": "wrench", "label": "Wrench" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "spark", "label": "Spark" },
+            { "value": "truck", "label": "Truck" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Feature title" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Describe this feature." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature columns",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

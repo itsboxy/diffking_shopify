@@ -1,0 +1,98 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "t1": { "type": "trust", "settings": { "icon": "gear", "text": "7 helical gears" } },
+        "t2": { "type": "trust", "settings": { "icon": "shield", "text": "Forged billet 2MNCR5" } },
+        "t3": { "type": "trust", "settings": { "icon": "spark", "text": "45–50 HRC hardened" } },
+        "t4": { "type": "trust", "settings": { "icon": "gear", "text": "50/50 torque split" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"],
+      "settings": {
+        "height": "medium",
+        "eyebrow": "Diff King engineering",
+        "heading": "Disc Trac helical LSD",
+        "text": "Ultimate traction from a forged billet, 7-helical-gear limited slip differential — engineered for the track and hardened up to 45–50 HRC.",
+        "primary_label": "Get a quote",
+        "secondary_label": "Shop helical LSDs"
+      }
+    },
+    "banner": {
+      "type": "image-banner",
+      "settings": {
+        "asset_image": "disc-trac-banner.jpg",
+        "asset_width": 1920,
+        "asset_height": 820,
+        "alt": "Disc Trac Helical LSD — forged billet, 7 helical gears, hardened 45–50 HRC",
+        "constrain": false
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "settings": { "alignment": "center" },
+      "blocks": {
+        "e": { "type": "heading", "settings": { "text": "Cutting-edge traction technology" } },
+        "b": { "type": "text", "settings": { "text": "<p>The Disc Trac helical LSD is engineered using cutting-edge technology to deliver superior performance on the track. Designed with a 7-helical gear system, it ensures smooth, seamless power transfer to both wheels, maximizing traction and stability. The patented power transfer mechanism reduces power loss, allowing drivers to maintain speed and control through corners. Precision-machined from forged billet 2MNCR5 material, it is built to withstand extreme forces while providing long-lasting reliability and performance.</p>" } }
+      },
+      "block_order": ["e", "b"]
+    },
+    "pillars": {
+      "type": "feature-columns",
+      "settings": {
+        "eyebrow": "How it's built",
+        "heading": "Three parts, one seamless unit",
+        "text": "Every Disc Trac is designed around adjustability, strength and smooth engagement.",
+        "columns": 3,
+        "color_scheme": "alt"
+      },
+      "blocks": {
+        "p1": { "type": "item", "settings": { "icon": "gear", "title": "Customizable disc preload", "text": "A variable disc preload system lets you fine-tune how aggressively the diff engages — tighter for high-speed grip, looser for smoother transitions — so the LSD adapts to your driving style and track conditions." } },
+        "p2": { "type": "item", "settings": { "icon": "shield", "title": "Billet external case", "text": "Precision CNC-machined from high-grade billet for superior heat dissipation and structural integrity. It handles high torque loads without deformation and drops into a range of differential housings for easy installation." } },
+        "p3": { "type": "item", "settings": { "icon": "spark", "title": "7-helical gear internals", "text": "The 7-helical gear setup gives progressive, smooth engagement with no harsh locking. Paired with strategic friction surfaces for a balanced 50/50 torque split — quiet, efficient and low-maintenance versus clutch-type LSDs." } }
+      },
+      "block_order": ["p1", "p2", "p3"]
+    },
+    "specs": {
+      "type": "spec-grid",
+      "settings": {
+        "eyebrow": "Specifications",
+        "heading": "Built to a spec, not a price",
+        "text": "Race-grade materials and tolerances in every unit.",
+        "button_label": "Enquire about fitment",
+        "color_scheme": "dark"
+      },
+      "blocks": {
+        "s1": { "type": "spec", "settings": { "label": "Type", "value": "Helical gear-type limited slip differential" } },
+        "s2": { "type": "spec", "settings": { "label": "Gear set", "value": "7-helical pinion gear system" } },
+        "s3": { "type": "spec", "settings": { "label": "Material", "value": "Forged billet 2MNCR5" } },
+        "s4": { "type": "spec", "settings": { "label": "Hardness", "value": "Hardened 45–50 HRC" } },
+        "s5": { "type": "spec", "settings": { "label": "Torque distribution", "value": "Balanced 50/50" } },
+        "s6": { "type": "spec", "settings": { "label": "Case", "value": "CNC-machined billet, multi-housing fit" } },
+        "s7": { "type": "spec", "settings": { "label": "Preload", "value": "Adjustable variable disc preload" } },
+        "s8": { "type": "spec", "settings": { "label": "Maintenance", "value": "Minimal — no clutch packs to service" } },
+        "s9": { "type": "spec", "settings": { "label": "Best for", "value": "Track, motorsport & high-performance street" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9"]
+    },
+    "collection": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "In the shop",
+        "heading": "Helical LSDs & Truetracs",
+        "products_to_show": 4,
+        "columns": "4",
+        "show_view_all": true
+      }
+    },
+    "quote": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Request a Disc Trac quote",
+        "text": "Tell us your vehicle, differential and spline count and we'll come back with pricing and lead time. Bulk orders welcome.",
+        "show_details": true
+      }
+    }
+  },
+  "order": ["hero", "intro", "pillars", "specs", "banner", "collection", "quote"]
+}
