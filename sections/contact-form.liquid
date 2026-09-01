@@ -1,186 +1,224 @@
 {%- liquid
   assign phone_href = settings.business_phone | remove: ' ' | remove: '(' | remove: ')'
+  assign heading_words = section.settings.heading | split: ' '
+  assign last_index = heading_words.size | minus: 1
 -%}
 
 <div class="section contact-section">
-  <div class="page-width">
-    <div class="contact-section__grid">
-      <div class="contact-section__intro">
-        {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
-        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
-        {%- if section.settings.text != blank -%}<p class="contact-section__lede">{{ section.settings.text }}</p>{%- endif -%}
-
-        {%- if section.settings.show_details -%}
-          <ul class="contact-cards" role="list">
-            {%- if settings.business_phone != blank -%}
-              <li class="contact-card">
-                <span class="contact-card__icon">{% render 'icon', name: 'phone', size: 20 %}</span>
-                <div>
-                  <span class="contact-card__label">Call the workshop</span>
-                  <a class="contact-card__value" href="tel:{{ phone_href }}">{{ settings.business_phone }}</a>
-                </div>
-              </li>
-            {%- endif -%}
-            {%- if settings.business_email != blank -%}
-              <li class="contact-card">
-                <span class="contact-card__icon">{% render 'icon', name: 'mail', size: 20 %}</span>
-                <div>
-                  <span class="contact-card__label">Email us</span>
-                  <a class="contact-card__value" href="mailto:{{ settings.business_email }}">{{ settings.business_email }}</a>
-                </div>
-              </li>
-            {%- endif -%}
-            {%- if settings.business_address != blank -%}
-              <li class="contact-card">
-                <span class="contact-card__icon">{% render 'icon', name: 'pin', size: 20 %}</span>
-                <div>
-                  <span class="contact-card__label">Workshop</span>
-                  <a class="contact-card__value" href="{{ settings.business_maps_link }}" target="_blank" rel="noopener">{{ settings.business_address | newline_to_br }}</a>
-                </div>
-              </li>
-            {%- endif -%}
-            {%- if section.settings.hours != blank -%}
-              <li class="contact-card">
-                <span class="contact-card__icon">{% render 'icon', name: 'clock', size: 20 %}</span>
-                <div>
-                  <span class="contact-card__label">Opening hours</span>
-                  <span class="contact-card__value">{{ section.settings.hours | newline_to_br }}</span>
-                </div>
-              </li>
-            {%- endif -%}
-          </ul>
+  {%- if section.settings.show_details -%}
+    <div class="page-width">
+      <ul class="contact-cards" role="list">
+        {%- if settings.business_address != blank -%}
+          <li class="contact-card contact-card--accent">
+            <span class="contact-card__icon">{% render 'icon', name: 'pin', size: 22 %}</span>
+            <span class="contact-card__label">Address</span>
+            <a class="contact-card__value" href="{{ settings.business_maps_link }}" target="_blank" rel="noopener">{{ settings.business_address }}</a>
+          </li>
         {%- endif -%}
-      </div>
+        {%- if settings.business_email != blank -%}
+          <li class="contact-card">
+            <span class="contact-card__icon">{% render 'icon', name: 'mail', size: 22 %}</span>
+            <span class="contact-card__label">Email</span>
+            <a class="contact-card__value" href="mailto:{{ settings.business_email }}">{{ settings.business_email }}</a>
+          </li>
+        {%- endif -%}
+        {%- if settings.business_phone != blank -%}
+          <li class="contact-card">
+            <span class="contact-card__icon">{% render 'icon', name: 'phone', size: 22 %}</span>
+            <span class="contact-card__label">Phone</span>
+            <a class="contact-card__value" href="tel:{{ phone_href }}">{{ settings.business_phone }}</a>
+          </li>
+        {%- endif -%}
+        {%- if section.settings.hours != blank -%}
+          <li class="contact-card">
+            <span class="contact-card__icon">{% render 'icon', name: 'clock', size: 22 %}</span>
+            <span class="contact-card__label">Hours</span>
+            <span class="contact-card__value">{{ section.settings.hours }}</span>
+          </li>
+        {%- endif -%}
+      </ul>
+    </div>
+  {%- endif -%}
 
-      <div class="contact-section__form">
-        <div class="contact-form-card">
-          <h3 class="contact-form-card__title">{{ section.settings.form_heading | default: 'Send an enquiry' }}</h3>
-          {% form 'contact', class: 'contact-form' %}
-            {%- if form.posted_successfully? -%}
-              <p class="form-status form-status--success" data-form-status>{{ 'contact.form.post_success' | t }}</p>
-            {%- elsif form.errors -%}
-              <div class="form-status form-status--error" data-form-status>
-                <p>{{ 'contact.form.error_heading' | t }}</p>
-                <ul>
-                  {%- for field in form.errors -%}
-                    <li>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
-                  {%- endfor -%}
-                </ul>
-              </div>
-            {%- endif -%}
+  <div class="contact-split">
+    <div class="contact-split__map">
+      {%- if section.settings.map_embed != blank -%}
+        {{ section.settings.map_embed }}
+      {%- else -%}
+        <a class="contact-split__map-fallback" href="{{ settings.business_maps_link }}" target="_blank" rel="noopener">
+          {% render 'icon', name: 'pin', size: 28 %}
+          <span>{{ settings.business_address }}</span>
+          <span class="contact-split__map-cta">Open in Google Maps {% render 'icon', name: 'arrow-right', size: 15 %}</span>
+        </a>
+      {%- endif -%}
+    </div>
 
-            <div class="contact-form__row">
-              <div class="field">
-                <label for="ContactName">{{ 'contact.form.name' | t }}</label>
-                <input type="text" id="ContactName" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" autocomplete="name" required>
-              </div>
-              <div class="field">
-                <label for="ContactPhone">{{ 'contact.form.phone' | t }}</label>
-                <input type="tel" id="ContactPhone" name="contact[phone]" value="{{ form.phone }}" autocomplete="tel">
-              </div>
+    <div class="contact-split__form">
+      <div class="contact-formwrap">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="contact-formwrap__title">
+            {%- for word in heading_words -%}
+              {%- if forloop.index0 == last_index -%}<span class="accent">{{ word }}</span>{%- else -%}{{ word }} {% endif -%}
+            {%- endfor -%}
+          </h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}<p class="contact-formwrap__lede">{{ section.settings.text }}</p>{%- endif -%}
+
+        {% form 'contact', class: 'contact-form' %}
+          {%- if form.posted_successfully? -%}
+            <p class="form-status form-status--success" data-form-status>{{ 'contact.form.post_success' | t }}</p>
+          {%- elsif form.errors -%}
+            <div class="form-status form-status--error" data-form-status>
+              <p>{{ 'contact.form.error_heading' | t }}</p>
+              <ul>
+                {%- for field in form.errors -%}
+                  <li>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</li>
+                {%- endfor -%}
+              </ul>
             </div>
+          {%- endif -%}
 
+          <div class="contact-form__row">
+            <div class="field">
+              <label for="ContactFirst">{{ 'contact.form.first_name' | t }}</label>
+              <input type="text" id="ContactFirst" name="contact[name]" value="{{ form.name }}" autocomplete="given-name" required>
+            </div>
+            <div class="field">
+              <label for="ContactLast">{{ 'contact.form.last_name' | t }}</label>
+              <input type="text" id="ContactLast" name="contact[last_name]" value="{{ form.last_name }}" autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="contact-form__row">
             <div class="field">
               <label for="ContactEmail">{{ 'contact.form.email' | t }}</label>
               <input type="email" id="ContactEmail" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" autocomplete="email" required>
             </div>
-
             <div class="field">
-              <label for="ContactVehicle">{{ 'contact.form.vehicle' | t }}</label>
-              <input type="text" id="ContactVehicle" name="contact[vehicle]" value="{{ form.vehicle }}" placeholder="Year, make, model and diff type">
+              <label for="ContactPhone">{{ 'contact.form.phone' | t }}</label>
+              <input type="tel" id="ContactPhone" name="contact[phone]" value="{{ form.phone }}" autocomplete="tel">
             </div>
+          </div>
 
-            <div class="field">
-              <label for="ContactMessage">{{ 'contact.form.message' | t }}</label>
-              <textarea id="ContactMessage" name="contact[body]" required>{{ form.body }}</textarea>
-            </div>
+          <div class="field">
+            <label for="ContactMessage">{{ 'contact.form.message' | t }}</label>
+            <textarea id="ContactMessage" name="contact[body]" required>{{ form.body }}</textarea>
+          </div>
 
-            <button type="submit" class="button button--primary contact-form__submit">{{ 'contact.form.send' | t }} {% render 'icon', name: 'arrow-right', size: 16 %}</button>
-          {% endform %}
-        </div>
+          <button type="submit" class="button button--primary contact-form__submit">{{ 'contact.form.send' | t }} {% render 'icon', name: 'arrow-right', size: 16 %}</button>
+        {% endform %}
       </div>
     </div>
   </div>
-
-  {%- if section.settings.map_embed != blank -%}
-    <div class="contact-map">
-      {{ section.settings.map_embed }}
-    </div>
-  {%- endif -%}
 </div>
 
 {% stylesheet %}
-  .contact-section__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  @media (min-width: 900px) {
-    .contact-section__grid { grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; }
-  }
-  .contact-section__lede { font-size: 1.05rem; color: rgb(var(--color-text) / 0.72); max-width: 42ch; }
+  .contact-section { padding-block: 0; }
 
-  .contact-cards { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 0.75rem; }
+  /* Info cards */
+  .contact-cards {
+    list-style: none;
+    margin: 0;
+    padding: var(--section-spacing) 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  @media (min-width: 950px) { .contact-cards { grid-template-columns: repeat(4, 1fr); } }
+
   .contact-card {
     display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    padding: 1.1rem 1.25rem;
-    border: 1px solid rgb(var(--color-line));
-    border-left: 3px solid rgb(var(--color-primary));
-    border-radius: var(--border-radius);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.55rem;
+    padding: 2rem 1.5rem;
     background: rgb(var(--color-background));
+    border: 1px solid rgb(var(--color-line));
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+  }
+  .contact-card--accent {
+    background: rgb(var(--color-primary));
+    border-color: rgb(var(--color-primary));
+    color: rgb(var(--color-primary-contrast));
   }
   .contact-card__icon {
-    display: grid; place-items: center;
-    width: 2.6rem; height: 2.6rem;
-    flex-shrink: 0;
-    border-radius: var(--border-radius-sm);
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
     background: rgb(var(--color-dark));
     color: #fff;
   }
+  .contact-card--accent .contact-card__icon { background: rgb(var(--color-dark)); }
   .contact-card__label {
-    display: block;
     font-family: var(--font-heading), sans-serif;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgb(var(--color-text) / 0.55);
-    margin-bottom: 0.15rem;
   }
-  .contact-card__value { font-weight: 600; text-decoration: none; font-style: normal; }
-  a.contact-card__value:hover { color: rgb(var(--color-primary-dark)); }
+  .contact-card__value { font-size: 0.9rem; text-decoration: none; font-style: normal; line-height: 1.45; }
+  a.contact-card__value:hover { text-decoration: underline; }
+  .contact-card--accent a.contact-card__value { color: rgb(var(--color-primary-contrast)); }
 
-  .contact-form-card {
-    padding: clamp(1.5rem, 4vw, 2.5rem);
-    border: 1px solid rgb(var(--color-line));
-    border-radius: var(--border-radius);
-    background: rgb(var(--color-surface));
+  /* Map + form split */
+  .contact-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: var(--section-spacing);
   }
-  .contact-form-card__title { margin: 0 0 1.5rem; font-size: 1.3rem; }
+  @media (min-width: 950px) { .contact-split { grid-template-columns: 1fr 1fr; } }
+
+  .contact-split__map { position: relative; min-height: 340px; background: rgb(var(--color-surface)); }
+  .contact-split__map iframe { width: 100%; height: 100%; min-height: 340px; border: 0; display: block; filter: grayscale(0.25) contrast(1.05); }
+  .contact-split__map-fallback {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.75rem; padding: 2rem; text-align: center; text-decoration: none;
+    color: rgb(var(--color-text));
+    background:
+      repeating-linear-gradient(45deg, rgb(var(--color-text) / 0.03) 0 12px, transparent 12px 24px),
+      rgb(var(--color-surface));
+  }
+  .contact-split__map-fallback svg { color: rgb(var(--color-primary)); }
+  .contact-split__map-cta {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-family: var(--font-heading), sans-serif; font-weight: 700; font-size: 0.8rem;
+    letter-spacing: 0.06em; text-transform: uppercase; color: rgb(var(--color-primary-dark));
+  }
+
+  .contact-split__form {
+    display: flex;
+    align-items: center;
+    background: rgb(var(--color-surface));
+    padding: clamp(2rem, 6vw, 4.5rem) var(--gutter);
+  }
+  .contact-formwrap { width: 100%; max-width: 40rem; margin-inline: auto; }
+  .contact-formwrap__title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin: 0 0 0.5rem; }
+  .contact-formwrap__title .accent { color: rgb(var(--color-primary)); }
+  .contact-formwrap__lede { color: rgb(var(--color-text) / 0.7); margin-bottom: 1.75rem; }
   .contact-form__row { display: grid; grid-template-columns: 1fr; gap: 0 1rem; }
   @media (min-width: 600px) { .contact-form__row { grid-template-columns: 1fr 1fr; } }
-  .contact-form-card .field input,
-  .contact-form-card .field textarea { background: rgb(var(--color-background)); }
-  .contact-form__submit { margin-top: 0.5rem; width: 100%; }
+  .contact-formwrap .field input,
+  .contact-formwrap .field textarea { background: rgb(var(--color-background)); }
+  .contact-form__submit { margin-top: 0.5rem; }
   .contact-form ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
-
-  .contact-map { margin-top: clamp(2.5rem, 6vw, 4rem); line-height: 0; }
-  .contact-map iframe { width: 100%; height: 420px; border: 0; display: block; filter: grayscale(0.3) contrast(1.05); }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:sections.contact_form.name",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Contact" },
-    { "type": "text", "id": "heading", "label": "t:sections.contact_form.heading", "default": "Get a quote or book a service" },
-    { "type": "textarea", "id": "text", "label": "t:sections.contact_form.text", "default": "Call or email for a free quote. For anything specific, send your vehicle and differential details through the form and we will get back to you with pricing and lead time." },
-    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Send an enquiry" },
+    { "type": "checkbox", "id": "show_details", "label": "Show info cards", "default": true },
     { "type": "textarea", "id": "hours", "label": "Opening hours", "default": "Mon to Fri, 8:30am to 5:00pm" },
-    { "type": "checkbox", "id": "show_details", "label": "t:sections.contact_form.show_details", "default": true },
-    { "type": "html", "id": "map_embed", "label": "Map embed code", "info": "Paste a Google Maps 'Embed a map' iframe. Leave blank to hide." }
+    { "type": "header", "content": "Form" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "The last word is shown in the accent colour", "default": "Get a free quote" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Call or email, or send the form and we will be happy to help." },
+    { "type": "header", "content": "Map" },
+    { "type": "html", "id": "map_embed", "label": "Map embed code", "info": "Paste a Google Maps 'Embed a map' iframe. Leave blank to show a link instead." }
   ],
   "presets": [{ "name": "t:sections.contact_form.name" }]
 }

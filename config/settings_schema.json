@@ -130,6 +130,12 @@
         "id": "business_maps_link",
         "label": "Google Maps link",
         "default": "https://maps.google.com/?q=3/57+Dandenong+Street+Dandenong+VIC+3175"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_floating_contact",
+        "label": "Show floating call / email buttons",
+        "default": true
       }
     ]
   },
