@@ -97,10 +97,10 @@
         "id": "border_radius",
         "label": "Corner radius",
         "min": 0,
-        "max": 24,
+        "max": 28,
         "step": 1,
         "unit": "px",
-        "default": 4
+        "default": 12
       }
     ]
   },

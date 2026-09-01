@@ -41,7 +41,8 @@
     --section-spacing: {{ settings.section_spacing }}px;
     --section-spacing-lg: {{ settings.section_spacing | times: 1.5 | round }}px;
     --border-radius: {{ settings.border_radius }}px;
-    --border-radius-sm: {{ settings.border_radius | at_most: 4 }}px;
+    --border-radius-sm: {{ settings.border_radius | times: 0.62 | round | at_least: 4 }}px;
+    --border-radius-lg: {{ settings.border_radius | times: 1.5 | round }}px;
 
     --shadow-sm: 0 1px 2px rgb(15 23 32 / 0.06), 0 1px 3px rgb(15 23 32 / 0.05);
     --shadow-md: 0 6px 16px rgb(15 23 32 / 0.08), 0 2px 6px rgb(15 23 32 / 0.05);

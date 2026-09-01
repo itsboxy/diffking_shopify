@@ -19,7 +19,7 @@
     "heading_scale": 105,
     "page_width": 1800,
     "section_spacing": 72,
-    "border_radius": 4,
+    "border_radius": 12,
     "business_phone": "(03) 9792 4834",
     "business_email": "drbdiff@gmail.com",
     "business_address": "3/57 Dandenong Street, Dandenong VIC 3175",
@@ -42,7 +42,7 @@
       "heading_scale": 105,
       "page_width": 1800,
       "section_spacing": 72,
-      "border_radius": 4
+      "border_radius": 12
     }
   }
 }
