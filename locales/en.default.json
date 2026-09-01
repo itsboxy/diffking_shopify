@@ -52,7 +52,7 @@
     }
   },
   "header": {
-    "announcement": "Australia-wide shipping — diff repairs, service & 9″ conversions",
+    "announcement": "Australia wide shipping. Diff repairs, service & 9″ conversions",
     "call": "(03) 9792 4834",
     "book_now": "Book now",
     "menu": "Menu"
@@ -61,7 +61,7 @@
     "quick_links": "Explore",
     "contact_title": "Visit the workshop",
     "hours_title": "Opening hours",
-    "hours": "Mon – Fri: 8:00am – 5:00pm",
+    "hours": "Mon to Fri, 8:00am to 5:00pm",
     "newsletter_title": "Get diff tips & offers",
     "newsletter_text": "Occasional emails on builds, ratios and workshop specials. No spam.",
     "copyright": "Diff King. All rights reserved.",
@@ -139,18 +139,18 @@
       "name": "Name",
       "email": "Email",
       "phone": "Phone",
-      "vehicle": "Vehicle / diff details",
+      "vehicle": "Vehicle and diff details",
       "message": "How can we help?",
       "send": "Send enquiry",
-      "post_success": "Thanks for reaching out. We'll get back to you shortly.",
+      "post_success": "Thanks for your enquiry. We will get back to you shortly.",
       "error_heading": "Please fix the following:"
     }
   },
   "sections": {
     "hero": {
-      "eyebrow": "Melbourne • Est. workshop",
+      "eyebrow": "Melbourne workshop",
       "heading": "One stop differential service solution",
-      "text": "Diff repairs, servicing, 9″ conversions, custom axles and fabrication — built by specialists, shipped Australia-wide.",
+      "text": "Diff repairs, servicing, 9″ conversions, custom axles and fabrication, built by specialists and shipped Australia wide.",
       "primary_cta": "Book a service",
       "secondary_cta": "Shop parts"
     },
@@ -167,7 +167,7 @@
     },
     "image_with_text": {
       "heading": "Built by differential specialists",
-      "text": "We have the experience, skills and tools to fix all differential problems — for every make and model."
+      "text": "We have the experience, skills and tools to fix every differential problem, on any make and model."
     },
     "contact": {
       "heading": "Get in touch",

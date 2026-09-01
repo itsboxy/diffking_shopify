@@ -7,14 +7,15 @@
 {% enddoc %}
 
 {%- liquid
-  assign primary = settings.color_primary | color_to_rgb | remove: 'rgb(' | remove: ')'
-  assign primary_dark = settings.color_primary | color_darken: 12 | color_to_rgb | remove: 'rgb(' | remove: ')'
-  assign text = settings.color_text | color_to_rgb | remove: 'rgb(' | remove: ')'
-  assign background = settings.color_background | color_to_rgb | remove: 'rgb(' | remove: ')'
-  assign primary_contrast = settings.color_primary_contrast | color_to_rgb | remove: 'rgb(' | remove: ')'
-  assign dark = settings.color_dark | color_to_rgb | remove: 'rgb(' | remove: ')'
-  assign darker = settings.color_dark | color_darken: 6 | color_to_rgb | remove: 'rgb(' | remove: ')'
-  assign muted = settings.color_dark | color_lighten: 62 | color_to_rgb | remove: 'rgb(' | remove: ')'
+  # Output "R G B" (space separated) so modern rgb(var(--x) / alpha) syntax is valid.
+  assign primary = settings.color_primary | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
+  assign primary_dark = settings.color_primary | color_darken: 12 | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
+  assign text = settings.color_text | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
+  assign background = settings.color_background | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
+  assign primary_contrast = settings.color_primary_contrast | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
+  assign dark = settings.color_dark | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
+  assign darker = settings.color_dark | color_darken: 6 | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
+  assign muted = settings.color_dark | color_lighten: 62 | color_to_rgb | remove: 'rgb(' | remove: ')' | replace: ', ', ' '
 -%}
 {% style %}
   :root {

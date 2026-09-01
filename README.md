@@ -1,8 +1,8 @@
 # Diff King — Shopify theme
 
-Custom Shopify theme for [diffking.com.au](https://www.diffking.com.au) — differential repairs, servicing, 9″ conversions, custom axles and fabrication, shipped Australia-wide.
+Custom Shopify theme for [diffking.com.au](https://www.diffking.com.au). Differential repairs, servicing, 9″ conversions, custom axles and fabrication, shipped Australia wide.
 
-Built from scratch following Shopify's current theme architecture (JSON templates, sections, blocks, snippets). No framework dependencies — vanilla Liquid, CSS and JS.
+Built from scratch following Shopify's current theme architecture (JSON templates, sections, blocks, snippets). No framework dependencies. Vanilla Liquid, CSS and JS.
 
 ## Structure
 

@@ -4,17 +4,16 @@
       "type": "hero",
       "blocks": {
         "t1": { "type": "trust", "settings": { "icon": "shield", "text": "1yr / 20,000km warranty" } },
-        "t2": { "type": "trust", "settings": { "icon": "truck", "text": "Shipped Australia-wide" } },
+        "t2": { "type": "trust", "settings": { "icon": "truck", "text": "Shipped Australia wide" } },
         "t3": { "type": "trust", "settings": { "icon": "clock", "text": "Same-day service available" } }
       },
       "block_order": ["t1", "t2", "t3"],
       "settings": {
-        "asset_image": "hero-diffs.jpg",
         "height": "medium",
-        "overlay": 50,
-        "eyebrow": "Melbourne workshop • Australia-wide",
+        "overlay": 55,
+        "eyebrow": "Melbourne workshop",
         "heading": "One stop differential service solution",
-        "text": "Diff repairs, servicing, 9″ conversions, custom axles and fabrication — built by specialists.",
+        "text": "Diff repairs, servicing, 9″ conversions, custom axles and fabrication, built by specialists.",
         "primary_label": "Book a service",
         "secondary_label": "Shop parts"
       }
@@ -56,7 +55,7 @@
       },
       "blocks": {
         "b1": { "type": "value", "settings": { "stat": "1yr", "title": "Workmanship warranty", "text": "1 year / 20,000 km on all differential work, whichever comes first." } },
-        "b2": { "type": "value", "settings": { "stat": "AU", "title": "Shipping Australia-wide", "text": "Based in Dandenong, Melbourne — parts shipped nationwide." } },
+        "b2": { "type": "value", "settings": { "stat": "AU", "title": "Shipping Australia wide", "text": "Based in Dandenong, Melbourne. Parts shipped nationwide." } },
         "b3": { "type": "value", "settings": { "stat": "", "title": "Specialist equipment", "text": "State of the art diagnostic equipment for common and complex problems." } },
         "b4": { "type": "value", "settings": { "stat": "100%", "title": "Satisfaction guaranteed", "text": "Friendly, professional differential work every time." } }
       },

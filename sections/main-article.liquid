@@ -33,7 +33,7 @@
         <h2>{{ article.comments_count }} comments</h2>
         {%- for comment in article.comments -%}
           <div class="article-comment">
-            <p class="article-comment__meta">{{ comment.author }} — {{ comment.created_at | date: '%d %b %Y' }}</p>
+            <p class="article-comment__meta">{{ comment.author }}, {{ comment.created_at | date: '%d %b %Y' }}</p>
             <div class="rte">{{ comment.content }}</div>
           </div>
         {%- endfor -%}
@@ -41,7 +41,7 @@
 
       {% form 'new_comment', article, class: 'article-comment-form' %}
         {%- if form.posted_successfully? -%}
-          <p class="form-status form-status--success" data-form-status>Thanks — your comment is awaiting moderation.</p>
+          <p class="form-status form-status--success" data-form-status>Thanks, your comment is awaiting moderation.</p>
         {%- elsif form.errors -%}
           <p class="form-status form-status--error" data-form-status>{{ form.errors | default_errors }}</p>
         {%- endif -%}

@@ -22,7 +22,7 @@
           <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
           <select name="sort_by" id="SortBy" onchange="this.form.submit()">
             {%- assign sort_options = 'manual,best-selling,title-ascending,title-descending,price-ascending,price-descending,created-descending' | split: ',' -%}
-            {%- assign sort_labels = 'Featured,Best selling,A–Z,Z–A,Price: low to high,Price: high to low,Newest' | split: ',' -%}
+            {%- assign sort_labels = 'Featured,Best selling,A to Z,Z to A,Price: low to high,Price: high to low,Newest' | split: ',' -%}
             {%- for opt in sort_options -%}
               <option value="{{ opt }}" {% if current_sort == opt %}selected{% endif %}>
                 {{ sort_labels[forloop.index0] }}
