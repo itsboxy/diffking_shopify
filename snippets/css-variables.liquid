@@ -8,28 +8,49 @@
 
 {%- liquid
   assign primary = settings.color_primary | color_to_rgb | remove: 'rgb(' | remove: ')'
+  assign primary_dark = settings.color_primary | color_darken: 12 | color_to_rgb | remove: 'rgb(' | remove: ')'
   assign text = settings.color_text | color_to_rgb | remove: 'rgb(' | remove: ')'
   assign background = settings.color_background | color_to_rgb | remove: 'rgb(' | remove: ')'
   assign primary_contrast = settings.color_primary_contrast | color_to_rgb | remove: 'rgb(' | remove: ')'
   assign dark = settings.color_dark | color_to_rgb | remove: 'rgb(' | remove: ')'
+  assign darker = settings.color_dark | color_darken: 6 | color_to_rgb | remove: 'rgb(' | remove: ')'
+  assign muted = settings.color_dark | color_lighten: 62 | color_to_rgb | remove: 'rgb(' | remove: ')'
 -%}
 {% style %}
   :root {
     --color-primary: {{ primary }};
+    --color-primary-dark: {{ primary_dark }};
     --color-primary-contrast: {{ primary_contrast }};
     --color-text: {{ text }};
     --color-background: {{ background }};
+    --color-surface: 247 248 248;
     --color-dark: {{ dark }};
+    --color-darker: {{ darker }};
+    --color-muted: {{ muted }};
+    --color-line: 226 229 231;
 
     --font-heading: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
     --font-body: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+    --font-weight-heading: {{ settings.heading_font.weight | default: 700 }};
+    --font-weight-heading-bold: 800;
     --heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
 
     --page-width: {{ settings.page_width }}px;
+    --gutter: clamp(1.25rem, 5vw, 3rem);
     --section-spacing: {{ settings.section_spacing }}px;
+    --section-spacing-lg: {{ settings.section_spacing | times: 1.5 | round }}px;
     --border-radius: {{ settings.border_radius }}px;
+    --border-radius-sm: {{ settings.border_radius | at_most: 4 }}px;
+
+    --shadow-sm: 0 1px 2px rgb(15 23 32 / 0.06), 0 1px 3px rgb(15 23 32 / 0.05);
+    --shadow-md: 0 6px 16px rgb(15 23 32 / 0.08), 0 2px 6px rgb(15 23 32 / 0.05);
+    --shadow-lg: 0 24px 48px -12px rgb(15 23 32 / 0.18);
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   {{ settings.heading_font | font_face: font_display: 'swap' }}
   {{ settings.body_font | font_face: font_display: 'swap' }}
+  {{ settings.heading_font | font_modify: 'weight', '800' | font_face: font_display: 'swap' }}
+  {{ settings.body_font | font_modify: 'weight', '600' | font_face: font_display: 'swap' }}
 {% endstyle %}

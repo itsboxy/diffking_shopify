@@ -49,13 +49,13 @@
         "type": "font_picker",
         "id": "heading_font",
         "label": "t:settings.typography.heading_font",
-        "default": "assistant_n7"
+        "default": "archivo_n7"
       },
       {
         "type": "font_picker",
         "id": "body_font",
         "label": "t:settings.typography.body_font",
-        "default": "assistant_n4"
+        "default": "archivo_n4"
       },
       {
         "type": "range",
@@ -98,9 +98,9 @@
         "label": "Corner radius",
         "min": 0,
         "max": 24,
-        "step": 2,
+        "step": 1,
         "unit": "px",
-        "default": 6
+        "default": 4
       }
     ]
   },

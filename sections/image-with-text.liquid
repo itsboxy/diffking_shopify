@@ -6,20 +6,20 @@
           {{
             section.settings.image
             | image_url: width: 1400
-            | image_tag: loading: 'lazy', widths: '400, 600, 900, 1400', sizes: '(min-width: 750px) 50vw, 100vw', alt: section.settings.image.alt | escape
+            | image_tag: loading: 'lazy', widths: '450, 700, 1000, 1400', sizes: '(min-width: 750px) 45vw, 100vw', alt: section.settings.image.alt | escape
           }}
         {%- else -%}
-          {{ 'image' | placeholder_svg_tag: 'image-with-text__placeholder' }}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
         {%- endif -%}
       </div>
       <div class="image-with-text__content">
-        {%- if section.settings.eyebrow != blank -%}
-          <span class="section-heading__eyebrow">{{ section.settings.eyebrow }}</span>
-        {%- endif -%}
+        {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
         {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
         {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
         {%- if section.settings.button_label != blank -%}
-          <a href="{{ section.settings.button_link | default: '#' }}" class="button button--primary">{{ section.settings.button_label }}</a>
+          <a href="{{ section.settings.button_link | default: '#' }}" class="button button--dark">
+            {{ section.settings.button_label }} {% render 'icon', name: 'arrow-right', size: 16 %}
+          </a>
         {%- endif -%}
       </div>
     </div>
@@ -27,74 +27,51 @@
 </div>
 
 {% stylesheet %}
-  .image-with-text__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: center;
-  }
+  .image-with-text__grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
   @media (min-width: 750px) {
-    .image-with-text__grid { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+    .image-with-text__grid { grid-template-columns: 0.95fr 1.05fr; gap: clamp(2.5rem, 6vw, 4.5rem); }
     .image-with-text__grid--right .image-with-text__media { order: 2; }
   }
+  .image-with-text__media {
+    position: relative;
+  }
   .image-with-text__media img,
-  .image-with-text__placeholder {
+  .image-with-text__media .placeholder-svg {
     width: 100%;
     border-radius: var(--border-radius);
-    background: rgb(var(--color-text) / 0.06);
+    border: 1px solid rgb(var(--color-line));
   }
+  .image-with-text__media::after {
+    content: "";
+    position: absolute;
+    left: -0.75rem; bottom: -0.75rem;
+    width: 45%; height: 55%;
+    border-left: 3px solid rgb(var(--color-primary));
+    border-bottom: 3px solid rgb(var(--color-primary));
+    z-index: -1;
+  }
+  .image-with-text__grid--right .image-with-text__media::after { left: auto; right: -0.75rem; border-left: 0; border-right: 3px solid rgb(var(--color-primary)); }
   .image-with-text__content h2 { margin-top: 0.25rem; }
-  .image-with-text__content .button { margin-top: 1rem; }
+  .image-with-text__content .button { margin-top: 1.5rem; }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:sections.image_with_text.name",
   "settings": [
+    { "type": "image_picker", "id": "image", "label": "t:sections.image_with_text.image" },
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "t:sections.image_with_text.image"
-    },
-    {
-      "type": "select",
-      "id": "layout",
-      "label": "t:sections.image_with_text.layout",
-      "default": "left",
+      "type": "select", "id": "layout", "label": "t:sections.image_with_text.layout", "default": "left",
       "options": [
         { "value": "left", "label": "t:options.image_position.left" },
         { "value": "right", "label": "t:options.image_position.right" }
       ]
     },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "About Diff King"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "t:sections.image_with_text.heading",
-      "default": "Built by differential specialists"
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "t:sections.image_with_text.text",
-      "default": "<p>We have the experience, skills and tools to fix all differential problems. We create customised differential components at competitive prices which match the needs of our customers perfectly.</p>"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "t:sections.image_with_text.button_label",
-      "default": "Contact the workshop"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "t:sections.image_with_text.button_link"
-    }
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "About Diff King" },
+    { "type": "text", "id": "heading", "label": "t:sections.image_with_text.heading", "default": "Built by differential specialists" },
+    { "type": "richtext", "id": "text", "label": "t:sections.image_with_text.text", "default": "<p>We have the experience, skills and tools to fix all differential problems. We create customised differential components at competitive prices which match the needs of our customers perfectly.</p>" },
+    { "type": "text", "id": "button_label", "label": "t:sections.image_with_text.button_label", "default": "Contact the workshop" },
+    { "type": "url", "id": "button_link", "label": "t:sections.image_with_text.button_link" }
   ],
   "presets": [{ "name": "t:sections.image_with_text.name" }]
 }

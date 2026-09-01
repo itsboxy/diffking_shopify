@@ -5,12 +5,12 @@
     "color_primary": "#65bc7b",
     "color_primary_contrast": "#0d1b12",
     "color_dark": "#212934",
-    "heading_font": "assistant_n7",
-    "body_font": "assistant_n4",
+    "heading_font": "archivo_n7",
+    "body_font": "archivo_n4",
     "heading_scale": 105,
     "page_width": 1280,
-    "section_spacing": 64,
-    "border_radius": 6,
+    "section_spacing": 72,
+    "border_radius": 4,
     "business_phone": "(03) 9792 4834",
     "business_email": "drbdiff@gmail.com",
     "business_address": "3/57 Dandenong Street, Dandenong VIC 3175",
@@ -27,12 +27,12 @@
       "color_primary": "#65bc7b",
       "color_primary_contrast": "#0d1b12",
       "color_dark": "#212934",
-      "heading_font": "assistant_n7",
-      "body_font": "assistant_n4",
+      "heading_font": "archivo_n7",
+      "body_font": "archivo_n4",
       "heading_scale": 105,
       "page_width": 1280,
-      "section_spacing": 64,
-      "border_radius": 6
+      "section_spacing": 72,
+      "border_radius": 4
     }
   }
 }

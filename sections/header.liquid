@@ -1,25 +1,25 @@
 {%- liquid
   assign menu = section.settings.menu
+  assign phone_href = settings.business_phone | remove: ' ' | remove: '(' | remove: ')'
 -%}
 
 {%- if section.settings.show_announcement and section.settings.announcement_text != blank -%}
-  <div class="announcement-bar">
-    <div class="page-width announcement-bar__inner">
-      <p>{{ section.settings.announcement_text }}</p>
-      {%- if settings.business_phone != blank -%}
-        <a href="tel:{{ settings.business_phone | remove: ' ' | remove: '(' | remove: ')' }}" class="announcement-bar__phone">
-          {% render 'icon', name: 'phone', size: 15 %}
-          {{ settings.business_phone }}
-        </a>
-      {%- endif -%}
+  <div class="utility-bar">
+    <div class="page-width utility-bar__inner">
+      <p class="utility-bar__msg">{{ section.settings.announcement_text }}</p>
+      <div class="utility-bar__links">
+        {%- if settings.business_phone != blank -%}
+          <a href="tel:{{ phone_href }}">{% render 'icon', name: 'phone', size: 14 %} {{ settings.business_phone }}</a>
+        {%- endif -%}
+        {%- if section.settings.hours_short != blank -%}
+          <span class="small-hide">{% render 'icon', name: 'clock', size: 14 %} {{ section.settings.hours_short }}</span>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 {%- endif -%}
 
-<header
-  class="header{% if section.settings.sticky %} header--sticky{% endif %}"
-  data-header
->
+<header class="header{% if section.settings.sticky %} header--sticky{% endif %}" data-header>
   <div class="page-width header__inner">
     <button
       class="header__icon header__burger medium-hide"
@@ -36,17 +36,17 @@
       {%- if section.settings.logo != blank -%}
         {{
           section.settings.logo
-          | image_url: width: 400
+          | image_url: width: 480
           | image_tag:
             loading: 'eager',
-            widths: '150, 250, 400',
+            widths: '160, 280, 480',
             style: 'width:auto;height:auto',
-            sizes: '(min-width: 990px) 200px, 140px',
+            sizes: '(min-width: 990px) 220px, 150px',
             class: 'header__logo',
             alt: shop.name | escape
         }}
       {%- else -%}
-        <span class="header__logo-text">{{ shop.name }}</span>
+        <span class="header__wordmark">{{ shop.name }}</span>
       {%- endif -%}
     </a>
 
@@ -54,19 +54,18 @@
       <ul class="header__menu" role="list">
         {%- for link in menu.links -%}
           <li class="header__menu-item{% if link.links != blank %} has-submenu{% endif %}">
-            <a
-              href="{{ link.url }}"
-              {% if link.current %}aria-current="page"{% endif %}
-            >
-              {{ link.title }}
-              {%- if link.links != blank %} {% render 'icon', name: 'chevron-down', size: 14 %}{% endif -%}
+            <a href="{{ link.url }}" {% if link.current or link.child_active %}aria-current="page"{% endif %}>
+              <span>{{ link.title }}</span>
+              {%- if link.links != blank %}{% render 'icon', name: 'chevron-down', size: 14 %}{% endif -%}
             </a>
             {%- if link.links != blank -%}
-              <ul class="header__submenu" role="list">
-                {%- for child in link.links -%}
-                  <li><a href="{{ child.url }}"{% if child.current %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
-                {%- endfor -%}
-              </ul>
+              <div class="header__submenu">
+                <ul role="list">
+                  {%- for child in link.links -%}
+                    <li><a href="{{ child.url }}"{% if child.current %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </div>
             {%- endif -%}
           </li>
         {%- endfor -%}
@@ -74,33 +73,24 @@
     </nav>
 
     <div class="header__actions">
-      {%- if section.settings.show_book_button -%}
-        <a href="{{ section.settings.book_link }}" class="button button--primary header__book small-hide">
-          {{ 'header.book_now' | t }}
-        </a>
+      {%- if section.settings.show_book_button and section.settings.book_link != blank -%}
+        <a href="{{ section.settings.book_link }}" class="button button--primary header__book small-hide">{{ 'header.book_now' | t }}</a>
       {%- endif -%}
-
-      <a href="{{ routes.search_url }}" class="header__icon" aria-label="{{ 'general.accessibility.search' | t }}">
-        {% render 'icon', name: 'search' %}
-      </a>
-
+      <a href="{{ routes.search_url }}" class="header__icon" aria-label="{{ 'general.accessibility.search' | t }}">{% render 'icon', name: 'search', size: 22 %}</a>
       <a href="{{ routes.cart_url }}" class="header__icon header__cart" aria-label="{{ 'general.accessibility.cart' | t }}">
-        {% render 'icon', name: 'cart' %}
-        <span class="header__cart-count" data-cart-count>{{ cart.item_count }}</span>
+        {% render 'icon', name: 'cart', size: 22 %}
+        {%- if cart.item_count > 0 -%}<span class="header__cart-count" data-cart-count>{{ cart.item_count }}</span>{%- endif -%}
       </a>
     </div>
   </div>
 </header>
 
-{%- comment -%} Mobile navigation drawer {%- endcomment -%}
 <div class="mobile-nav" id="MobileNav" hidden>
   <div class="mobile-nav__backdrop" data-nav-close></div>
   <div class="mobile-nav__panel" role="dialog" aria-label="{{ 'header.menu' | t }}" aria-modal="true">
     <div class="mobile-nav__head">
       <span class="mobile-nav__title">{{ 'header.menu' | t }}</span>
-      <button class="header__icon" type="button" data-nav-close aria-label="{{ 'general.accessibility.close' | t }}">
-        {% render 'icon', name: 'close' %}
-      </button>
+      <button class="header__icon" type="button" data-nav-close aria-label="{{ 'general.accessibility.close' | t }}">{% render 'icon', name: 'close' %}</button>
     </div>
     <ul class="mobile-nav__menu" role="list">
       {%- for link in menu.links -%}
@@ -108,14 +98,7 @@
           {%- if link.links != blank -%}
             <div class="mobile-nav__row">
               <a href="{{ link.url }}">{{ link.title }}</a>
-              <button
-                type="button"
-                data-submenu-toggle
-                aria-expanded="false"
-                aria-label="{{ link.title | escape }}"
-              >
-                {% render 'icon', name: 'chevron-down', size: 18 %}
-              </button>
+              <button type="button" data-submenu-toggle aria-expanded="false" aria-label="{{ link.title | escape }}">{% render 'icon', name: 'chevron-down', size: 18 %}</button>
             </div>
             <ul class="mobile-nav__submenu" role="list" hidden>
               {%- for child in link.links -%}
@@ -128,246 +111,185 @@
         </li>
       {%- endfor -%}
     </ul>
-    {%- if section.settings.show_book_button -%}
-      <a href="{{ section.settings.book_link }}" class="button button--primary mobile-nav__cta">
-        {{ 'header.book_now' | t }}
-      </a>
+    {%- if section.settings.show_book_button and section.settings.book_link != blank -%}
+      <a href="{{ section.settings.book_link }}" class="button button--primary mobile-nav__cta">{{ 'header.book_now' | t }}</a>
     {%- endif -%}
     {%- if settings.business_phone != blank -%}
-      <a href="tel:{{ settings.business_phone | remove: ' ' }}" class="mobile-nav__phone">
-        {% render 'icon', name: 'phone', size: 18 %} {{ settings.business_phone }}
-      </a>
+      <a href="tel:{{ phone_href }}" class="mobile-nav__phone">{% render 'icon', name: 'phone', size: 18 %} {{ settings.business_phone }}</a>
     {%- endif -%}
   </div>
 </div>
 
 {% stylesheet %}
-  .announcement-bar {
-    background: rgb(var(--color-dark));
-    color: #fff;
-    font-size: 0.82rem;
+  .utility-bar {
+    background: rgb(var(--color-darker));
+    color: rgb(255 255 255 / 0.82);
+    font-size: 0.76rem;
+    letter-spacing: 0.02em;
   }
-  .announcement-bar__inner {
+  .utility-bar__inner {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    min-height: 2.4rem;
-    text-align: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 2.5rem;
   }
-  .announcement-bar p { margin: 0; }
-  .announcement-bar__phone {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-weight: 700;
-    text-decoration: none;
-    white-space: nowrap;
-  }
+  .utility-bar__msg { margin: 0; font-weight: 500; }
+  .utility-bar__links { display: flex; align-items: center; gap: 1.5rem; flex-shrink: 0; }
+  .utility-bar__links a,
+  .utility-bar__links span { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; }
+  .utility-bar__links a { font-weight: 700; color: #fff; }
+  .utility-bar__links a:hover { color: rgb(var(--color-primary)); }
   @media (max-width: 749px) {
-    .announcement-bar__phone { display: none; }
+    .utility-bar__msg { display: none; }
+    .utility-bar__inner { justify-content: center; }
   }
 
   .header {
     background: rgb(var(--color-background));
-    border-bottom: 1px solid rgb(var(--color-text) / 0.1);
+    border-bottom: 1px solid rgb(var(--color-line));
     z-index: 50;
   }
   .header--sticky { position: sticky; top: 0; }
-  .header--scrolled { box-shadow: 0 4px 20px rgb(0 0 0 / 0.08); }
+  .header--scrolled { box-shadow: var(--shadow-md); }
 
-  .header__inner {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    min-height: 4.5rem;
-  }
+  .header__inner { display: flex; align-items: center; gap: 1.25rem; min-height: 4.75rem; }
   .header__logo-link { display: inline-flex; align-items: center; margin-right: auto; }
-  .header__logo { max-height: 3rem; width: auto; }
-  .header__logo-text { font-family: var(--font-heading), sans-serif; font-weight: 700; font-size: 1.4rem; }
-
-  .header__nav { margin-right: auto; }
-  .header__menu {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .header__logo { max-height: 2.75rem; width: auto; }
+  .header__wordmark {
+    font-family: var(--font-heading), sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
   }
-  .header__menu > li > a {
+  .header__wordmark::first-letter { color: rgb(var(--color-primary-dark)); }
+
+  .header__nav { margin-right: auto; align-self: stretch; display: flex; }
+  .header__menu { display: flex; height: 100%; gap: 0.35rem; list-style: none; margin: 0; padding: 0; }
+  .header__menu-item { position: relative; display: flex; }
+  .header__menu-item > a {
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
-    padding: 1.5rem 0;
+    gap: 0.3rem;
+    padding: 0 0.9rem;
     font-family: var(--font-heading), sans-serif;
-    font-weight: 600;
-    font-size: 0.92rem;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     text-decoration: none;
+    color: rgb(var(--color-text) / 0.78);
+    position: relative;
   }
-  .header__menu > li > a:hover { color: rgb(var(--color-primary)); }
+  .header__menu-item > a::after {
+    content: "";
+    position: absolute;
+    left: 0.9rem; right: 0.9rem; bottom: 1.25rem;
+    height: 2px;
+    background: rgb(var(--color-primary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s var(--ease);
+  }
+  .header__menu-item > a:hover,
+  .header__menu-item > a[aria-current="page"] { color: rgb(var(--color-text)); }
+  .header__menu-item:hover > a::after,
+  .header__menu-item > a[aria-current="page"]::after { transform: scaleX(1); }
 
-  .header__menu-item { position: relative; }
   .header__submenu {
     position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 15rem;
-    margin: 0;
-    padding: 0.5rem 0;
-    list-style: none;
-    background: rgb(var(--color-background));
-    border: 1px solid rgb(var(--color-text) / 0.12);
-    border-radius: var(--border-radius);
-    box-shadow: 0 12px 34px rgb(0 0 0 / 0.12);
+    top: 100%; left: 0;
+    min-width: 16rem;
+    padding-top: 0.5rem;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(6px);
-    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+    transform: translateY(8px);
+    transition: opacity 0.16s var(--ease), transform 0.16s var(--ease), visibility 0.16s;
     z-index: 60;
   }
-  .header__menu-item:hover .header__submenu,
-  .header__menu-item:focus-within .header__submenu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  .header__submenu ul {
+    list-style: none; margin: 0; padding: 0.4rem;
+    background: rgb(var(--color-background));
+    border: 1px solid rgb(var(--color-line));
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
   }
+  .header__menu-item:hover .header__submenu,
+  .header__menu-item:focus-within .header__submenu { opacity: 1; visibility: visible; transform: translateY(0); }
   .header__submenu a {
     display: block;
-    padding: 0.55rem 1.1rem;
-    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.88rem;
+    font-weight: 500;
     text-decoration: none;
+    border-radius: var(--border-radius-sm);
   }
-  .header__submenu a:hover { background: rgb(var(--color-text) / 0.05); }
+  .header__submenu a:hover { background: rgb(var(--color-surface)); color: rgb(var(--color-primary-dark)); }
 
-  .header__actions { display: flex; align-items: center; gap: 0.9rem; }
+  .header__actions { display: flex; align-items: center; gap: 0.35rem; }
+  .header__book { padding: 0.7rem 1.25rem; margin-right: 0.5rem; }
   .header__icon {
-    display: inline-grid;
-    place-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: none;
-    border: none;
-    color: inherit;
-    cursor: pointer;
-    position: relative;
-    border-radius: var(--border-radius);
+    display: inline-grid; place-items: center;
+    width: 2.6rem; height: 2.6rem;
+    background: none; border: none; color: inherit; cursor: pointer;
+    position: relative; border-radius: var(--border-radius-sm);
+    transition: background-color 0.15s var(--ease);
   }
-  .header__icon:hover { background: rgb(var(--color-text) / 0.06); }
+  .header__icon:hover { background: rgb(var(--color-surface)); }
   .header__cart-count {
-    position: absolute;
-    top: 0.15rem;
-    right: 0.15rem;
-    min-width: 1.15rem;
-    height: 1.15rem;
-    padding: 0 0.25rem;
-    font-size: 0.68rem;
-    font-weight: 700;
-    line-height: 1.15rem;
-    text-align: center;
-    background: rgb(var(--color-primary));
-    color: rgb(var(--color-primary-contrast));
+    position: absolute; top: 0.2rem; right: 0.2rem;
+    min-width: 1.15rem; height: 1.15rem; padding: 0 0.22rem;
+    font-family: var(--font-heading), sans-serif;
+    font-size: 0.64rem; font-weight: 800; line-height: 1.15rem; text-align: center;
+    background: rgb(var(--color-primary)); color: rgb(var(--color-primary-contrast));
     border-radius: 999px;
   }
 
   /* Mobile drawer */
   .mobile-nav { position: fixed; inset: 0; z-index: 100; }
   .mobile-nav[hidden] { display: none; }
-  .mobile-nav__backdrop { position: absolute; inset: 0; background: rgb(0 0 0 / 0.45); }
+  .mobile-nav__backdrop { position: absolute; inset: 0; background: rgb(15 23 32 / 0.5); backdrop-filter: blur(2px); }
   .mobile-nav__panel {
-    position: absolute;
-    inset: 0 15% 0 0;
-    max-width: 22rem;
+    position: absolute; inset: 0 4rem 0 0;
+    max-width: 23rem;
     background: rgb(var(--color-background));
     padding: 1.25rem;
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    display: flex; flex-direction: column;
   }
-  .mobile-nav__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
-  .mobile-nav__title { font-family: var(--font-heading), sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; }
+  .mobile-nav__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
+  .mobile-nav__title { font-family: var(--font-heading), sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.75rem; }
   .mobile-nav__menu { list-style: none; margin: 0; padding: 0; }
-  .mobile-nav__menu > li { border-bottom: 1px solid rgb(var(--color-text) / 0.1); }
-  .mobile-nav__row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-  }
+  .mobile-nav__menu > li { border-bottom: 1px solid rgb(var(--color-line)); }
+  .mobile-nav__row { display: flex; align-items: center; justify-content: space-between; width: 100%; }
   .mobile-nav__row a {
-    display: block;
-    flex: 1;
-    padding: 0.9rem 0;
-    font-family: var(--font-heading), sans-serif;
-    font-weight: 600;
-    text-decoration: none;
+    flex: 1; display: block; padding: 0.95rem 0;
+    font-family: var(--font-heading), sans-serif; font-weight: 700;
+    font-size: 0.92rem; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none;
   }
-  .mobile-nav__row button {
-    background: none;
-    border: none;
-    color: inherit;
-    padding: 0.5rem;
-    cursor: pointer;
-  }
+  .mobile-nav__row button { background: none; border: none; color: inherit; padding: 0.5rem; cursor: pointer; }
   .mobile-nav__row button[aria-expanded="true"] svg { transform: rotate(180deg); }
-  .mobile-nav__submenu { list-style: none; margin: 0; padding: 0 0 0.5rem 0.75rem; }
-  .mobile-nav__submenu a { display: block; padding: 0.5rem 0; text-decoration: none; font-size: 0.92rem; }
-  .mobile-nav__cta { margin-top: 1rem; }
-  .mobile-nav__phone { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.75rem; font-weight: 700; text-decoration: none; }
-
-  @media (min-width: 990px) {
-    .header__book { margin-left: 0.5rem; }
-  }
+  .mobile-nav__submenu { list-style: none; margin: 0; padding: 0 0 0.75rem 0.75rem; }
+  .mobile-nav__submenu a { display: block; padding: 0.5rem 0; text-decoration: none; font-size: 0.92rem; color: rgb(var(--color-text) / 0.75); }
+  .mobile-nav__cta { margin-top: 1.5rem; }
+  .mobile-nav__phone { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-weight: 700; text-decoration: none; }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:sections.header.name",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "t:sections.header.logo"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:sections.header.menu",
-      "default": "main-menu"
-    },
-    {
-      "type": "checkbox",
-      "id": "sticky",
-      "label": "t:sections.header.sticky",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.name"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_announcement",
-      "label": "t:sections.header.show_announcement",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "announcement_text",
-      "label": "t:sections.header.announcement_text",
-      "default": "Australia-wide shipping — diff repairs, service & 9″ conversions"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_book_button",
-      "label": "Show 'Book now' button",
-      "default": true
-    },
-    {
-      "type": "url",
-      "id": "book_link",
-      "label": "'Book now' link"
-    }
+    { "type": "image_picker", "id": "logo", "label": "t:sections.header.logo" },
+    { "type": "link_list", "id": "menu", "label": "t:sections.header.menu", "default": "main-menu" },
+    { "type": "checkbox", "id": "sticky", "label": "t:sections.header.sticky", "default": true },
+    { "type": "header", "content": "Utility bar" },
+    { "type": "checkbox", "id": "show_announcement", "label": "t:sections.header.show_announcement", "default": true },
+    { "type": "text", "id": "announcement_text", "label": "t:sections.header.announcement_text", "default": "Diff repairs, servicing & 9″ conversions — shipped Australia-wide" },
+    { "type": "text", "id": "hours_short", "label": "Hours (short)", "default": "Mon–Fri 8–5" },
+    { "type": "header", "content": "Book button" },
+    { "type": "checkbox", "id": "show_book_button", "label": "Show 'Book now' button", "default": true },
+    { "type": "url", "id": "book_link", "label": "'Book now' link" }
   ]
 }
 {% endschema %}

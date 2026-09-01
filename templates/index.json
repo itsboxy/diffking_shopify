@@ -2,33 +2,26 @@
   "sections": {
     "hero": {
       "type": "hero",
+      "blocks": {
+        "t1": { "type": "trust", "settings": { "icon": "shield", "text": "1yr / 20,000km warranty" } },
+        "t2": { "type": "trust", "settings": { "icon": "truck", "text": "Shipped Australia-wide" } },
+        "t3": { "type": "trust", "settings": { "icon": "clock", "text": "Same-day service available" } }
+      },
+      "block_order": ["t1", "t2", "t3"],
       "settings": {
         "height": "large",
         "overlay": 55,
-        "eyebrow": "Melbourne workshop • Shipping Australia-wide",
+        "eyebrow": "Melbourne workshop • Australia-wide",
         "heading": "One stop differential service solution",
         "text": "Diff repairs, servicing, 9″ conversions, custom axles and fabrication — built by specialists.",
         "primary_label": "Book a service",
         "secondary_label": "Shop parts"
       }
     },
-    "why": {
-      "type": "why-choose-us",
-      "settings": {
-        "heading": "Why choose Diff King",
-        "text": "Experience, the right equipment, and workmanship you can rely on."
-      },
-      "blocks": {
-        "b1": { "type": "value", "settings": { "stat": "1 yr", "title": "Workmanship warranty", "text": "1 year / 20,000 km on all differential work, whichever comes first." } },
-        "b2": { "type": "value", "settings": { "stat": "AU", "title": "Shipping Australia-wide", "text": "Based in Dandenong, Melbourne — parts shipped nationwide." } },
-        "b3": { "type": "value", "settings": { "stat": "", "title": "Specialist equipment", "text": "State of the art diagnostic equipment for common and complex problems." } },
-        "b4": { "type": "value", "settings": { "stat": "100%", "title": "Satisfaction guaranteed", "text": "Friendly, professional differential work every time." } }
-      },
-      "block_order": ["b1", "b2", "b3", "b4"]
-    },
     "services": {
       "type": "services",
       "settings": {
+        "eyebrow": "What we do",
         "heading": "Our services",
         "text": "Everything under one roof, backed by a 1 year / 20,000 km workmanship warranty.",
         "columns": 3
@@ -37,7 +30,7 @@
         "s1": { "type": "service", "settings": { "icon": "wrench", "title": "Diff repairs & service", "text": "Same-day diff repair and service for all makes and models." } },
         "s2": { "type": "service", "settings": { "icon": "gear", "title": "9″ conversions", "text": "Complete 9 inch diff conversions with LSD & spool options." } },
         "s3": { "type": "service", "settings": { "icon": "gear", "title": "Custom build diffs & axles", "text": "Custom differential components and axles at competitive prices." } },
-        "s4": { "type": "service", "settings": { "icon": "wrench", "title": "Tail shafts & balancing", "text": "Custom-built tail shafts, recondition, repair and balancing." } },
+        "s4": { "type": "service", "settings": { "icon": "spark", "title": "Tail shafts & balancing", "text": "Custom-built tail shafts, recondition, repair and balancing." } },
         "s5": { "type": "service", "settings": { "icon": "truck", "title": "Changeover diffs & ratios", "text": "Reconditioned diffs and gear ratios ready for changeover." } },
         "s6": { "type": "service", "settings": { "icon": "shield", "title": "Diff spares shop", "text": "Quality differential components and second hand parts." } }
       },
@@ -46,11 +39,27 @@
     "featured": {
       "type": "featured-collection",
       "settings": {
+        "eyebrow": "In the shop",
         "heading": "Shop diff parts",
         "products_to_show": 4,
         "columns": "4",
         "show_view_all": true
       }
+    },
+    "why": {
+      "type": "why-choose-us",
+      "settings": {
+        "eyebrow": "Why Diff King",
+        "heading": "Workmanship you can rely on",
+        "text": "Experience, the right equipment, and a warranty behind every job."
+      },
+      "blocks": {
+        "b1": { "type": "value", "settings": { "stat": "1yr", "title": "Workmanship warranty", "text": "1 year / 20,000 km on all differential work, whichever comes first." } },
+        "b2": { "type": "value", "settings": { "stat": "AU", "title": "Shipping Australia-wide", "text": "Based in Dandenong, Melbourne — parts shipped nationwide." } },
+        "b3": { "type": "value", "settings": { "stat": "", "title": "Specialist equipment", "text": "State of the art diagnostic equipment for common and complex problems." } },
+        "b4": { "type": "value", "settings": { "stat": "100%", "title": "Satisfaction guaranteed", "text": "Friendly, professional differential work every time." } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"]
     },
     "image_with_text": {
       "type": "image-with-text",
@@ -70,5 +79,5 @@
       }
     }
   },
-  "order": ["hero", "why", "services", "featured", "image_with_text", "newsletter"]
+  "order": ["hero", "services", "featured", "why", "image_with_text", "newsletter"]
 }
