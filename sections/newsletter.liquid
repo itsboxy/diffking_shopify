@@ -1,4 +1,4 @@
-<div class="section newsletter-section surface-dark">
+<div class="section newsletter-section surface-alt">
   <div class="page-width newsletter-section__inner">
     {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
     {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
@@ -21,15 +21,9 @@
 {% stylesheet %}
   .newsletter-section__inner { max-width: 42rem; margin-inline: auto; text-align: center; }
   .newsletter-section__inner .eyebrow { justify-content: center; }
-  .newsletter-section__inner p { color: rgb(255 255 255 / 0.72); margin-bottom: 1.75rem; }
+  .newsletter-section__inner p { color: rgb(var(--color-text) / 0.68); margin-bottom: 1.75rem; }
   .newsletter-form__row { display: flex; gap: 0.5rem; max-width: 27rem; margin-inline: auto; flex-wrap: wrap; }
-  .newsletter-form__row input {
-    flex: 1 1 12rem;
-    background: rgb(255 255 255 / 0.08);
-    border-color: rgb(255 255 255 / 0.25);
-    color: #fff;
-  }
-  .newsletter-form__row input::placeholder { color: rgb(255 255 255 / 0.5); }
+  .newsletter-form__row input { flex: 1 1 12rem; background: rgb(var(--color-background)); }
 {% endstylesheet %}
 
 {% schema %}

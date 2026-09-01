@@ -59,7 +59,7 @@
         "heading": "Built to a spec, not a price",
         "text": "Race grade materials and tolerances in every unit.",
         "button_label": "Enquire about fitment",
-        "color_scheme": "dark"
+        "color_scheme": "alt"
       },
       "blocks": {
         "s1": { "type": "spec", "settings": { "label": "Type", "value": "Helical gear type limited slip differential" } },

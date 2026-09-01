@@ -76,7 +76,7 @@
         "heading": "The numbers behind the work",
         "text": "What our equipment can turn out.",
         "button_label": "Ask about your build",
-        "color_scheme": "dark"
+        "color_scheme": "alt"
       },
       "blocks": {
         "s1": { "type": "spec", "settings": { "label": "Max flange diameter", "value": "170 mm" } },

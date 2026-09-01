@@ -1,4 +1,4 @@
-<div class="section why surface-dark">
+<div class="section why surface-alt">
   <div class="page-width">
     {%- if section.settings.heading != blank -%}
       <div class="section-heading">
@@ -27,20 +27,19 @@
 </div>
 
 {% stylesheet %}
-  .why .section-heading p { color: rgb(255 255 255 / 0.72); }
   .why__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1px;
-    background: rgb(255 255 255 / 0.12);
-    border: 1px solid rgb(255 255 255 / 0.12);
+    background: rgb(var(--color-line));
+    border: 1px solid rgb(var(--color-line));
     border-radius: var(--border-radius);
     overflow: hidden;
   }
   @media (min-width: 600px) { .why__grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1000px) { .why__grid { grid-template-columns: repeat(4, 1fr); } }
 
-  .why__item { padding: 2rem 1.75rem; background: rgb(var(--color-dark)); }
+  .why__item { padding: 2rem 1.75rem; background: rgb(var(--color-background)); }
   .why__stat {
     display: inline-flex;
     align-items: baseline;
@@ -53,8 +52,8 @@
     line-height: 1;
   }
   .why__stat svg { align-self: center; }
-  .why__title { margin: 1rem 0 0.4rem; font-size: 1.05rem; color: #fff; }
-  .why__text { margin: 0; color: rgb(255 255 255 / 0.68); font-size: 0.9rem; line-height: 1.55; }
+  .why__title { margin: 1rem 0 0.4rem; font-size: 1.05rem; }
+  .why__text { margin: 0; color: rgb(var(--color-text) / 0.68); font-size: 0.9rem; line-height: 1.55; }
 {% endstylesheet %}
 
 {% schema %}
