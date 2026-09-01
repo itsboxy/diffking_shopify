@@ -15,3 +15,7 @@ node_modules/
 ## Release files
 release
 *.zip
+
+# Shopify CLI temp upload artifacts
+*.tmp
+*.tmp.*
