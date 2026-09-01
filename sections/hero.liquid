@@ -18,7 +18,7 @@
     </div>
   {%- elsif section.settings.asset_image != blank -%}
     <div class="hero__media">
-      <img src="{{ section.settings.asset_image | asset_url }}" alt="" width="1600" height="1000" loading="eager" fetchpriority="high">
+      <img src="{{ section.settings.asset_image | asset_url }}" alt="" width="1920" height="600" loading="eager" fetchpriority="high">
     </div>
   {%- endif -%}
   <span class="hero__scrim" style="--overlay: {{ section.settings.overlay | divided_by: 100.0 }}"></span>
@@ -128,7 +128,7 @@
   "name": "t:sections.hero.name",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "t:sections.hero.image" },
-    { "type": "text", "id": "asset_image", "label": "Bundled image file", "info": "Used when no image is picked above. Filename of an image in assets/ (e.g. hero-workshop.jpg)" },
+    { "type": "text", "id": "asset_image", "label": "Bundled image file", "info": "Used when no image is picked above. Filename of an image in assets/ (e.g. hero-diffs.jpg)" },
     { "type": "range", "id": "overlay", "label": "t:sections.hero.overlay", "min": 0, "max": 90, "step": 5, "unit": "%", "default": 55 },
     {
       "type": "select", "id": "height", "label": "t:sections.hero.height", "default": "large",
