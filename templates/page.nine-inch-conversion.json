@@ -1,0 +1,98 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "height": "slim",
+        "eyebrow": "Our specialisation",
+        "heading": "9 inch conversion",
+        "text": "",
+        "primary_label": "Get a quote",
+        "secondary_label": "Shop 9 inch parts"
+      }
+    },
+    "intro": {
+      "type": "intro-statement",
+      "settings": {
+        "eyebrow": "Built by 9 inch specialists",
+        "heading": "9 inch conversion is what we do best",
+        "color_scheme": "default",
+        "stat_1_value": "1992",
+        "stat_1_label": "bevel and transmission gear experience from",
+        "stat_2_value": "2007",
+        "stat_2_label": "building 9 inch conversions since",
+        "stat_3_value": "AU",
+        "stat_3_label": "shipped anywhere in Australia"
+      },
+      "blocks": {
+        "lead": { "type": "lead", "settings": { "text": "The Ford 9 inch is the benchmark for a strong, serviceable rear end. We build complete conversions to suit almost any Australian classic, muscle car, drag car, four wheel drive or live axle car, and IRS on special order." } },
+        "p1": { "type": "paragraph", "settings": { "text": "<p>Years of experience in bevel gear and transmission gear technology from 1992 to 2007, and dedicated 9 inch conversion work ever since. Every conversion is built around your car, your power and how you use it, from a mild street ratio to a full drag setup.</p>" } }
+      },
+      "block_order": ["lead", "p1"]
+    },
+    "included": {
+      "type": "feature-columns",
+      "settings": {
+        "eyebrow": "In the build",
+        "heading": "What a conversion includes",
+        "text": "A complete rear end, set up and ready to bolt in.",
+        "columns": 3,
+        "color_scheme": "alt"
+      },
+      "blocks": {
+        "f1": { "type": "item", "settings": { "icon": "gear", "title": "Housing to suit", "text": "9 inch housing built to your track width, spring and brake setup, with the right backing plate register." } },
+        "f2": { "type": "item", "settings": { "icon": "gear", "title": "Centre and ratio", "text": "Third member assembled with your choice of open, LSD, TrueTrac, mini spool or full spool, and the ratio you want." } },
+        "f3": { "type": "item", "settings": { "icon": "spark", "title": "Axles and bearings", "text": "Custom axles cut to length and splined, new bearings and seals, studs in the pattern you need." } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    },
+    "fitment": {
+      "type": "checklist",
+      "settings": {
+        "eyebrow": "Fitment",
+        "heading": "Common cars we convert",
+        "icon": "chevron-right",
+        "columns": 3,
+        "color_scheme": "default"
+      },
+      "blocks": {
+        "c1": { "type": "item", "settings": { "text": "HD, HQ, HJ, HT, HZ" } },
+        "c2": { "type": "item", "settings": { "text": "LJ, LH, LC and UC Torana" } },
+        "c3": { "type": "item", "settings": { "text": "XT, XW, XR Falcon" } },
+        "c4": { "type": "item", "settings": { "text": "Camaro, Monaro, Chev" } },
+        "c5": { "type": "item", "settings": { "text": "Land Cruiser and other four wheel drives" } },
+        "c6": { "type": "item", "settings": { "text": "Early Mazda such as RX3, plus live axle and IRS on request" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"]
+    },
+    "specs": {
+      "type": "spec-grid",
+      "settings": {
+        "eyebrow": "Options",
+        "heading": "Spec your 9 inch",
+        "text": "Mix and match to suit your car.",
+        "button_label": "Ask about your build",
+        "color_scheme": "alt"
+      },
+      "blocks": {
+        "s1": { "type": "spec", "settings": { "label": "Centre", "value": "Open, LSD, TrueTrac, mini spool or full spool" } },
+        "s2": { "type": "spec", "settings": { "label": "Ratios", "value": "Street through to drag, fitted to your engine and use" } },
+        "s3": { "type": "spec", "settings": { "label": "Housing", "value": "Made to your track width, spring and brake setup" } },
+        "s4": { "type": "spec", "settings": { "label": "Axles", "value": "Custom cut and splined, stud pattern to suit" } },
+        "s5": { "type": "spec", "settings": { "label": "Brakes", "value": "Drum or disc, backing plate register to suit" } },
+        "s6": { "type": "spec", "settings": { "label": "Fitment", "value": "Australian classics, muscle, drag, four wheel drive, live axle, IRS on request" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+    },
+    "quote": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Get a 9 inch quote",
+        "text": "Send your car, power figure, tyre size and how you use it, and we will come back with a spec, price and lead time.",
+        "hours": "Mon to Fri, 8:30am to 5:00pm",
+        "show_details": true
+      }
+    }
+  },
+  "order": ["hero", "intro", "included", "fitment", "specs", "quote"]
+}

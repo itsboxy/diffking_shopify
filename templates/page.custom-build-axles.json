@@ -1,0 +1,75 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "height": "slim",
+        "eyebrow": "Custom axles and shafts",
+        "heading": "Custom build axles",
+        "text": "",
+        "primary_label": "Get a quote",
+        "secondary_label": "Shop axles"
+      }
+    },
+    "intro": {
+      "type": "intro-statement",
+      "settings": {
+        "eyebrow": "Made to measure",
+        "heading": "Almost any custom axle for an Australian vehicle",
+        "color_scheme": "default"
+      },
+      "blocks": {
+        "lead": { "type": "lead", "settings": { "text": "We can make almost any custom made axle for a standard Australian vehicle, up to 170 mm flange diameter and 43 mm spline diameter." } },
+        "p1": { "type": "paragraph", "settings": { "text": "<p>We also make custom fully floating axles and drive shaft centre parts for IRS differentials, and can match most braking systems. Years of engineering experience and the splining tools to suit different pressure angles.</p>" } }
+      },
+      "block_order": ["lead", "p1"]
+    },
+    "work": {
+      "type": "feature-columns",
+      "settings": {
+        "eyebrow": "In house",
+        "heading": "Axle work we do",
+        "columns": 3,
+        "color_scheme": "alt"
+      },
+      "blocks": {
+        "f1": { "type": "item", "settings": { "icon": "wrench", "title": "Splining", "text": "Splining to different pressure angles, from 12 to 38 splines, plus core splines and custom splines to suit our machinery." } },
+        "f2": { "type": "item", "settings": { "icon": "spark", "title": "Shortening and straightening", "text": "Axles shortened for a narrowed housing or straightened after damage, then re splined and trued." } },
+        "f3": { "type": "item", "settings": { "icon": "gear", "title": "Stud pattern changes", "text": "Redrilled or new flanges in the popular Holden, Ford, Nissan, Mazda, Toyota and custom patterns." } },
+        "f4": { "type": "item", "settings": { "icon": "gear", "title": "Full floater axles", "text": "Custom fully floating axle sets for strength and safety on heavy and competition vehicles." } },
+        "f5": { "type": "item", "settings": { "icon": "gear", "title": "IRS drive shaft centres", "text": "Drive shaft centre parts made for IRS differentials to suit most braking systems." } },
+        "f6": { "type": "item", "settings": { "icon": "shield", "title": "One off jobs", "text": "If it is close to a standard Australian axle we can most likely make it. Ask us." } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6"]
+    },
+    "specs": {
+      "type": "spec-grid",
+      "settings": {
+        "eyebrow": "Capabilities",
+        "heading": "The numbers",
+        "text": "What our equipment can turn out.",
+        "button_label": "Ask about your axle",
+        "color_scheme": "alt"
+      },
+      "blocks": {
+        "s1": { "type": "spec", "settings": { "label": "Max flange diameter", "value": "170 mm" } },
+        "s2": { "type": "spec", "settings": { "label": "Max spline diameter", "value": "43 mm" } },
+        "s3": { "type": "spec", "settings": { "label": "Spline range", "value": "12 to 38, plus core and custom" } },
+        "s4": { "type": "spec", "settings": { "label": "Stud patterns", "value": "HQ, HT, HZ, Holden, Commodore, F100 (5 x 5), Ford, Nissan, Mazda, Toyota, custom" } },
+        "s5": { "type": "spec", "settings": { "label": "Floater axles", "value": "Yes, fully floating sets" } },
+        "s6": { "type": "spec", "settings": { "label": "IRS", "value": "Drive shaft centre parts for most IRS differentials" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+    },
+    "quote": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Get an axle quote",
+        "text": "Send the vehicle, housing, spline count, stud pattern and length required, and we will come back with pricing and lead time.",
+        "hours": "Mon to Fri, 8:30am to 5:00pm",
+        "show_details": true
+      }
+    }
+  },
+  "order": ["hero", "intro", "work", "specs", "quote"]
+}

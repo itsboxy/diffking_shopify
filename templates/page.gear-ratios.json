@@ -1,0 +1,91 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "height": "slim",
+        "eyebrow": "Reconditioned diffs and ratios",
+        "heading": "Change over diffs and gear ratios",
+        "text": "",
+        "primary_label": "Get a quote",
+        "secondary_label": "Shop diffs"
+      }
+    },
+    "intro": {
+      "type": "intro-statement",
+      "settings": {
+        "eyebrow": "How gear ratio works",
+        "heading": "The right ratio for your tyres and your driving",
+        "color_scheme": "default"
+      },
+      "blocks": {
+        "lead": { "type": "lead", "settings": { "text": "Differential gear ratio is the number of times the pinion turns for each turn of the wheels. A 3.73:1 ratio means the drive shaft turns 3.73 times for every turn of the wheel." } },
+        "p1": { "type": "paragraph", "settings": { "text": "<p>Changing tyre size changes the final drive ratio. Going from a 30 inch tyre to a 35 inch tyre changes it by around 17 percent, which can drop the engine out of its power band and hurt performance and fuel economy. To bring it back you change the ratio to suit. If you had 3.07 gears you want a ratio about 17 percent lower, such as 3.55. For more off road performance you might go to a 4.10 or lower.</p>" } }
+      },
+      "block_order": ["lead", "p1"]
+    },
+    "when": {
+      "type": "checklist",
+      "settings": {
+        "eyebrow": "When to change",
+        "heading": "Reasons to change your ratio",
+        "icon": "chevron-right",
+        "columns": 2,
+        "color_scheme": "alt",
+        "button_label": "Get ratio advice"
+      },
+      "blocks": {
+        "c1": { "type": "item", "settings": { "title": "Bigger tyres", "text": "Larger tyres raise the effective ratio. A numerically lower ratio brings acceleration back." } },
+        "c2": { "type": "item", "settings": { "title": "Towing and loads", "text": "A lower ratio keeps the engine in its torque band under load and reduces heat." } },
+        "c3": { "type": "item", "settings": { "title": "Off road", "text": "A 4.10 or lower ratio improves crawl and control on tracks and hills." } },
+        "c4": { "type": "item", "settings": { "title": "Highway economy", "text": "A taller ratio drops cruising rpm for a quieter, more economical highway car." } },
+        "c5": { "type": "item", "settings": { "title": "Track and drag", "text": "Ratio chosen to match your engine, gearbox and the speed you run." } },
+        "c6": { "type": "item", "settings": { "title": "Engine or gearbox swap", "text": "A different power band or gear set often calls for a matching ratio change." } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"]
+    },
+    "work": {
+      "type": "feature-columns",
+      "settings": {
+        "eyebrow": "What we do",
+        "heading": "Changeover and ratio work",
+        "columns": 3,
+        "color_scheme": "default"
+      },
+      "blocks": {
+        "f1": { "type": "item", "settings": { "icon": "truck", "title": "Reconditioned changeover diffs", "text": "Ready to fit reconditioned diffs on many brands including Toyota Land Cruiser and Hilux." } },
+        "f2": { "type": "item", "settings": { "icon": "gear", "title": "Ratio changes", "text": "Ring and pinion changed and set up to spec, with the option to add an LSD at the same time." } },
+        "f3": { "type": "item", "settings": { "icon": "spark", "title": "Ratio selection", "text": "Tell us your tyre size and how you drive and we will work out the ratio to suit." } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    },
+    "specs": {
+      "type": "spec-grid",
+      "settings": {
+        "eyebrow": "Availability",
+        "heading": "Ratios and brands",
+        "button_label": "Ask about your diff",
+        "color_scheme": "alt"
+      },
+      "blocks": {
+        "s1": { "type": "spec", "settings": { "label": "Common ratios", "value": "3.08, 3.23, 3.45, 3.55, 3.70, 3.90, 4.11, 4.56, 4.88 and more" } },
+        "s2": { "type": "spec", "settings": { "label": "Brands", "value": "Toyota Land Cruiser and Hilux, Ford, Holden, Nissan and more" } },
+        "s3": { "type": "spec", "settings": { "label": "Supply", "value": "Reconditioned changeover diffs and quality second hand parts" } },
+        "s4": { "type": "spec", "settings": { "label": "Core exchange", "value": "Available on many popular diffs" } },
+        "s5": { "type": "spec", "settings": { "label": "Add an LSD", "value": "Fit a helical or clutch LSD during the changeover" } },
+        "s6": { "type": "spec", "settings": { "label": "Warranty", "value": "1 year or 20,000 km on all differential work" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+    },
+    "quote": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Get a changeover quote",
+        "text": "Send your vehicle, current ratio, tyre size and how you use the car, and we will recommend a ratio and price it up.",
+        "hours": "Mon to Fri, 8:30am to 5:00pm",
+        "show_details": true
+      }
+    }
+  },
+  "order": ["hero", "intro", "when", "work", "specs", "quote"]
+}

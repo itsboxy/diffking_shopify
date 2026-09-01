@@ -1,0 +1,91 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "height": "slim",
+        "eyebrow": "Tail shafts and drive shafts",
+        "heading": "Diff shafts, custom build and balancing",
+        "text": "",
+        "primary_label": "Get a quote",
+        "secondary_label": "Contact us"
+      }
+    },
+    "intro": {
+      "type": "intro-statement",
+      "settings": {
+        "eyebrow": "What you need to know",
+        "heading": "Custom drive shafts, built and balanced",
+        "color_scheme": "default"
+      },
+      "blocks": {
+        "lead": { "type": "lead", "settings": { "text": "The best drive shafts are usually steel, though some custom shafts use aluminium shafting with the weld yokes welded at both ends." } },
+        "p1": { "type": "paragraph", "settings": { "text": "<p>We build, recondition, repair and high speed balance tail shafts for road and competition use. A shaft that is straight, true and balanced keeps vibration out of the car and takes load off the diff, gearbox and universals.</p>" } }
+      },
+      "block_order": ["lead", "p1"]
+    },
+    "signs": {
+      "type": "checklist",
+      "settings": {
+        "eyebrow": "Diagnosis",
+        "heading": "Signs your tail shaft needs attention",
+        "icon": "spark",
+        "columns": 2,
+        "color_scheme": "alt",
+        "button_label": "Book an inspection"
+      },
+      "blocks": {
+        "c1": { "type": "item", "settings": { "title": "Vibration at speed", "text": "A vibration or drone that comes in at a set road speed and gets worse as speed rises." } },
+        "c2": { "type": "item", "settings": { "title": "Clunk on take off", "text": "A clunk pulling away or changing from drive to reverse, often a worn universal or slip spline." } },
+        "c3": { "type": "item", "settings": { "title": "Worn universals", "text": "Rust coloured dust around the caps, or play when you twist the shaft by hand." } },
+        "c4": { "type": "item", "settings": { "title": "Worn centre bearing", "text": "On a two piece shaft, a rumble or shudder from under the middle of the car." } },
+        "c5": { "type": "item", "settings": { "title": "New engine or gearbox", "text": "A driveline change or a lift can alter shaft angle and length and call for a rebuild." } },
+        "c6": { "type": "item", "settings": { "title": "Higher power or rpm", "text": "More power and more rpm need a shaft rated and balanced for it." } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"]
+    },
+    "work": {
+      "type": "feature-columns",
+      "settings": {
+        "eyebrow": "In house",
+        "heading": "Drive shaft work we do",
+        "columns": 3,
+        "color_scheme": "default"
+      },
+      "blocks": {
+        "f1": { "type": "item", "settings": { "icon": "gear", "title": "Custom build", "text": "One and two piece shafts made to length in steel or aluminium, with weld yokes at both ends." } },
+        "f2": { "type": "item", "settings": { "icon": "wrench", "title": "Recondition and repair", "text": "New universals, centre bearing, slip yoke and splines, then trued and rebalanced." } },
+        "f3": { "type": "item", "settings": { "icon": "spark", "title": "High speed balancing", "text": "Balanced on the machine so the shaft runs smooth at road and track speed." } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    },
+    "specs": {
+      "type": "spec-grid",
+      "settings": {
+        "eyebrow": "Options",
+        "heading": "Shaft options",
+        "button_label": "Ask about your shaft",
+        "color_scheme": "alt"
+      },
+      "blocks": {
+        "s1": { "type": "spec", "settings": { "label": "Materials", "value": "Steel, or aluminium shafting with welded weld yokes" } },
+        "s2": { "type": "spec", "settings": { "label": "Type", "value": "One piece and two piece with centre bearing" } },
+        "s3": { "type": "spec", "settings": { "label": "Universals", "value": "Standard and heavy duty sizes to suit" } },
+        "s4": { "type": "spec", "settings": { "label": "Slip yoke", "value": "Splined to match your gearbox or transfer case" } },
+        "s5": { "type": "spec", "settings": { "label": "Length", "value": "Made to order for your driveline and ride height" } },
+        "s6": { "type": "spec", "settings": { "label": "Balancing", "value": "High speed balanced for road and competition" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+    },
+    "quote": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Get a drive shaft quote",
+        "text": "Send the vehicle, gearbox, ride height and the length between yoke centres if you have it, and we will come back with pricing and lead time.",
+        "hours": "Mon to Fri, 8:30am to 5:00pm",
+        "show_details": true
+      }
+    }
+  },
+  "order": ["hero", "intro", "signs", "work", "specs", "quote"]
+}

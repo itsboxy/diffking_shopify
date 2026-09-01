@@ -1,0 +1,73 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "height": "slim",
+        "eyebrow": "Custom differential centres",
+        "heading": "Custom build diffs",
+        "text": "",
+        "primary_label": "Get a quote",
+        "secondary_label": "Shop diff parts"
+      }
+    },
+    "intro": {
+      "type": "intro-statement",
+      "settings": {
+        "eyebrow": "Built to a spec",
+        "heading": "Differential centres built and set up in house",
+        "color_scheme": "default"
+      },
+      "blocks": {
+        "lead": { "type": "lead", "settings": { "text": "We build differential centres to a spec, not to a price. The ratio you want, the centre you want, assembled and set up on our own equipment." } },
+        "p1": { "type": "paragraph", "settings": { "text": "<p>We deal in all kinds of differentials and create customised components at competitive prices to match what you are building. Whether it is a mild street diff, a tow rig or a full competition centre, it is set up properly with the right preload, backlash and pattern.</p>" } }
+      },
+      "block_order": ["lead", "p1"]
+    },
+    "work": {
+      "type": "feature-columns",
+      "settings": {
+        "eyebrow": "What we do",
+        "heading": "Centre build and setup",
+        "text": "Every job is measured, shimmed and pattern checked.",
+        "columns": 3,
+        "color_scheme": "alt"
+      },
+      "blocks": {
+        "f1": { "type": "item", "settings": { "icon": "gear", "title": "Crown and pinion setup", "text": "New or changed ring and pinion set up to spec with correct preload, backlash and contact pattern." } },
+        "f2": { "type": "item", "settings": { "icon": "gear", "title": "LSD and locker fitment", "text": "Fit and set up a helical LSD, clutch LSD, selectable locker or spool to suit your car and your use." } },
+        "f3": { "type": "item", "settings": { "icon": "spark", "title": "Full rebuild", "text": "Bearings, seals, crush sleeve or solid spacer, and a clean assembly so the diff runs quiet and lasts." } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    },
+    "specs": {
+      "type": "spec-grid",
+      "settings": {
+        "eyebrow": "Options",
+        "heading": "What we can build",
+        "text": "Most popular Australian and imported diffs.",
+        "button_label": "Ask about your diff",
+        "color_scheme": "alt"
+      },
+      "blocks": {
+        "s1": { "type": "spec", "settings": { "label": "Diff types", "value": "Ford 9 inch, Borg Warner, Dana, Toyota, Nissan and more" } },
+        "s2": { "type": "spec", "settings": { "label": "Centre options", "value": "Open, helical LSD, clutch LSD, selectable locker, mini spool, full spool" } },
+        "s3": { "type": "spec", "settings": { "label": "LSD brands", "value": "Disc Trac, TrueTrac, Kaaz, ARB, E locker and others" } },
+        "s4": { "type": "spec", "settings": { "label": "Ratios", "value": "Changed to suit tyre size, power and how the car is used" } },
+        "s5": { "type": "spec", "settings": { "label": "Setup", "value": "Preload, backlash and pattern checked and recorded" } },
+        "s6": { "type": "spec", "settings": { "label": "Warranty", "value": "1 year or 20,000 km on all differential work" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+    },
+    "quote": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Get a diff build quote",
+        "text": "Tell us the vehicle, diff type, ratio and centre you want, and we will come back with pricing and lead time.",
+        "hours": "Mon to Fri, 8:30am to 5:00pm",
+        "show_details": true
+      }
+    }
+  },
+  "order": ["hero", "intro", "work", "specs", "quote"]
+}
