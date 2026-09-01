@@ -33,11 +33,11 @@
     --font-heading: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
     --font-body: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
     --font-weight-heading: {{ settings.heading_font.weight | default: 700 }};
-    --font-weight-heading-bold: 800;
     --heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
 
     --page-width: {{ settings.page_width }}px;
-    --gutter: clamp(1.25rem, 5vw, 3rem);
+    --content-width: 60rem;
+    --gutter: clamp(1.25rem, 3vw, 3.25rem);
     --section-spacing: {{ settings.section_spacing }}px;
     --section-spacing-lg: {{ settings.section_spacing | times: 1.5 | round }}px;
     --border-radius: {{ settings.border_radius }}px;
@@ -51,7 +51,8 @@
   }
 
   {{ settings.heading_font | font_face: font_display: 'swap' }}
+  {{ settings.heading_font | font_modify: 'weight', '500' | font_face: font_display: 'swap' }}
   {{ settings.body_font | font_face: font_display: 'swap' }}
-  {{ settings.heading_font | font_modify: 'weight', '800' | font_face: font_display: 'swap' }}
+  {{ settings.body_font | font_modify: 'weight', '500' | font_face: font_display: 'swap' }}
   {{ settings.body_font | font_modify: 'weight', '600' | font_face: font_display: 'swap' }}
 {% endstyle %}

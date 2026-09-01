@@ -49,13 +49,13 @@
         "type": "font_picker",
         "id": "heading_font",
         "label": "t:settings.typography.heading_font",
-        "default": "archivo_n7"
+        "default": "inter_n7"
       },
       {
         "type": "font_picker",
         "id": "body_font",
         "label": "t:settings.typography.body_font",
-        "default": "archivo_n4"
+        "default": "inter_n4"
       },
       {
         "type": "range",
@@ -76,11 +76,11 @@
         "type": "range",
         "id": "page_width",
         "label": "t:settings.layout.page_width",
-        "min": 1100,
-        "max": 1600,
+        "min": 1200,
+        "max": 2200,
         "step": 20,
         "unit": "px",
-        "default": 1280
+        "default": 1800
       },
       {
         "type": "range",
