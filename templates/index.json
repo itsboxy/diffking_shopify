@@ -1,65 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero-feature",
+      "blocks": {
+        "d1": {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "label": "1 year warranty",
+            "sublabel": "20,000 km workmanship guarantee"
+          }
+        },
+        "d2": {
+          "type": "badge",
+          "settings": {
+            "icon": "truck",
+            "label": "Australia wide shipping",
+            "sublabel": "Parts sent nationwide from Dandenong"
+          }
+        },
+        "d3": {
+          "type": "badge",
+          "settings": {
+            "icon": "clock",
+            "label": "Same day service",
+            "sublabel": "Diff repair and service while you wait"
+          }
+        },
+        "d4": {
+          "type": "badge",
+          "settings": {
+            "icon": "gear",
+            "label": "9 inch conversions",
+            "sublabel": "Our specialisation since 2007"
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
       "settings": {
         "eyebrow": "Melbourne differential specialists",
         "heading": "Differentials, built and backed by specialists",
-        "text": "Repairs, servicing, 9 inch conversions, custom axles and our own Disc Trac helical LSD, from the Dandenong workshop.",
+        "text": "Repairs, servicing, 9 inch conversions, custom axles and our own Disc Trac helical LSD. Shipped Australia wide from Dandenong.",
         "primary_label": "Book a service",
+        "primary_link": "",
         "secondary_label": "Shop parts",
-        "show_products": true,
+        "secondary_link": "",
+        "show_products": false,
         "shelf_title": "Featured parts",
+        "collection": "",
         "products_to_show": 4
-      },
-      "blocks": {
-        "d1": { "type": "badge", "settings": { "icon": "shield", "label": "1 year warranty", "sublabel": "20,000 km workmanship guarantee" } },
-        "d2": { "type": "badge", "settings": { "icon": "truck", "label": "Australia wide shipping", "sublabel": "Parts sent nationwide from Dandenong" } },
-        "d3": { "type": "badge", "settings": { "icon": "clock", "label": "Same day service", "sublabel": "Diff repair and service while you wait" } },
-        "d4": { "type": "badge", "settings": { "icon": "gear", "label": "9 inch conversions", "sublabel": "Our specialisation since 2007" } }
-      },
-      "block_order": ["d1", "d2", "d3", "d4"]
+      }
     },
     "welcome": {
       "type": "intro-statement",
+      "blocks": {
+        "lead": {
+          "type": "lead",
+          "settings": {
+            "text": "A differential transfers the torque produced by the engine to the wheels, letting the wheels run at different speeds so you keep traction as and when the situation demands."
+          }
+        },
+        "p1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>There are a variety of differential centres for different applications, from a single spinner to a True Trac, E locker, Kaaz locker or ARB locker. Torque is passed from the engine to the differential through the transmission and tail shaft, so to keep your car running smooth and efficiently, quality periodic maintenance of the tail shaft, CV joints, universals and differential is a must.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "lead",
+        "p1"
+      ],
       "settings": {
         "eyebrow": "Welcome to Diff King",
         "heading": "One stop differential service solution",
-        "color_scheme": "default",
-        "button_label": "See what we do"
-      },
-      "blocks": {
-        "lead": { "type": "lead", "settings": { "text": "A differential transfers the torque produced by the engine to the wheels, letting the wheels run at different speeds so you keep traction as and when the situation demands." } },
-        "p1": { "type": "paragraph", "settings": { "text": "<p>There are a variety of differential centres for different applications, from a single spinner to a True Trac, E locker, Kaaz locker or ARB locker. Torque is passed from the engine to the differential through the transmission and tail shaft, so to keep your car running smooth and efficiently, quality periodic maintenance of the tail shaft, CV joints, universals and differential is a must.</p>" } }
-      },
-      "block_order": ["lead", "p1"]
+        "button_label": "See what we do",
+        "button_link": "",
+        "color_scheme": "dark",
+        "stat_1_value": "",
+        "stat_1_label": "",
+        "stat_2_value": "",
+        "stat_2_label": "",
+        "stat_3_value": "",
+        "stat_3_label": ""
+      }
     },
     "services": {
       "type": "services",
+      "blocks": {
+        "s1": {
+          "type": "service",
+          "settings": {
+            "icon": "wrench",
+            "title": "Diff repairs & service",
+            "text": "Same day diff repair and service for all makes and models.",
+            "link": ""
+          }
+        },
+        "s2": {
+          "type": "service",
+          "settings": {
+            "icon": "gear",
+            "title": "9 inch conversions",
+            "text": "Complete 9 inch diff conversions with LSD and spool options.",
+            "link": ""
+          }
+        },
+        "s3": {
+          "type": "service",
+          "settings": {
+            "icon": "gear",
+            "title": "Custom built diffs & axles",
+            "text": "Custom differential components and axles at competitive prices.",
+            "link": ""
+          }
+        },
+        "s4": {
+          "type": "service",
+          "settings": {
+            "icon": "spark",
+            "title": "Axle splining & shortening",
+            "text": "Axle splining, straightening and shortening to suit your build.",
+            "link": ""
+          }
+        },
+        "s5": {
+          "type": "service",
+          "settings": {
+            "icon": "spark",
+            "title": "Tail shafts & balancing",
+            "text": "Custom built tail shafts, plus recondition, repair and balancing.",
+            "link": ""
+          }
+        },
+        "s6": {
+          "type": "service",
+          "settings": {
+            "icon": "truck",
+            "title": "Changeovers & spares",
+            "text": "Reconditioned diffs, gear ratios and a shop full of quality spares.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
       "settings": {
         "eyebrow": "What we do",
         "heading": "Our services",
         "text": "Everything a differential needs, under one roof.",
         "columns": 3
-      },
-      "blocks": {
-        "s1": { "type": "service", "settings": { "icon": "wrench", "title": "Diff repairs & service", "text": "Same day diff repair and service for all makes and models." } },
-        "s2": { "type": "service", "settings": { "icon": "gear", "title": "9 inch conversions", "text": "Complete 9 inch diff conversions with LSD and spool options." } },
-        "s3": { "type": "service", "settings": { "icon": "gear", "title": "Custom built diffs & axles", "text": "Custom differential components and axles at competitive prices." } },
-        "s4": { "type": "service", "settings": { "icon": "spark", "title": "Axle splining & shortening", "text": "Axle splining, straightening and shortening to suit your build." } },
-        "s5": { "type": "service", "settings": { "icon": "spark", "title": "Tail shafts & balancing", "text": "Custom built tail shafts, plus recondition, repair and balancing." } },
-        "s6": { "type": "service", "settings": { "icon": "truck", "title": "Changeovers & spares", "text": "Reconditioned diffs, gear ratios and a shop full of quality spares." } }
-      },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+      }
     },
     "workshop": {
       "type": "image-with-text",
       "settings": {
+        "image": "shopify://shop_images/welcome-image.webp",
         "layout": "right",
         "eyebrow": "The workshop",
         "heading": "A differential workshop built for the job",
         "text": "<p>Our differential services workshop in Dandenong, Melbourne runs top of the line equipment and in house facilities, with a dedicated, professionally experienced team who specialise in diff repairs, 9 inch conversions, custom built diffs and axles, axle splining, straightening and shortening, custom built tail shafts, tail shaft recondition and repair, same day diff repair and service, changeover diffs and gear ratios, plus a diff shop stocked with quality spares and second hand parts.</p>",
-        "button_label": "See all services"
+        "button_label": "See all services",
+        "button_link": ""
       }
     },
     "cta": {
@@ -69,6 +191,7 @@
         "heading": "Get it done right the first time",
         "text": "Same day diff repair and service, custom builds, 9 inch conversions and changeovers. Talk to the team about your car.",
         "primary_label": "Book a service",
+        "primary_link": "",
         "secondary_label": "Call (03) 9792 4834",
         "secondary_link": "tel:0397924834",
         "color_scheme": "accent"
@@ -79,6 +202,7 @@
       "settings": {
         "eyebrow": "In the shop",
         "heading": "Shop diff parts",
+        "collection": "",
         "products_to_show": 4,
         "columns": "4",
         "show_view_all": true,
@@ -87,18 +211,46 @@
     },
     "drb": {
       "type": "intro-statement",
+      "blocks": {
+        "lead": {
+          "type": "lead",
+          "settings": {
+            "text": "One stop diff spares shop. We have developed and manufactured quality differential components that have improved many diffs, at prices that make sense."
+          }
+        },
+        "p1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>We carry a large range of reconditioned diffs and gear ratios for changeovers, along with excellent quality second hand parts. If it turns torque, we can most likely help.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "lead",
+        "p1"
+      ],
       "settings": {
         "eyebrow": "DRB Diff Spares & Axles Pty Ltd",
         "heading": "We make the parts we fit",
+        "button_label": "Browse diff spares",
+        "button_link": "",
         "color_scheme": "alt",
-        "button_label": "Browse diff spares"
-      },
-      "blocks": {
-        "lead": { "type": "lead", "settings": { "text": "One stop diff spares shop. We have developed and manufactured quality differential components that have improved many diffs, at prices that make sense." } },
-        "p1": { "type": "paragraph", "settings": { "text": "<p>We carry a large range of reconditioned diffs and gear ratios for changeovers, along with excellent quality second hand parts. If it turns torque, we can most likely help.</p>" } }
-      },
-      "block_order": ["lead", "p1"]
+        "stat_1_value": "",
+        "stat_1_label": "",
+        "stat_2_value": "",
+        "stat_2_label": "",
+        "stat_3_value": "",
+        "stat_3_label": ""
+      }
     }
   },
-  "order": ["hero", "welcome", "services", "workshop", "cta", "featured", "drb"]
+  "order": [
+    "hero",
+    "welcome",
+    "services",
+    "workshop",
+    "cta",
+    "featured",
+    "drb"
+  ]
 }
