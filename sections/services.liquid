@@ -61,8 +61,13 @@
     position: relative;
     overflow: hidden;
     isolation: isolate;
-    background: rgb(var(--color-background));
+    background: rgb(var(--color-dark));
+    color: #fff;
   }
+  .services--image .section-heading h2 { color: #fff; }
+  .services--image .section-heading p { color: rgb(255 255 255 / 0.72); }
+  .services--image .eyebrow { color: rgb(var(--color-primary)); }
+  .services--image .service-card { color: rgb(var(--color-text)); }
   .services__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
   .services__bg img {
     position: absolute;
@@ -73,17 +78,19 @@
     object-fit: cover;
     will-change: transform;
   }
-  /* soft white wash so the section heading stays readable over the photo */
+  /* dark wash so the section heading stays readable over the photo */
   .services__bg-veil {
     position: absolute;
     inset: 0;
-    background: rgb(var(--color-background) / var(--veil, 0.3));
+    background:
+      linear-gradient(90deg, rgb(var(--color-darker) / calc(var(--veil, 0.3) + 0.25)) 0%, rgb(var(--color-darker) / var(--veil, 0.3)) 55%),
+      rgb(var(--color-darker) / calc(var(--veil, 0.3) * 0.4));
   }
-  /* white panel that retreats left-to-right as the section scrolls into view */
+  /* dark panel that retreats left-to-right as the section scrolls into view */
   .services__bg-wipe {
     position: absolute;
     inset: 0;
-    background: rgb(var(--color-background));
+    background: rgb(var(--color-dark));
     clip-path: inset(0 0 0 var(--wipe, 0%));
   }
   @media (prefers-reduced-motion: reduce) {
@@ -148,8 +155,8 @@
     { "type": "textarea", "id": "text", "label": "t:sections.services.text", "default": "Everything under one roof, backed by a 1 year / 20,000 km workmanship warranty." },
     { "type": "range", "id": "columns", "label": "t:sections.services.columns", "min": 2, "max": 4, "step": 1, "default": 3 },
     { "type": "header", "content": "Background" },
-    { "type": "image_picker", "id": "background_image", "label": "Background image", "info": "Wipes in left to right on scroll, behind the cards" },
-    { "type": "range", "id": "image_overlay", "label": "White wash over image", "min": 0, "max": 70, "step": 5, "unit": "%", "default": 30 },
+    { "type": "image_picker", "id": "background_image", "label": "Background image", "info": "A black panel wipes off left to right on scroll to reveal it, behind the cards" },
+    { "type": "range", "id": "image_overlay", "label": "Dark wash over image", "min": 0, "max": 80, "step": 5, "unit": "%", "default": 35 },
     { "type": "checkbox", "id": "parallax", "label": "Parallax on scroll", "default": true }
   ],
   "blocks": [
