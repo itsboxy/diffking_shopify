@@ -12,71 +12,62 @@
     "hero": {
       "type": "hero",
       "settings": {
+        "asset_image": "",
+        "overlay": 55,
+        "bg_effect": "none",
         "height": "slim",
         "eyebrow": "About Diff King",
         "heading": "Perfection every time, in the right hands",
         "text": "",
         "primary_label": "Book a service",
-        "secondary_label": "Contact us"
+        "primary_link": "",
+        "secondary_label": "Contact us",
+        "secondary_link": ""
       }
     },
     "priority": {
       "type": "intro-statement",
+      "blocks": {
+        "lead": {
+          "type": "lead",
+          "settings": {
+            "text": "Customer satisfaction is paramount. Perfection every time, with honesty and reliability, so you feel the difference of dealing with a quality driven business."
+          }
+        },
+        "p1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>We strive to meet our customers' needs with a high level of professionalism and expertise. Professional standards, professional service, and the confidence that your build is in the right hands.</p>"
+          }
+        },
+        "p2": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>We understand materials, scheduling and timings, and we understand budgets. Fast, reliable service, upgraded to suit your needs and your budget. We deal in all kinds of differentials, custom made axles and more, and 9 inch conversion is our specialisation for Ford, Holden, Mazda and others. Very competitive prices, shipped anywhere in Australia.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "lead",
+        "p1",
+        "p2"
+      ],
       "settings": {
         "eyebrow": "Our priority",
         "heading": "Customer first, every time",
+        "button_label": "",
+        "button_link": "",
         "color_scheme": "default",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 45,
         "stat_1_value": "1992",
         "stat_1_label": "bevel and transmission gear experience from",
         "stat_2_value": "2007",
         "stat_2_label": "building 9 inch conversions since",
         "stat_3_value": "AU",
         "stat_3_label": "shipped anywhere in Australia"
-      },
-      "blocks": {
-        "lead": { "type": "lead", "settings": { "text": "Customer satisfaction is paramount. Perfection every time, with honesty and reliability, so you feel the difference of dealing with a quality driven business." } },
-        "p1": { "type": "paragraph", "settings": { "text": "<p>We strive to meet our customers' needs with a high level of professionalism and expertise. Professional standards, professional service, and the confidence that your build is in the right hands.</p>" } },
-        "p2": { "type": "paragraph", "settings": { "text": "<p>We understand materials, scheduling and timings, and we understand budgets. Fast, reliable service, upgraded to suit your needs and your budget. We deal in all kinds of differentials, custom made axles and more, and 9 inch conversion is our specialisation for Ford, Holden, Mazda and others. Very competitive prices, shipped anywhere in Australia.</p>" } }
-      },
-      "block_order": ["lead", "p1", "p2"]
-    },
-    "problems": {
-      "type": "checklist",
-      "settings": {
-        "eyebrow": "Diagnosis",
-        "heading": "Common differential problems",
-        "text": "If your car is doing any of this, bring it in for a look.",
-        "icon": "spark",
-        "columns": 2,
-        "color_scheme": "alt",
-        "button_label": "Book a diagnosis"
-      },
-      "blocks": {
-        "c1": { "type": "item", "settings": { "title": "Whining or grinding", "text": "Continuous whining, grinding, whistling or grabbing noise at a set speed (0 to 40, 40 to 60, 60 to 80 or 80 to 100 km/h)." } },
-        "c2": { "type": "item", "settings": { "title": "On and off noise", "text": "Noise that comes and goes at a certain speed like 60 to 80 km/h, or only in a particular gear such as 4th or 5th." } },
-        "c3": { "type": "item", "settings": { "title": "Oil leak", "text": "Differential oil leaking from the pinion seal, the wheel bearing seal or the breather." } },
-        "c4": { "type": "item", "settings": { "title": "Wheel bearings", "text": "Wheel bearings wearing out earlier than expected, or popping out." } },
-        "c5": { "type": "item", "settings": { "title": "Cornering or driveline noise", "text": "Noise on cornering, standing or moving, or noise that starts after a drive shaft breaks (Ford and Holden IRS)." } },
-        "c6": { "type": "item", "settings": { "title": "Backlash and clunk", "text": "Backlash noise, or a clunk shifting forward to reverse or first to second (common in Mitsubishi Pajero, Nissan Navara and similar)." } }
-      },
-      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"]
-    },
-    "capabilities": {
-      "type": "feature-columns",
-      "settings": {
-        "eyebrow": "In house",
-        "heading": "What we build and machine",
-        "text": "Years of engineering experience and the tooling to back it up.",
-        "columns": 2,
-        "color_scheme": "default"
-      },
-      "blocks": {
-        "f1": { "type": "item", "settings": { "icon": "wrench", "title": "Axle splining", "text": "A range of splining tools for different pressure angles, from 12 to 38 splines, plus core splines and custom splines to suit our machinery." } },
-        "f2": { "type": "item", "settings": { "icon": "gear", "title": "Wheel stud patterns", "text": "All the popular patterns: HQ, HT, HZ, Holden, Commodore, F100 (5 x 5), Ford, Nissan, Mazda, Toyota, Fluider, plus custom patterns, up to 43 mm axle spline diameter." } },
-        "f3": { "type": "item", "settings": { "icon": "spark", "title": "Custom axles", "text": "Almost any custom axle for a standard Australian vehicle, up to 170 mm flange diameter and 43 mm spline diameter. Fully floating axles and IRS drive shaft centre parts to suit most braking systems." } },
-        "f4": { "type": "item", "settings": { "icon": "gear", "title": "9 inch conversion", "text": "Our top specialisation. Built to suit Australian classics, muscle, drag, Land Cruiser, early Mazda such as RX3, live axle cars, and IRS on special order." } }
-      },
-      "block_order": ["f1", "f2", "f3", "f4"]
+      }
     },
     "team": {
       "type": "image-with-text",
@@ -85,41 +76,238 @@
         "eyebrow": "The team",
         "heading": "A dedicated, experienced team",
         "text": "<p>Our Dandenong workshop runs top of the line equipment and in house facilities, staffed by a professionally experienced team who work on differentials every day. From a straightforward service to a full custom build, your car is in the right hands.</p>",
-        "button_label": "Book a service"
+        "button_label": "Book a service",
+        "button_link": ""
+      }
+    },
+    "problems": {
+      "type": "checklist",
+      "blocks": {
+        "c1": {
+          "type": "item",
+          "settings": {
+            "title": "Whining or grinding",
+            "text": "Continuous whining, grinding, whistling or grabbing noise at a set speed (0 to 40, 40 to 60, 60 to 80 or 80 to 100 km/h)."
+          }
+        },
+        "c2": {
+          "type": "item",
+          "settings": {
+            "title": "On and off noise",
+            "text": "Noise that comes and goes at a certain speed like 60 to 80 km/h, or only in a particular gear such as 4th or 5th."
+          }
+        },
+        "c3": {
+          "type": "item",
+          "settings": {
+            "title": "Oil leak",
+            "text": "Differential oil leaking from the pinion seal, the wheel bearing seal or the breather."
+          }
+        },
+        "c4": {
+          "type": "item",
+          "settings": {
+            "title": "Wheel bearings",
+            "text": "Wheel bearings wearing out earlier than expected, or popping out."
+          }
+        },
+        "c5": {
+          "type": "item",
+          "settings": {
+            "title": "Cornering or driveline noise",
+            "text": "Noise on cornering, standing or moving, or noise that starts after a drive shaft breaks (Ford and Holden IRS)."
+          }
+        },
+        "c6": {
+          "type": "item",
+          "settings": {
+            "title": "Backlash and clunk",
+            "text": "Backlash noise, or a clunk shifting forward to reverse or first to second (common in Mitsubishi Pajero, Nissan Navara and similar)."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ],
+      "settings": {
+        "eyebrow": "Diagnosis",
+        "heading": "Common differential problems",
+        "text": "If your car is doing any of this, bring it in for a look.",
+        "icon": "spark",
+        "columns": 2,
+        "button_label": "Book a diagnosis",
+        "button_link": "",
+        "color_scheme": "alt",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 45
+      }
+    },
+    "capabilities": {
+      "type": "feature-columns",
+      "blocks": {
+        "f1": {
+          "type": "item",
+          "settings": {
+            "icon": "wrench",
+            "title": "Axle splining",
+            "text": "A range of splining tools for different pressure angles, from 12 to 38 splines, plus core splines and custom splines to suit our machinery."
+          }
+        },
+        "f2": {
+          "type": "item",
+          "settings": {
+            "icon": "gear",
+            "title": "Wheel stud patterns",
+            "text": "All the popular patterns: HQ, HT, HZ, Holden, Commodore, F100 (5 x 5), Ford, Nissan, Mazda, Toyota, Fluider, plus custom patterns, up to 43 mm axle spline diameter."
+          }
+        },
+        "f3": {
+          "type": "item",
+          "settings": {
+            "icon": "spark",
+            "title": "Custom axles",
+            "text": "Almost any custom axle for a standard Australian vehicle, up to 170 mm flange diameter and 43 mm spline diameter. Fully floating axles and IRS drive shaft centre parts to suit most braking systems."
+          }
+        },
+        "f4": {
+          "type": "item",
+          "settings": {
+            "icon": "gear",
+            "title": "9 inch conversion",
+            "text": "Our top specialisation. Built to suit Australian classics, muscle, drag, Land Cruiser, early Mazda such as RX3, live axle cars, and IRS on special order."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "eyebrow": "In house",
+        "heading": "What we build and machine",
+        "text": "Years of engineering experience and the tooling to back it up.",
+        "columns": 2,
+        "color_scheme": "default",
+        "background_image": "shopify://shop_images/656849931_18198998635340288_4562846628889807966_n.jpg",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 65
       }
     },
     "specs": {
       "type": "spec-grid",
+      "blocks": {
+        "s1": {
+          "type": "spec",
+          "settings": {
+            "label": "Max flange diameter",
+            "value": "170 mm"
+          }
+        },
+        "s2": {
+          "type": "spec",
+          "settings": {
+            "label": "Max spline diameter",
+            "value": "43 mm"
+          }
+        },
+        "s3": {
+          "type": "spec",
+          "settings": {
+            "label": "Spline range",
+            "value": "12 to 38, plus core and custom"
+          }
+        },
+        "s4": {
+          "type": "spec",
+          "settings": {
+            "label": "Stud patterns",
+            "value": "HQ, HT, HZ, Holden, Commodore, F100 (5 x 5), Ford, Nissan, Mazda, Toyota, custom"
+          }
+        },
+        "s5": {
+          "type": "spec",
+          "settings": {
+            "label": "Floater axles",
+            "value": "Yes, fully floating"
+          }
+        },
+        "s6": {
+          "type": "spec",
+          "settings": {
+            "label": "IRS",
+            "value": "Drive shaft centre parts for most IRS differentials"
+          }
+        },
+        "s7": {
+          "type": "spec",
+          "settings": {
+            "label": "Gear technology",
+            "value": "Bevel and transmission gears since 1992"
+          }
+        },
+        "s8": {
+          "type": "spec",
+          "settings": {
+            "label": "Common 9 inch conversions",
+            "value": "HD, HQ, HJ, HT, HZ, Torana (LJ, LH, LC, UC), XT, XW, XR, Camaro, Monaro, Chev"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ],
       "settings": {
         "eyebrow": "Machining capabilities",
         "heading": "The numbers behind the work",
         "text": "What our equipment can turn out.",
         "button_label": "Ask about your build",
-        "color_scheme": "alt"
-      },
-      "blocks": {
-        "s1": { "type": "spec", "settings": { "label": "Max flange diameter", "value": "170 mm" } },
-        "s2": { "type": "spec", "settings": { "label": "Max spline diameter", "value": "43 mm" } },
-        "s3": { "type": "spec", "settings": { "label": "Spline range", "value": "12 to 38, plus core and custom" } },
-        "s4": { "type": "spec", "settings": { "label": "Stud patterns", "value": "HQ, HT, HZ, Holden, Commodore, F100 (5 x 5), Ford, Nissan, Mazda, Toyota, custom" } },
-        "s5": { "type": "spec", "settings": { "label": "Floater axles", "value": "Yes, fully floating" } },
-        "s6": { "type": "spec", "settings": { "label": "IRS", "value": "Drive shaft centre parts for most IRS differentials" } },
-        "s7": { "type": "spec", "settings": { "label": "Gear technology", "value": "Bevel and transmission gears since 1992" } },
-        "s8": { "type": "spec", "settings": { "label": "Common 9 inch conversions", "value": "HD, HQ, HJ, HT, HZ, Torana (LJ, LH, LC, UC), XT, XW, XR, Camaro, Monaro, Chev" } }
-      },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"]
+        "button_link": "",
+        "color_scheme": "alt",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 45
+      }
     },
     "contact": {
       "type": "cta-banner",
       "settings": {
+        "eyebrow": "",
         "heading": "Talk to the team",
         "text": "Call or email the workshop, or send your vehicle and differential details for a free quote.",
         "primary_label": "Get in touch",
+        "primary_link": "",
         "secondary_label": "Call (03) 9792 4834",
         "secondary_link": "tel:0397924834",
-        "color_scheme": "accent"
+        "color_scheme": "accent",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 45
       }
     }
   },
-  "order": ["hero", "priority", "team", "problems", "capabilities", "specs", "contact"]
+  "order": [
+    "hero",
+    "priority",
+    "team",
+    "problems",
+    "capabilities",
+    "specs",
+    "contact"
+  ]
 }
