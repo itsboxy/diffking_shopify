@@ -26,13 +26,7 @@
         "eyebrow": "Welcome to Diff King",
         "heading": "One stop differential service solution",
         "color_scheme": "default",
-        "button_label": "See what we do",
-        "stat_1_value": "20+",
-        "stat_1_label": "years working on differentials",
-        "stat_2_value": "1yr",
-        "stat_2_label": "20,000km workmanship warranty",
-        "stat_3_value": "AU",
-        "stat_3_label": "wide shipping from Dandenong"
+        "button_label": "See what we do"
       },
       "blocks": {
         "lead": { "type": "lead", "settings": { "text": "A differential transfers the torque produced by the engine to the wheels, letting the wheels run at different speeds so you keep traction as and when the situation demands." } },
@@ -45,7 +39,7 @@
       "settings": {
         "eyebrow": "What we do",
         "heading": "Our services",
-        "text": "Everything under one roof, backed by a 1 year / 20,000 km workmanship warranty.",
+        "text": "Everything a differential needs, under one roof.",
         "columns": 3
       },
       "blocks": {
@@ -71,9 +65,9 @@
     "cta": {
       "type": "cta-banner",
       "settings": {
-        "eyebrow": "Book your diff in",
+        "eyebrow": "Book your car in",
         "heading": "Get it done right the first time",
-        "text": "Same day diff repair and service, custom builds and 9 inch conversions, backed by a 1 year / 20,000 km workmanship warranty.",
+        "text": "Same day diff repair and service, custom builds, 9 inch conversions and changeovers. Talk to the team about your car.",
         "primary_label": "Book a service",
         "secondary_label": "Call (03) 9792 4834",
         "secondary_link": "tel:0397924834",
@@ -91,27 +85,12 @@
         "color_scheme": "default"
       }
     },
-    "why": {
-      "type": "why-choose-us",
-      "settings": {
-        "eyebrow": "Why Diff King",
-        "heading": "Workmanship you can rely on",
-        "text": "Experience, the right equipment, and a warranty behind every job."
-      },
-      "blocks": {
-        "b1": { "type": "value", "settings": { "stat": "1yr", "title": "Workmanship warranty", "text": "1 year / 20,000 km on all differential work, whichever comes first." } },
-        "b2": { "type": "value", "settings": { "stat": "AU", "title": "Shipping Australia wide", "text": "Based in Dandenong, Melbourne. Parts shipped nationwide." } },
-        "b3": { "type": "value", "settings": { "stat": "", "title": "Specialist equipment", "text": "State of the art diagnostic equipment for common and complex problems." } },
-        "b4": { "type": "value", "settings": { "stat": "100%", "title": "Satisfaction guaranteed", "text": "Friendly, professional differential work every time." } }
-      },
-      "block_order": ["b1", "b2", "b3", "b4"]
-    },
     "drb": {
       "type": "intro-statement",
       "settings": {
         "eyebrow": "DRB Diff Spares & Axles Pty Ltd",
         "heading": "We make the parts we fit",
-        "color_scheme": "default",
+        "color_scheme": "alt",
         "button_label": "Browse diff spares"
       },
       "blocks": {
@@ -119,14 +98,7 @@
         "p1": { "type": "paragraph", "settings": { "text": "<p>We carry a large range of reconditioned diffs and gear ratios for changeovers, along with excellent quality second hand parts. If it turns torque, we can most likely help.</p>" } }
       },
       "block_order": ["lead", "p1"]
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "heading": "Get diff tips and workshop offers",
-        "text": "Occasional emails on builds, ratios and specials. No spam."
-      }
     }
   },
-  "order": ["hero", "welcome", "services", "workshop", "cta", "featured", "why", "drb", "newsletter"]
+  "order": ["hero", "welcome", "services", "workshop", "cta", "featured", "drb"]
 }

@@ -1,5 +1,11 @@
+{%- liquid
+  assign phone_href = settings.business_phone | remove: ' ' | remove: '(' | remove: ')'
+  assign svc_titles = 'Diff repairs & service,9 inch conversion,Custom build diffs,Custom build axles,Diff shafts & balancing,Change over diffs & ratios' | split: ','
+  assign svc_urls = '/pages/contact,/pages/9-conversion,/pages/custom-build-diffs,/pages/custom-build-axles,/pages/diff-shafts,/pages/gear-ratios' | split: ','
+-%}
+
 <footer class="footer">
-  <div class="page-width footer__inner">
+  <div class="page-width footer__top">
     <div class="footer__brand">
       {%- if section.settings.logo != blank -%}
         {{ section.settings.logo | image_url: width: 320 | image_tag: loading: 'lazy', class: 'footer__logo', alt: shop.name | escape }}
@@ -15,80 +21,96 @@
         <p class="footer__tagline">{{ section.settings.tagline }}</p>
       {%- endif -%}
 
-      {%- if section.settings.show_social -%}
+      {%- if section.settings.show_social and settings.social_facebook != blank or settings.social_instagram != blank or settings.social_youtube != blank -%}
         <div class="footer__social">
-          {%- if settings.social_facebook != blank -%}
-            <a href="{{ settings.social_facebook }}" aria-label="Facebook" rel="noopener" target="_blank">{% render 'icon', name: 'facebook', size: 20 %}</a>
-          {%- endif -%}
-          {%- if settings.social_instagram != blank -%}
-            <a href="{{ settings.social_instagram }}" aria-label="Instagram" rel="noopener" target="_blank">{% render 'icon', name: 'instagram', size: 20 %}</a>
-          {%- endif -%}
-          {%- if settings.social_youtube != blank -%}
-            <a href="{{ settings.social_youtube }}" aria-label="YouTube" rel="noopener" target="_blank">{% render 'icon', name: 'youtube', size: 20 %}</a>
-          {%- endif -%}
+          {%- if settings.social_facebook != blank -%}<a href="{{ settings.social_facebook }}" aria-label="Facebook" rel="noopener" target="_blank">{% render 'icon', name: 'facebook', size: 18 %}</a>{%- endif -%}
+          {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" aria-label="Instagram" rel="noopener" target="_blank">{% render 'icon', name: 'instagram', size: 18 %}</a>{%- endif -%}
+          {%- if settings.social_youtube != blank -%}<a href="{{ settings.social_youtube }}" aria-label="YouTube" rel="noopener" target="_blank">{% render 'icon', name: 'youtube', size: 18 %}</a>{%- endif -%}
         </div>
       {%- endif -%}
     </div>
 
-    {%- if section.settings.menu != blank and section.settings.menu.links.size > 0 -%}
-      <div class="footer__col">
-        <h2 class="footer__heading">{{ 'footer.quick_links' | t }}</h2>
-        <ul role="list">
-          {%- for link in section.settings.menu.links -%}
+    <nav class="footer__col" aria-label="{{ section.settings.services_heading | default: 'Services' }}">
+      <h2 class="footer__heading">{{ section.settings.services_heading | default: 'Services' }}</h2>
+      <ul role="list">
+        {%- if section.settings.services_menu != blank and section.settings.services_menu.links.size > 0 -%}
+          {%- for link in section.settings.services_menu.links -%}
             <li><a href="{{ link.url }}">{{ link.title }}</a></li>
           {%- endfor -%}
-        </ul>
-      </div>
-    {%- endif -%}
+        {%- else -%}
+          {%- for title in svc_titles -%}
+            <li><a href="{{ svc_urls[forloop.index0] }}">{{ title }}</a></li>
+          {%- endfor -%}
+        {%- endif -%}
+      </ul>
+    </nav>
 
-    <div class="footer__col">
+    <nav class="footer__col" aria-label="{{ section.settings.shop_heading | default: 'Shop' }}">
+      <h2 class="footer__heading">{{ section.settings.shop_heading | default: 'Shop' }}</h2>
+      <ul role="list">
+        {%- if section.settings.shop_menu != blank and section.settings.shop_menu.links.size > 0 -%}
+          {%- for link in section.settings.shop_menu.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        {%- else -%}
+          <li><a href="{{ routes.all_products_collection_url }}">All parts</a></li>
+          <li><a href="/pages/disc-trac">Disc Trac helical LSD</a></li>
+          <li><a href="/pages/about">About Diff King</a></li>
+          <li><a href="{{ routes.cart_url }}">Cart</a></li>
+        {%- endif -%}
+        {%- for policy in shop.policies -%}
+          {%- if policy != blank -%}<li><a href="{{ policy.url }}">{{ policy.title }}</a></li>{%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="footer__col footer__contact-col">
       <h2 class="footer__heading">{{ 'footer.contact_title' | t }}</h2>
       <ul role="list" class="footer__contact">
         {%- if settings.business_address != blank -%}
-          <li>
-            {% render 'icon', name: 'pin', size: 17 %}
-            <a href="{{ settings.business_maps_link }}" rel="noopener" target="_blank">{{ settings.business_address | newline_to_br }}</a>
-          </li>
+          <li>{% render 'icon', name: 'pin', size: 16 %} <span>{{ settings.business_address | newline_to_br }}</span></li>
         {%- endif -%}
         {%- if settings.business_phone != blank -%}
-          <li>{% render 'icon', name: 'phone', size: 17 %} <a href="tel:{{ settings.business_phone | remove: ' ' }}">{{ settings.business_phone }}</a></li>
+          <li>{% render 'icon', name: 'phone', size: 16 %} <a href="tel:{{ phone_href }}">{{ settings.business_phone }}</a></li>
         {%- endif -%}
         {%- if settings.business_email != blank -%}
-          <li>{% render 'icon', name: 'mail', size: 17 %} <a href="mailto:{{ settings.business_email }}">{{ settings.business_email }}</a></li>
+          <li>{% render 'icon', name: 'mail', size: 16 %} <a href="mailto:{{ settings.business_email }}">{{ settings.business_email }}</a></li>
         {%- endif -%}
         {%- if section.settings.hours != blank -%}
-          <li>{% render 'icon', name: 'clock', size: 17 %} {{ section.settings.hours }}</li>
+          <li>{% render 'icon', name: 'clock', size: 16 %} <span>{{ section.settings.hours }}</span></li>
         {%- endif -%}
       </ul>
-    </div>
-
-    <div class="footer__col footer__newsletter">
-      <h2 class="footer__heading">{{ 'footer.newsletter_title' | t }}</h2>
-      <p>{{ 'footer.newsletter_text' | t }}</p>
-      {% form 'customer', class: 'newsletter-form' %}
-        {%- if form.posted_successfully? -%}
-          <p class="form-status form-status--success" data-form-status>{{ 'general.newsletter_form.confirmation' | t }}</p>
-        {%- endif -%}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        <div class="newsletter-form__row">
-          <label class="visually-hidden" for="FooterEmail">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
-          <input
-            type="email"
-            name="contact[email]"
-            id="FooterEmail"
-            placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-            autocomplete="email"
-            required
-          >
-          <button type="submit" class="button button--primary">{{ 'general.newsletter_form.subscribe' | t }}</button>
-        </div>
-      {% endform %}
+      {%- if settings.business_maps_link != blank -%}
+        <a class="footer__directions text-link" href="{{ settings.business_maps_link }}" target="_blank" rel="noopener">Get directions {% render 'icon', name: 'arrow-right', size: 14 %}</a>
+      {%- endif -%}
     </div>
   </div>
 
+  {%- if section.settings.show_newsletter -%}
+    <div class="footer__newsletter-strip">
+      <div class="page-width footer__newsletter-inner">
+        <div>
+          <h2 class="footer__heading">{{ 'footer.newsletter_title' | t }}</h2>
+          <p>{{ 'footer.newsletter_text' | t }}</p>
+        </div>
+        {% form 'customer', class: 'newsletter-form' %}
+          {%- if form.posted_successfully? -%}
+            <p class="form-status form-status--success" data-form-status>{{ 'general.newsletter_form.confirmation' | t }}</p>
+          {%- endif -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="newsletter-form__row">
+            <label class="visually-hidden" for="FooterEmail">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
+            <input type="email" name="contact[email]" id="FooterEmail" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" autocomplete="email" required>
+            <button type="submit" class="button button--primary">{{ 'general.newsletter_form.subscribe' | t }}</button>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  {%- endif -%}
+
   <div class="footer__bar">
     <div class="page-width footer__bar-inner">
-      <p>&copy; {{ 'now' | date: '%Y' }} {{ 'footer.copyright' | t }}</p>
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'footer.copyright' | t }}</p>
       {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
         <ul class="footer__payments" role="list" aria-label="{{ 'footer.payment_methods' | t }}">
           {%- for type in shop.enabled_payment_types -%}
@@ -106,58 +128,72 @@
     background: rgb(var(--color-surface));
     border-top: 1px solid rgb(var(--color-line));
   }
-  .footer__inner {
+  .footer__top {
     display: grid;
-    gap: 2.5rem;
-    padding-block: 3.5rem;
+    gap: 2.5rem 2rem;
+    padding-block: clamp(2.5rem, 5vw, 4rem);
     grid-template-columns: 1fr;
   }
-  @media (min-width: 750px) {
-    .footer__inner { grid-template-columns: 1.4fr 1fr 1.2fr; }
+  @media (min-width: 700px) { .footer__top { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) { .footer__top { grid-template-columns: 1.6fr 1fr 1fr 1.4fr; } }
+
+  .footer__logo { max-height: 3.5rem; width: auto; margin-bottom: 1rem; }
+  .footer__logo-text {
+    font-family: var(--font-heading), sans-serif;
+    font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em;
+    text-transform: uppercase; display: block; margin-bottom: 0.9rem;
   }
-  @media (min-width: 990px) {
-    .footer__inner { grid-template-columns: 1.6fr 1fr 1.2fr 1.4fr; }
-  }
-  .footer__logo { max-height: 4.5rem; width: auto; margin-bottom: 1rem; }
-  .footer__logo-text { font-family: var(--font-heading), sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase; display: block; margin-bottom: 1rem; }
   .footer__logo-accent { color: rgb(var(--color-primary)); }
-  .footer__tagline { color: rgb(var(--color-text) / 0.65); max-width: 34ch; }
-  .footer__social { display: flex; gap: 0.75rem; margin-top: 1rem; }
+  .footer__tagline { color: rgb(var(--color-text) / 0.62); max-width: 32ch; font-size: 0.92rem; }
+  .footer__social { display: flex; gap: 0.6rem; margin-top: 1.25rem; }
   .footer__social a {
     display: grid; place-items: center;
-    width: 2.4rem; height: 2.4rem;
-    border: 1px solid rgb(var(--color-text) / 0.2);
+    width: 2.3rem; height: 2.3rem;
+    border: 1px solid rgb(var(--color-text) / 0.18);
     border-radius: 999px;
+    transition: background-color 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);
   }
   .footer__social a:hover { background: rgb(var(--color-primary)); border-color: transparent; color: rgb(var(--color-primary-contrast)); }
+
   .footer__heading {
     font-family: var(--font-heading), sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 1.1rem;
-    color: rgb(var(--color-primary-dark));
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: rgb(var(--color-text) / 0.5);
   }
-  .footer__col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
-  .footer__col a { text-decoration: none; }
-  .footer__col a:hover { text-decoration: underline; }
-  .footer__contact li { display: flex; gap: 0.6rem; align-items: flex-start; color: rgb(var(--color-text) / 0.8); }
+  .footer__col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+  .footer__col a { text-decoration: none; font-size: 0.92rem; color: rgb(var(--color-text) / 0.8); }
+  .footer__col a:hover { color: rgb(var(--color-primary-dark)); }
+
+  .footer__contact li { display: flex; gap: 0.55rem; align-items: flex-start; font-size: 0.9rem; color: rgb(var(--color-text) / 0.8); margin-bottom: 0.1rem; }
   .footer__contact svg { flex-shrink: 0; margin-top: 0.15rem; color: rgb(var(--color-primary)); }
-  .footer__newsletter p { color: rgb(var(--color-text) / 0.65); font-size: 0.92rem; }
-  .newsletter-form__row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
-  .newsletter-form__row input { flex: 1 1 12rem; background: rgb(var(--color-background)); }
-  .footer__bar { border-top: 1px solid rgb(var(--color-line)); }
-  .footer__bar-inner {
+  .footer__contact a { text-decoration: none; color: inherit; }
+  .footer__contact a:hover { color: rgb(var(--color-primary-dark)); }
+  .footer__directions { margin-top: 1rem; }
+
+  .footer__newsletter-strip { border-top: 1px solid rgb(var(--color-line)); }
+  .footer__newsletter-inner {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding-block: 1.25rem;
-    flex-wrap: wrap;
-    font-size: 0.82rem;
-    color: rgb(var(--color-text) / 0.55);
+    gap: 1.25rem 2.5rem;
+    padding-block: 1.75rem;
   }
+  .footer__newsletter-inner p { margin: 0; color: rgb(var(--color-text) / 0.62); font-size: 0.9rem; max-width: 40ch; }
+  .footer__newsletter-inner .footer__heading { margin-bottom: 0.35rem; }
+  .newsletter-form { flex: 1 1 20rem; max-width: 30rem; }
+  .newsletter-form__row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .newsletter-form__row input { flex: 1 1 12rem; background: rgb(var(--color-background)); }
+
+  .footer__bar { border-top: 1px solid rgb(var(--color-line)); }
+  .footer__bar-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; padding-block: 1.25rem; flex-wrap: wrap;
+    font-size: 0.8rem; color: rgb(var(--color-text) / 0.5);
+  }
+  .footer__bar-inner p { margin: 0; }
   .footer__payments { display: flex; gap: 0.4rem; list-style: none; margin: 0; padding: 0; }
   .footer__payment-icon { width: 2.2rem; height: auto; border-radius: 5px; }
 {% endstylesheet %}
@@ -166,41 +202,20 @@
 {
   "name": "t:sections.footer.name",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo"
-    },
-    {
-      "type": "textarea",
-      "id": "tagline",
-      "label": "Tagline",
-      "default": "One stop differential service solution. Repairs, servicing, 9″ conversions, custom axles and fabrication."
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu",
-      "default": "footer"
-    },
-    {
-      "type": "text",
-      "id": "hours",
-      "label": "t:footer.hours_title",
-      "default": "Mon to Fri, 8:00am to 5:00pm"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_social",
-      "label": "t:sections.footer.show_social",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_payment_icons",
-      "label": "t:sections.footer.show_payment_icons",
-      "default": true
-    }
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "textarea", "id": "tagline", "label": "Tagline", "default": "One stop differential service solution. Repairs, servicing, 9″ conversions, custom axles and fabrication." },
+    { "type": "header", "content": "Services column" },
+    { "type": "text", "id": "services_heading", "label": "Heading", "default": "Services" },
+    { "type": "link_list", "id": "services_menu", "label": "Menu", "info": "Falls back to the service pages if left blank" },
+    { "type": "header", "content": "Shop column" },
+    { "type": "text", "id": "shop_heading", "label": "Heading", "default": "Shop" },
+    { "type": "link_list", "id": "shop_menu", "label": "Menu", "info": "Falls back to sensible links + store policies if left blank" },
+    { "type": "header", "content": "Contact column" },
+    { "type": "text", "id": "hours", "label": "Opening hours", "default": "Mon to Fri, 8:00am to 5:00pm" },
+    { "type": "header", "content": "Options" },
+    { "type": "checkbox", "id": "show_newsletter", "label": "Show newsletter signup", "default": true },
+    { "type": "checkbox", "id": "show_social", "label": "t:sections.footer.show_social", "default": true },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "t:sections.footer.show_payment_icons", "default": true }
   ]
 }
 {% endschema %}
