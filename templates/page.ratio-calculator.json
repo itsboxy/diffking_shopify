@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "height": "slim",
+        "eyebrow": "Tools",
+        "heading": "Diff ratio calculator",
+        "text": "",
+        "primary_label": "Get a quote",
+        "secondary_label": "Change over diffs & ratios",
+        "secondary_link": "/pages/gear-ratios"
+      }
+    },
+    "calc": {
+      "type": "ratio-calculator",
+      "settings": {
+        "eyebrow": "Work it out",
+        "heading": "Cruise rpm, ratio and speedo error",
+        "text": "Enter a tyre size like 265/75R16, or an overall diameter in inches. Gearbox ratio is 1.00 for a direct top gear, or the overdrive ratio for the gear you cruise in.",
+        "color_scheme": "alt"
+      }
+    },
+    "explainer": {
+      "type": "rich-text",
+      "settings": { "alignment": "left" },
+      "blocks": {
+        "h": { "type": "heading", "settings": { "text": "How gear ratio works" } },
+        "t1": { "type": "text", "settings": { "text": "<p>Diff ratio is the number of turns of the pinion for one turn of the wheels. A 3.73:1 ratio means the tail shaft turns 3.73 times for every turn of the wheel. A numerically higher ratio (say 4.11) gives more acceleration and higher cruising rpm; a lower ratio (say 3.08) gives a quieter, more economical highway car.</p>" } },
+        "t2": { "type": "text", "settings": { "text": "<p>Fitting bigger tyres raises the effective ratio and dulls the car. Going from a 30 inch to a 35 inch tyre changes the final drive by around 17 percent, so a 3.07 would want roughly a 3.55 to bring the feel back. Bigger tyres also make the speedo read slow and the odometer under-read.</p>" } },
+        "b": { "type": "button", "settings": { "label": "Get a ratio recommendation", "link": "/pages/contact", "style": "primary" } }
+      },
+      "block_order": ["h", "t1", "t2", "b"]
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Not sure which ratio?",
+        "text": "Send your vehicle, current ratio, tyre size and how you use the car and we will recommend a ratio and price it up.",
+        "primary_label": "Get advice",
+        "secondary_label": "Call (03) 9792 4834",
+        "secondary_link": "tel:0397924834",
+        "color_scheme": "accent"
+      }
+    }
+  },
+  "order": ["hero", "calc", "explainer", "cta"]
+}

@@ -1,0 +1,314 @@
+<div class="section ratio-calc-section{% if section.settings.color_scheme == 'alt' %} surface-alt{% endif %}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank or section.settings.text != blank -%}
+      <div class="section-heading">
+        {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="ratio-calc" data-ratio-calc>
+      <div class="ratio-calc__tabs" role="tablist">
+        <button type="button" class="ratio-calc__tab is-active" data-tab="rpm" role="tab" aria-selected="true">Engine RPM at speed</button>
+        <button type="button" class="ratio-calc__tab" data-tab="ratio" role="tab" aria-selected="false">Ratio for a tyre change</button>
+        <button type="button" class="ratio-calc__tab" data-tab="speedo" role="tab" aria-selected="false">Speedo &amp; odo error</button>
+      </div>
+
+      {%- comment -%} Panel 1: RPM {%- endcomment -%}
+      <div class="ratio-calc__panel is-active" data-panel="rpm">
+        <div class="ratio-calc__grid">
+          <label class="field">
+            <span>Diff ratio</span>
+            <input type="number" step="0.01" inputmode="decimal" data-i="rpm-ratio" value="3.55" placeholder="3.55">
+          </label>
+          <label class="field">
+            <span>Gearbox ratio in this gear</span>
+            <input type="number" step="0.01" inputmode="decimal" data-i="rpm-box" value="1.00" placeholder="1.00">
+          </label>
+          <label class="field">
+            <span>Tyre size or overall diameter</span>
+            <input type="text" data-i="rpm-tyre" value="235/75R15" placeholder="235/75R15 or 28.9">
+          </label>
+          <label class="field">
+            <span>Road speed (km/h)</span>
+            <input type="number" step="1" inputmode="numeric" data-i="rpm-speed" value="100" placeholder="100">
+          </label>
+        </div>
+        <div class="ratio-calc__out">
+          <div class="ratio-calc__result"><span data-o="rpm-main">&mdash;</span><small>engine rpm</small></div>
+          <table class="ratio-calc__table">
+            <thead><tr><th>Speed</th><th>RPM</th></tr></thead>
+            <tbody data-o="rpm-table"></tbody>
+          </table>
+        </div>
+      </div>
+
+      {%- comment -%} Panel 2: Ratio for tyre change {%- endcomment -%}
+      <div class="ratio-calc__panel" data-panel="ratio">
+        <div class="ratio-calc__grid">
+          <label class="field">
+            <span>Current diff ratio</span>
+            <input type="number" step="0.01" inputmode="decimal" data-i="rt-ratio" value="3.08" placeholder="3.08">
+          </label>
+          <label class="field">
+            <span>Current tyre size or diameter</span>
+            <input type="text" data-i="rt-old" value="30" placeholder="235/75R15 or 30">
+          </label>
+          <label class="field">
+            <span>New tyre size or diameter</span>
+            <input type="text" data-i="rt-new" value="35" placeholder="285/75R16 or 35">
+          </label>
+        </div>
+        <div class="ratio-calc__out">
+          <div class="ratio-calc__result"><span data-o="rt-main">&mdash;</span><small>ratio to keep the same feel</small></div>
+          <p class="ratio-calc__note" data-o="rt-note"></p>
+        </div>
+      </div>
+
+      {%- comment -%} Panel 3: Speedo / odo {%- endcomment -%}
+      <div class="ratio-calc__panel" data-panel="speedo">
+        <div class="ratio-calc__grid">
+          <label class="field">
+            <span>Tyre size the speedo was set for</span>
+            <input type="text" data-i="sp-old" value="235/75R15" placeholder="235/75R15 or 28.9">
+          </label>
+          <label class="field">
+            <span>New tyre size or diameter</span>
+            <input type="text" data-i="sp-new" value="265/75R16" placeholder="265/75R16 or 31.6">
+          </label>
+          <label class="field">
+            <span>Speedo reading (km/h)</span>
+            <input type="number" step="1" inputmode="numeric" data-i="sp-read" value="100" placeholder="100">
+          </label>
+        </div>
+        <div class="ratio-calc__out">
+          <div class="ratio-calc__result"><span data-o="sp-main">&mdash;</span><small>true road speed</small></div>
+          <p class="ratio-calc__note" data-o="sp-note"></p>
+        </div>
+      </div>
+
+      <p class="ratio-calc__disclaimer">Estimates only, based on rolling diameter. Tyre wear, pressure and brand vary. For a build we will confirm the numbers on the car.</p>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .ratio-calc {
+    max-width: 60rem;
+    border: 1px solid rgb(var(--color-line));
+    border-radius: var(--border-radius);
+    background: rgb(var(--color-background));
+    overflow: hidden;
+  }
+  .ratio-calc__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgb(var(--color-line));
+  }
+  .ratio-calc__tab {
+    flex: 1 1 12rem;
+    padding: 1rem 1rem;
+    background: rgb(var(--color-surface));
+    border: 0;
+    border-right: 1px solid rgb(var(--color-line));
+    font-family: var(--font-heading), sans-serif;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgb(var(--color-text) / 0.55);
+    cursor: pointer;
+    transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+  }
+  .ratio-calc__tab:last-child { border-right: 0; }
+  .ratio-calc__tab.is-active { background: rgb(var(--color-background)); color: rgb(var(--color-text)); box-shadow: inset 0 -3px 0 rgb(var(--color-primary)); }
+
+  .ratio-calc__panel { display: none; padding: clamp(1.25rem, 4vw, 2.25rem); }
+  .ratio-calc__panel.is-active { display: block; }
+
+  .ratio-calc__grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 620px) { .ratio-calc__grid { grid-template-columns: 1fr 1fr; } }
+  .ratio-calc .field { margin: 0; }
+  .ratio-calc .field span {
+    font-family: var(--font-heading), sans-serif;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.03em;
+    text-transform: uppercase; color: rgb(var(--color-text) / 0.65);
+  }
+
+  .ratio-calc__out {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgb(var(--color-line));
+  }
+  .ratio-calc__result {
+    display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap;
+    font-family: var(--font-heading), sans-serif;
+  }
+  .ratio-calc__result span {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: rgb(var(--color-primary));
+    line-height: 1;
+  }
+  .ratio-calc__result small {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgb(var(--color-text) / 0.5);
+  }
+  .ratio-calc__note { margin: 0.9rem 0 0; font-size: 0.92rem; color: rgb(var(--color-text) / 0.75); }
+
+  .ratio-calc__table { width: 100%; margin-top: 1.25rem; border-collapse: collapse; font-size: 0.9rem; }
+  .ratio-calc__table th {
+    text-align: left; padding: 0.4rem 0.5rem;
+    font-family: var(--font-heading), sans-serif; font-size: 0.68rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: rgb(var(--color-text) / 0.5);
+    border-bottom: 1px solid rgb(var(--color-line));
+  }
+  .ratio-calc__table td { padding: 0.45rem 0.5rem; border-bottom: 1px solid rgb(var(--color-line)); }
+  .ratio-calc__table td:last-child { font-family: var(--font-heading), sans-serif; font-weight: 700; }
+
+  .ratio-calc__disclaimer {
+    margin: 0;
+    padding: 1rem clamp(1.25rem, 4vw, 2.25rem);
+    background: rgb(var(--color-surface));
+    border-top: 1px solid rgb(var(--color-line));
+    font-size: 0.8rem;
+    color: rgb(var(--color-text) / 0.55);
+  }
+
+  .surface-alt .ratio-calc { box-shadow: var(--shadow-sm); }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    var root = document.querySelector('[data-ratio-calc]');
+    if (!root) return;
+
+    var COMMON = [2.92, 3.00, 3.08, 3.15, 3.23, 3.36, 3.45, 3.50, 3.55, 3.70, 3.73, 3.89, 3.91, 4.11, 4.30, 4.56, 4.86, 4.88, 5.13, 5.43];
+
+    function $(sel) { return root.querySelector(sel); }
+    function get(name) { return root.querySelector('[data-i="' + name + '"]'); }
+    function num(name) { return parseFloat(get(name).value); }
+
+    // Overall tyre diameter in inches from a size string ("235/75R15") or a plain number.
+    function tyreDiaInches(raw) {
+      if (!raw) return NaN;
+      var s = String(raw).trim().toLowerCase().replace(/\s+/g, '');
+      var m = s.match(/^(\d{2,3})\/(\d{2,3})(?:r|-|x)?(\d{1,2}(?:\.\d)?)$/);
+      if (m) {
+        var width = parseFloat(m[1]);
+        var aspect = parseFloat(m[2]);
+        var rim = parseFloat(m[3]);
+        var sidewall = width * (aspect / 100);
+        return (rim * 25.4 + 2 * sidewall) / 25.4;
+      }
+      var n = parseFloat(s);
+      return isFinite(n) ? n : NaN;
+    }
+
+    function rpmAt(speedKmh, ratio, box, diaIn) {
+      // mph = kmh / 1.60934 ; rpm = mph * 336 * ratio * box / dia
+      return (speedKmh / 1.60934) * 336 * ratio * box / diaIn;
+    }
+
+    function nearestCommon(r) {
+      var best = COMMON[0], d = Math.abs(COMMON[0] - r);
+      for (var i = 1; i < COMMON.length; i++) {
+        var dd = Math.abs(COMMON[i] - r);
+        if (dd < d) { d = dd; best = COMMON[i]; }
+      }
+      return best;
+    }
+
+    function fmt(n, dp) { return isFinite(n) ? n.toFixed(dp == null ? 0 : dp) : '—'; }
+
+    function calcRpm() {
+      var ratio = num('rpm-ratio'), box = num('rpm-box');
+      var dia = tyreDiaInches(get('rpm-tyre').value);
+      var speed = num('rpm-speed');
+      var ok = isFinite(ratio) && isFinite(box) && isFinite(dia) && dia > 0;
+      $('[data-o="rpm-main"]').textContent = ok && isFinite(speed) ? fmt(rpmAt(speed, ratio, box, dia)) : '—';
+      var tb = $('[data-o="rpm-table"]');
+      tb.innerHTML = '';
+      if (!ok) return;
+      [80, 90, 100, 110, 120].forEach(function (v) {
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + v + ' km/h</td><td>' + fmt(rpmAt(v, ratio, box, dia)) + '</td>';
+        tb.appendChild(tr);
+      });
+    }
+
+    function calcRatio() {
+      var ratio = num('rt-ratio');
+      var oldD = tyreDiaInches(get('rt-old').value);
+      var newD = tyreDiaInches(get('rt-new').value);
+      var ok = isFinite(ratio) && isFinite(oldD) && isFinite(newD) && oldD > 0 && newD > 0;
+      var target = ok ? ratio * (newD / oldD) : NaN;
+      $('[data-o="rt-main"]').textContent = ok ? fmt(target, 2) : '—';
+      var note = $('[data-o="rt-note"]');
+      if (!ok) { note.textContent = ''; return; }
+      var pct = (newD / oldD - 1) * 100;
+      var near = nearestCommon(target);
+      note.textContent =
+        'Tyre diameter changes by ' + (pct >= 0 ? '+' : '') + fmt(pct, 1) + '%. ' +
+        'Closest common ratio is ' + near.toFixed(2) + ':1' +
+        (Math.abs(near - target) > 0.06 ? ' (a little ' + (near > target ? 'lower geared' : 'taller') + ' than ideal).' : '.');
+    }
+
+    function calcSpeedo() {
+      var oldD = tyreDiaInches(get('sp-old').value);
+      var newD = tyreDiaInches(get('sp-new').value);
+      var read = num('sp-read');
+      var ok = isFinite(oldD) && isFinite(newD) && oldD > 0 && newD > 0;
+      var trueSpeed = ok && isFinite(read) ? read * (newD / oldD) : NaN;
+      $('[data-o="sp-main"]').textContent = isFinite(trueSpeed) ? fmt(trueSpeed, 1) + ' km/h' : '—';
+      var note = $('[data-o="sp-note"]');
+      if (!ok) { note.textContent = ''; return; }
+      var err = (newD / oldD - 1) * 100;
+      note.textContent =
+        'With the new tyres the speedo reads about ' + fmt(Math.abs(err), 1) + '% ' +
+        (err > 0 ? 'slow, and the odometer under-reads distance.' : 'fast, and the odometer over-reads distance.') +
+        ' A true 100 km/h shows as ' + fmt(100 / (newD / oldD), 0) + ' on the dash.';
+    }
+
+    function recalc() { calcRpm(); calcRatio(); calcSpeedo(); }
+
+    root.addEventListener('input', recalc);
+
+    root.querySelectorAll('[data-tab]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var name = btn.getAttribute('data-tab');
+        root.querySelectorAll('[data-tab]').forEach(function (b) {
+          var on = b === btn;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-selected', String(on));
+        });
+        root.querySelectorAll('[data-panel]').forEach(function (p) {
+          p.classList.toggle('is-active', p.getAttribute('data-panel') === name);
+        });
+      });
+    });
+
+    recalc();
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Ratio calculator",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Tools" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Diff ratio calculator" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Work out cruise rpm, the ratio to suit a tyre change, and speedo error. Enter a tyre size like 265/75R16 or an overall diameter in inches." },
+    {
+      "type": "select", "id": "color_scheme", "label": "Background", "default": "alt",
+      "options": [
+        { "value": "default", "label": "White" },
+        { "value": "alt", "label": "Light grey" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Ratio calculator" }]
+}
+{% endschema %}
