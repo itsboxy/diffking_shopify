@@ -16,6 +16,12 @@
         "label": "Brand name",
         "info": "Shown in the header, footer and page titles. Also update Settings > Store details.",
         "default": "Diff King"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Shown in the browser tab. Square image, ideally 32x32px or larger (a square crop of the logo works well)."
       }
     ]
   },

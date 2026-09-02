@@ -12,60 +12,31 @@
     "hero": {
       "type": "hero",
       "blocks": {
-        "t1": {
-          "type": "trust",
-          "settings": {
-            "icon": "clock",
-            "text": "Mon to Fri, 8:30 to 5:00"
-          }
-        },
-        "t2": {
-          "type": "trust",
-          "settings": {
-            "icon": "pin",
-            "text": "Dandenong, Melbourne"
-          }
-        },
-        "t3": {
-          "type": "trust",
-          "settings": {
-            "icon": "truck",
-            "text": "Pickup and delivery available"
-          }
-        }
+        "t1": { "type": "trust", "settings": { "icon": "clock", "text": "Mon to Fri, 8:30 to 5:00" } },
+        "t2": { "type": "trust", "settings": { "icon": "pin", "text": "Dandenong, Melbourne" } },
+        "t3": { "type": "trust", "settings": { "icon": "truck", "text": "Pickup and delivery available" } }
       },
-      "block_order": [
-        "t1",
-        "t2",
-        "t3"
-      ],
+      "block_order": ["t1", "t2", "t3"],
       "settings": {
-        "asset_image": "",
-        "overlay": 55,
-        "bg_effect": "none",
         "height": "small",
         "eyebrow": "Contact",
         "heading": "Get in touch with Diff King",
         "text": "Call, email or drop into the Dandenong workshop. Free quotes on repairs, conversions and custom builds.",
         "primary_label": "Call (03) 9792 4834",
         "primary_link": "tel:0397924834",
-        "secondary_label": "Book a service",
-        "secondary_link": ""
+        "secondary_label": "Book a service"
       }
     },
     "contact": {
       "type": "contact-form",
       "settings": {
-        "show_details": false,
-        "hours": "Mon to Fri, 8:30am to 5:00pm",
         "heading": "Get a free quote",
         "text": "Call or email, or send the form with your vehicle and differential details and we will come back with pricing and lead time.",
-        "map_embed": "<iframe src=\"https://www.google.com/maps?q=3%2F57%20Dandenong%20Street%2C%20Dandenong%20VIC%203175&amp;output=embed\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\" title=\"Diff King on Google Maps\"></iframe>"
+        "hours": "Mon to Fri, 8:30am to 5:00pm",
+        "show_details": true,
+        "map_embed": "<iframe src=\"https://www.google.com/maps?q=3%2F57%20Dandenong%20Street%2C%20Dandenong%20VIC%203175&output=embed\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\" title=\"Diff King on Google Maps\"></iframe>"
       }
     }
   },
-  "order": [
-    "hero",
-    "contact"
-  ]
+  "order": ["hero", "contact"]
 }
