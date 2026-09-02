@@ -25,7 +25,7 @@
       </div>
     {%- endif -%}
 
-    <ul class="checklist" style="--columns: {{ section.settings.columns }}" role="list">
+    <ul class="checklist checklist--{{ section.settings.marker_style }}" style="--columns: {{ section.settings.columns }}" role="list">
       {%- for block in section.blocks -%}
         <li class="checklist__item" {{ block.shopify_attributes }}>
           <span class="checklist__marker">{% render 'icon', name: section.settings.icon, size: 16 %}</span>
@@ -82,6 +82,7 @@
     color: rgb(var(--color-primary));
   }
   .surface-dark .checklist__marker { background: rgb(var(--color-primary) / 0.22); }
+  .checklist--solid .checklist__marker { background: rgb(var(--color-dark)); color: #fff; }
   .checklist__text { font-size: 0.95rem; line-height: 1.55; }
   .checklist__text strong { font-weight: 700; }
   .surface-dark .checklist__text { color: rgb(255 255 255 / 0.8); }
@@ -96,8 +97,9 @@
     { "type": "text", "id": "heading", "label": "Heading", "default": "Checklist" },
     { "type": "textarea", "id": "text", "label": "Text" },
     {
-      "type": "select", "id": "icon", "label": "Item icon", "default": "spark",
+      "type": "select", "id": "icon", "label": "Item icon", "default": "check",
       "options": [
+        { "value": "check", "label": "Check" },
         { "value": "spark", "label": "Spark" },
         { "value": "wrench", "label": "Wrench" },
         { "value": "gear", "label": "Gear" },
@@ -106,6 +108,13 @@
       ]
     },
     { "type": "range", "id": "columns", "label": "Columns on desktop", "min": 1, "max": 3, "step": 1, "default": 2 },
+    {
+      "type": "select", "id": "marker_style", "label": "Marker style", "default": "tint",
+      "options": [
+        { "value": "tint", "label": "Red tint" },
+        { "value": "solid", "label": "Solid black" }
+      ]
+    },
     { "type": "text", "id": "button_label", "label": "Button label" },
     { "type": "url", "id": "button_link", "label": "Button link" },
     {

@@ -1,7 +1,7 @@
 {% doc %}
   Renders an inline SVG icon by name. Consistent 24px grid, 1.6 stroke.
 
-  @param {string} name - cart, search, menu, close, chevron-down, chevron-right, arrow-right, phone, mail, pin, clock, wrench, gear, truck, shield, spark, facebook, instagram, youtube
+  @param {string} name - cart, search, menu, close, chevron-down, chevron-right, arrow-right, phone, mail, pin, clock, wrench, gear, truck, shield, spark, check, facebook, instagram, youtube
   @param {number} [size] - Width/height in px (default 24)
 
   @example
@@ -48,6 +48,8 @@
     <svg {{ attrs }}><path d="M12 2.5 4.5 5.5v5.6c0 4.7 3.2 7.9 7.5 9.4 4.3-1.5 7.5-4.7 7.5-9.4V5.5Z"/><path d="m8.8 12 2.1 2.1 4.3-4.3"/></svg>
   {%- when 'spark' -%}
     <svg {{ attrs }}><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg>
+  {%- when 'check' -%}
+    <svg {{ attrs }}><path d="m5 12.5 4.5 4.5L19 7"/></svg>
   {%- when 'facebook' -%}
     <svg viewBox="0 0 24 24" width="{{ size }}" height="{{ size }}" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13 22v-8h2.7l.4-3H13V9c0-.9.3-1.5 1.6-1.5H16V4.8C15.7 4.8 14.7 4.7 13.6 4.7 11.2 4.7 9.6 6.2 9.6 8.7V11H7v3h2.6v8z"/></svg>
   {%- when 'instagram' -%}

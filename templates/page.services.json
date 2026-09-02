@@ -1,0 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "height": "slim",
+        "eyebrow": "What we do",
+        "heading": "Our services",
+        "text": "",
+        "primary_label": "Book a service",
+        "secondary_label": "Shop parts"
+      }
+    },
+    "mechanical": {
+      "type": "checklist",
+      "settings": {
+        "eyebrow": "",
+        "heading": "All mechanical repairs and maintenance",
+        "text": "We provide professional differential services and repairs for all makes and models. We have state of the art diagnostic equipment to investigate common and complex differential problems, such as:",
+        "icon": "check",
+        "marker_style": "solid",
+        "columns": 1,
+        "color_scheme": "alt"
+      },
+      "blocks": {
+        "i1": { "type": "item", "settings": { "text": "Scheduled maintenance services such as oil changes, lubrication and engine tune ups" } },
+        "i2": { "type": "item", "settings": { "text": "Brake pads and rotor replacement" } },
+        "i3": { "type": "item", "settings": { "text": "Wheel bearing replacement" } },
+        "i4": { "type": "item", "settings": { "text": "Suspension diagnostics, repairs and maintenance" } },
+        "i5": { "type": "item", "settings": { "text": "Tail shaft centre bearing replacement" } }
+      },
+      "block_order": ["i1", "i2", "i3", "i4", "i5"]
+    },
+    "equipment": {
+      "type": "image-checklist",
+      "settings": {
+        "layout": "left",
+        "heading": "We have state of the art tooling, machines and equipment to assist us in:",
+        "icon": "check",
+        "marker_style": "solid",
+        "closing_text": "<p>To avoid premature wear and tear, inspection and periodic quality service of the differential, tail shaft, CV joints, universal and axle bearings with approved lubricants and proper spares is necessary. We use high grade synthetic lubricants and quality spares as required.</p>",
+        "button_label": "Book a service",
+        "button_link": "/pages/contact",
+        "color_scheme": "alt"
+      },
+      "blocks": {
+        "e1": { "type": "item", "settings": { "text": "Differential repair, rebuild, shortening and reconditioning" } },
+        "e2": { "type": "item", "settings": { "text": "9 inch conversion specialist" } },
+        "e3": { "type": "item", "settings": { "text": "LSD and locker installation" } },
+        "e4": { "type": "item", "settings": { "text": "Custom built differentials" } },
+        "e5": { "type": "item", "settings": { "text": "Custom build tail shaft, repair and shortening" } },
+        "e6": { "type": "item", "settings": { "text": "Tail shaft centre bearing, CV joint and universal replacement" } },
+        "e7": { "type": "item", "settings": { "text": "Custom built axles" } },
+        "e8": { "type": "item", "settings": { "text": "Axle splining, straightening and shortening" } },
+        "e9": { "type": "item", "settings": { "text": "Axle bearing, wheel bearing and wheel hub replacements" } }
+      },
+      "block_order": ["e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8", "e9"]
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Get your car booked in",
+        "text": "Call the workshop or send your details and we will come back with pricing and lead time.",
+        "primary_label": "Get a quote",
+        "secondary_label": "Call (03) 9792 4834",
+        "secondary_link": "tel:0397924834",
+        "color_scheme": "accent"
+      }
+    }
+  },
+  "order": ["hero", "mechanical", "equipment", "cta"]
+}
