@@ -88,42 +88,42 @@
         "c1": {
           "type": "item",
           "settings": {
-            "title": "Whining or grinding",
+            "title": "Whining or grinding:",
             "text": "Continuous whining, grinding, whistling or grabbing noise at a set speed (0 to 40, 40 to 60, 60 to 80 or 80 to 100 km/h)."
           }
         },
         "c2": {
           "type": "item",
           "settings": {
-            "title": "On and off noise",
+            "title": "On and off noise:",
             "text": "Noise that comes and goes at a certain speed like 60 to 80 km/h, or only in a particular gear such as 4th or 5th."
           }
         },
         "c3": {
           "type": "item",
           "settings": {
-            "title": "Oil leak",
+            "title": "Oil leak:",
             "text": "Differential oil leaking from the pinion seal, the wheel bearing seal or the breather."
           }
         },
         "c4": {
           "type": "item",
           "settings": {
-            "title": "Wheel bearings",
+            "title": "Wheel bearings:",
             "text": "Wheel bearings wearing out earlier than expected, or popping out."
           }
         },
         "c5": {
           "type": "item",
           "settings": {
-            "title": "Cornering or driveline noise",
+            "title": "Cornering or driveline noise:",
             "text": "Noise on cornering, standing or moving, or noise that starts after a drive shaft breaks (Ford and Holden IRS)."
           }
         },
         "c6": {
           "type": "item",
           "settings": {
-            "title": "Backlash and clunk",
+            "title": "Backlash and clunk:",
             "text": "Backlash noise, or a clunk shifting forward to reverse or first to second (common in Mitsubishi Pajero, Nissan Navara and similar)."
           }
         }
