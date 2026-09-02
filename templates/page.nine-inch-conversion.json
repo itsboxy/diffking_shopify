@@ -143,13 +143,6 @@
             "title": "",
             "text": "Land Cruiser and other four wheel drives"
           }
-        },
-        "c6": {
-          "type": "item",
-          "settings": {
-            "title": "",
-            "text": "Early Mazda such as RX3, plus live axle and IRS on request"
-          }
         }
       },
       "block_order": [
@@ -157,8 +150,7 @@
         "c2",
         "c3",
         "c4",
-        "c5",
-        "c6"
+        "c5"
       ],
       "settings": {
         "eyebrow": "Fitment",
