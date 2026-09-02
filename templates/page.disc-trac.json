@@ -13,7 +13,7 @@
       "type": "disc-trac-hero",
       "blocks": {
         "t1": { "type": "badge", "settings": { "icon": "gear", "label": "50/50 power distribution" } },
-        "t2": { "type": "badge", "settings": { "icon": "shield", "label": "2MNCR5 material" } },
+        "t2": { "type": "badge", "settings": { "icon": "shield", "label": "20MnCr5 material" } },
         "t3": { "type": "badge", "settings": { "icon": "spark", "label": "Highly customisable" } },
         "t4": { "type": "badge", "settings": { "icon": "gear", "label": "7 pinion gears" } },
         "t5": { "type": "badge", "settings": { "icon": "shield", "label": "Patented design" } }
@@ -22,7 +22,7 @@
       "settings": {
         "eyebrow": "Diff King engineering",
         "heading": "Disc Trac helical LSD",
-        "text": "Ultimate traction from a forged 2MNCR5 casing, a 7 helical gear system, hardened 45 to 50 HRC.",
+        "text": "Ultimate traction from a forged 20MnCr5 casing, a 7 helical gear system, hardened 45 to 50 HRC.",
         "button_label": "Get a quote"
       }
     },
@@ -31,7 +31,7 @@
       "settings": { "alignment": "center" },
       "blocks": {
         "e": { "type": "heading", "settings": { "text": "Cutting edge traction technology" } },
-        "b": { "type": "text", "settings": { "text": "<p>The Disc Trac helical LSD is engineered to deliver superior performance on the track. A 7 helical gear system drives smooth, seamless power to both wheels for maximum traction and stability, while a patented power transfer mechanism keeps power losses low so you hold speed and control through corners. The forged 2MNCR5 casing is hardened between 45 and 50 HRC, so the unit stands up to extreme loads and keeps performing lap after lap.</p>" } }
+        "b": { "type": "text", "settings": { "text": "<p>The Disc Trac helical LSD is engineered to deliver superior performance on the track. A 7 helical gear system drives smooth, seamless power to both wheels for maximum traction and stability, while a patented power transfer mechanism keeps power losses low so you hold speed and control through corners. The forged 20MnCr5 casing is hardened between 45 and 50 HRC, so the unit stands up to extreme loads and keeps performing lap after lap.</p>" } }
       },
       "block_order": ["e", "b"]
     },
@@ -46,7 +46,7 @@
       },
       "blocks": {
         "p1": { "type": "item", "settings": { "icon": "gear", "title": "Customisable disc preload", "text": "A variable disc preload system lets you fine tune how aggressively the diff engages. Run it tighter for high speed grip or looser for smoother transitions, so the LSD suits your driving style and the track on the day." } },
-        "p2": { "type": "item", "settings": { "icon": "shield", "title": "Forged external casing", "text": "The casing is forged from 2MNCR5 steel, then precision CNC machined and hardened. It resists deformation under high torque, sheds heat well, and is designed to drop into a range of differential housings for a straightforward fit." } },
+        "p2": { "type": "item", "settings": { "icon": "shield", "title": "Forged external casing", "text": "The casing is forged from 20MnCr5 steel, then precision CNC machined and hardened. It resists deformation under high torque, sheds heat well, and is designed to drop into a range of differential housings for a straightforward fit." } },
         "p3": { "type": "item", "settings": { "icon": "spark", "title": "7 helical gear internals", "text": "The 7 helical gear set gives progressive, smooth engagement with no harsh locking. Paired with strategic friction surfaces for a balanced 50/50 torque split, it runs quietly and needs far less maintenance than a clutch type LSD." } }
       },
       "block_order": ["p1", "p2", "p3"]
@@ -63,7 +63,7 @@
       "blocks": {
         "s1": { "type": "spec", "settings": { "label": "Type", "value": "Helical gear type limited slip differential" } },
         "s2": { "type": "spec", "settings": { "label": "Gear set", "value": "7 helical pinion gear system" } },
-        "s3": { "type": "spec", "settings": { "label": "Casing", "value": "Forged 2MNCR5 steel, CNC machined" } },
+        "s3": { "type": "spec", "settings": { "label": "Casing", "value": "Forged 20MnCr5 steel, CNC machined" } },
         "s4": { "type": "spec", "settings": { "label": "Hardness", "value": "Hardened 45 to 50 HRC" } },
         "s5": { "type": "spec", "settings": { "label": "Torque distribution", "value": "Balanced 50/50" } },
         "s6": { "type": "spec", "settings": { "label": "Housing fit", "value": "Suits a range of differential housings" } },
