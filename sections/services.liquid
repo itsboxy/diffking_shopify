@@ -44,30 +44,22 @@
     display: flex;
     flex-direction: column;
     gap: 0.55rem;
-    padding: 2rem 1.85rem;
+    padding: calc(2rem - 2px) 1.85rem 2rem;
     background: rgb(var(--color-background));
     border: 1px solid rgb(var(--color-line));
+    border-top: 3px solid rgb(var(--color-line));
     border-radius: var(--border-radius);
     text-decoration: none;
     color: inherit;
-    transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease), border-color 0.22s var(--ease);
-  }
-  .service-card::after {
-    content: "";
-    position: absolute; inset: -1px -1px auto -1px;
-    height: 3px;
-    background: rgb(var(--color-primary));
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.28s var(--ease);
+    transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease),
+      border-color 0.22s var(--ease), border-top-color 0.22s var(--ease);
   }
   .service-card:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow-lg);
-    border-color: rgb(var(--color-primary) / 0.4);
+    border-color: rgb(var(--color-primary) / 0.35);
+    border-top-color: rgb(var(--color-primary));
   }
-  .service-card:hover::after { transform: scaleX(1); }
 
   .service-card__index {
     font-family: var(--font-heading), sans-serif;

@@ -26,15 +26,22 @@
   @media (min-width: 1000px) { .feature-columns__grid { grid-template-columns: repeat(var(--columns), 1fr); } }
 
   .feature-col {
-    padding: 2rem 1.75rem;
+    padding: calc(2rem - 2px) 1.75rem 2rem;
     border: 1px solid rgb(var(--color-line));
-    border-top: 3px solid rgb(var(--color-primary));
+    border-top: 3px solid rgb(var(--color-line));
     border-radius: var(--border-radius);
     background: rgb(var(--color-background));
-    transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease);
+    transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease),
+      border-color 0.22s var(--ease), border-top-color 0.22s var(--ease);
   }
-  .feature-col:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-  .surface-dark .feature-col { background: rgb(var(--color-charcoal)); border-color: rgb(255 255 255 / 0.14); border-top-color: rgb(var(--color-primary)); }
+  .feature-col:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgb(var(--color-primary) / 0.35);
+    border-top-color: rgb(var(--color-primary));
+  }
+  .surface-dark .feature-col { background: rgb(var(--color-charcoal)); border-color: rgb(255 255 255 / 0.14); border-top-color: rgb(255 255 255 / 0.14); }
+  .surface-dark .feature-col:hover { border-top-color: rgb(var(--color-primary)); }
   .feature-col__icon {
     display: grid; place-items: center;
     width: 3rem; height: 3rem;
