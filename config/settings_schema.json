@@ -8,6 +8,18 @@
     "theme_support_url": "https://www.diffking.com.au/contact-us/"
   },
   {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Brand name",
+        "info": "Shown in the header, footer and page titles. Also update Settings > Store details.",
+        "default": "Diff King"
+      }
+    ]
+  },
+  {
     "name": "t:settings.colors.label",
     "settings": [
       {

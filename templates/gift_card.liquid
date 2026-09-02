@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
-    <title>{{ shop.name }} gift card</title>
+    <title>{{ settings.brand_name | default: shop.name }} gift card</title>
     {% render 'css-variables' %}
     {{ 'base.css' | asset_url | stylesheet_tag }}
     <style>
@@ -17,7 +17,7 @@
   </head>
   <body>
     <div class="gift-card">
-      <h1>{{ shop.name }}</h1>
+      <h1>{{ settings.brand_name | default: shop.name }}</h1>
       <p>Here is your gift card!</p>
       <p class="gift-card__amount">{{ gift_card.initial_value | money }}</p>
       {%- if gift_card.enabled == false or gift_card.expired -%}

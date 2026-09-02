@@ -5,13 +5,15 @@
   {% render 'meta-tags' %}
 {% enddoc %}
 
-<meta name="description" content="{{ page_description | default: shop.description | default: shop.name | escape }}">
+{%- assign brand_name = settings.brand_name | default: shop.name -%}
 
-<meta property="og:site_name" content="{{ shop.name }}">
+<meta name="description" content="{{ page_description | default: shop.description | default: brand_name | escape }}">
+
+<meta property="og:site_name" content="{{ brand_name }}">
 <meta property="og:url" content="{{ canonical_url }}">
-<meta property="og:title" content="{{ page_title | default: shop.name }}">
+<meta property="og:title" content="{{ page_title | default: brand_name }}">
 <meta property="og:type" content="{% if request.page_type == 'product' %}product{% elsif request.page_type == 'article' %}article{% else %}website{% endif %}">
-<meta property="og:description" content="{{ page_description | default: shop.description | default: shop.name | escape }}">
+<meta property="og:description" content="{{ page_description | default: shop.description | default: brand_name | escape }}">
 
 {%- if page_image -%}
   <meta property="og:image" content="http:{{ page_image | image_url: width: 1200 }}">
@@ -20,8 +22,8 @@
 {%- endif -%}
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ page_title | default: shop.name }}">
-<meta name="twitter:description" content="{{ page_description | default: shop.description | default: shop.name | escape }}">
+<meta name="twitter:title" content="{{ page_title | default: brand_name }}">
+<meta name="twitter:description" content="{{ page_description | default: shop.description | default: brand_name | escape }}">
 
 <link rel="canonical" href="{{ canonical_url }}">
 
@@ -57,7 +59,7 @@
     {
       "@context": "http://schema.org",
       "@type": "AutoPartsStore",
-      "name": {{ shop.name | json }},
+      "name": {{ brand_name | json }},
       "url": {{ request.origin | append: page.url | json }},
       "telephone": {{ settings.business_phone | json }},
       "email": {{ settings.business_email | json }},

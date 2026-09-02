@@ -1,6 +1,7 @@
 {%- liquid
   assign menu = section.settings.menu
   assign phone_href = settings.business_phone | remove: ' ' | remove: '(' | remove: ')'
+  assign brand_name = settings.brand_name | default: shop.name
 -%}
 
 {%- if section.settings.show_announcement and section.settings.announcement_text != blank -%}
@@ -43,19 +44,19 @@
             style: 'width:auto;height:auto',
             sizes: '(min-width: 990px) 220px, 150px',
             class: 'header__logo',
-            alt: shop.name | escape
+            alt: brand_name | escape
         }}
       {%- elsif section.settings.use_asset_logo -%}
         <img
           class="header__logo"
           src="{{ 'diffking-logo.png' | asset_url }}"
-          alt="{{ shop.name | escape }}"
+          alt="{{ brand_name | escape }}"
           width="220"
           height="218"
           loading="eager"
         >
       {%- else -%}
-        {%- assign name_parts = shop.name | split: ' ' -%}
+        {%- assign name_parts = brand_name | split: ' ' -%}
         <span class="header__wordmark">
           {%- for part in name_parts -%}
             <span{% if forloop.last and name_parts.size > 1 %} class="header__wordmark-accent"{% endif %}>{{ part }}</span>{%- unless forloop.last %} {% endunless -%}

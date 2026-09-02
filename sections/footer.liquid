@@ -1,5 +1,6 @@
 {%- liquid
   assign phone_href = settings.business_phone | remove: ' ' | remove: '(' | remove: ')'
+  assign brand_name = settings.brand_name | default: shop.name
   assign svc_titles = 'Diff repairs & service,9 inch conversion,Custom build diffs,Custom build axles,Diff shafts & balancing,Change over diffs & ratios' | split: ','
   assign svc_urls = '/pages/contact,/pages/9-conversion,/pages/custom-build-diffs,/pages/custom-build-axles,/pages/diff-shafts,/pages/gear-ratios' | split: ','
 -%}
@@ -8,9 +9,9 @@
   <div class="page-width footer__top">
     <div class="footer__brand">
       {%- if section.settings.logo != blank -%}
-        {{ section.settings.logo | image_url: width: 320 | image_tag: loading: 'lazy', class: 'footer__logo', alt: shop.name | escape }}
+        {{ section.settings.logo | image_url: width: 320 | image_tag: loading: 'lazy', class: 'footer__logo', alt: brand_name | escape }}
       {%- else -%}
-        {%- assign name_parts = shop.name | split: ' ' -%}
+        {%- assign name_parts = brand_name | split: ' ' -%}
         <span class="footer__logo-text">
           {%- for part in name_parts -%}
             <span{% if forloop.last and name_parts.size > 1 %} class="footer__logo-accent"{% endif %}>{{ part }}</span>{%- unless forloop.last %} {% endunless -%}
@@ -110,7 +111,7 @@
 
   <div class="footer__bar">
     <div class="page-width footer__bar-inner">
-      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'footer.copyright' | t }}</p>
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ brand_name }}. {{ 'footer.copyright' | t }}</p>
       {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
         <ul class="footer__payments" role="list" aria-label="{{ 'footer.payment_methods' | t }}">
           {%- for type in shop.enabled_payment_types -%}
