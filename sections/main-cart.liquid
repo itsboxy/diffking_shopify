@@ -26,6 +26,16 @@
                     {%- unless item.variant.title contains 'Default' -%}
                       <p class="cart-item__variant">{{ item.variant.title }}</p>
                     {%- endunless -%}
+                    {%- if item.properties.size > 0 -%}
+                      <ul class="cart-item__props">
+                        {%- for prop in item.properties -%}
+                          {%- assign first_char = prop.first | slice: 0 -%}
+                          {%- if prop.last != blank and first_char != '_' -%}
+                            <li><span>{{ prop.first }}:</span> {{ prop.last }}</li>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
                     {%- if item.original_price != item.final_price -%}
                       <p class="cart-item__price"><s>{{ item.original_price | money }}</s> {{ item.final_price | money }}</p>
                     {%- else -%}
@@ -100,6 +110,9 @@
   .cart-item__image img { border-radius: var(--border-radius); }
   .cart-item__title { font-weight: 600; text-decoration: none; }
   .cart-item__variant { font-size: 0.85rem; color: rgb(var(--color-text) / 0.6); margin: 0.2rem 0; }
+  .cart-item__props { list-style: none; margin: 0.35rem 0 0; padding: 0; font-size: 0.82rem; color: rgb(var(--color-text) / 0.65); }
+  .cart-item__props li { margin-bottom: 0.15rem; }
+  .cart-item__props span { font-weight: 600; }
   .cart-item__price { font-size: 0.9rem; margin: 0.2rem 0 0; }
   .cart-item__qty { white-space: nowrap; }
   .cart-item__remove { display: inline-block; margin-top: 0.5rem; font-size: 0.8rem; }

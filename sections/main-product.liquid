@@ -87,6 +87,45 @@
             {%- endfor -%}
           </select>
 
+          {%- if section.blocks.size > 0 -%}
+            <div class="product-form__options" data-product-options>
+              {%- for block in section.blocks -%}
+                {%- liquid
+                  assign pname = block.settings.label | default: 'Option'
+                  assign fid = 'opt-' | append: block.id
+                  assign req = block.settings.required
+                -%}
+                <div class="field product-form__option" {{ block.shopify_attributes }}>
+                  {%- if block.settings.field_type != 'checkbox' -%}
+                    <label for="{{ fid }}">{{ pname }}{% if req %} <span aria-hidden="true">*</span>{% endif %}</label>
+                  {%- endif -%}
+                  {%- case block.settings.field_type -%}
+                    {%- when 'textarea' -%}
+                      <textarea id="{{ fid }}" name="properties[{{ pname }}]" rows="3" {% if req %}required{% endif %} placeholder="{{ block.settings.placeholder | escape }}"></textarea>
+                    {%- when 'dropdown' -%}
+                      {%- assign opts = block.settings.options | strip | split: '
+' -%}
+                      <select id="{{ fid }}" name="properties[{{ pname }}]" {% if req %}required{% endif %}>
+                        <option value="">{{ block.settings.placeholder | default: 'Choose' }}</option>
+                        {%- for o in opts -%}
+                          {%- assign ov = o | strip -%}
+                          {%- if ov != blank -%}<option value="{{ ov | escape }}">{{ ov }}</option>{%- endif -%}
+                        {%- endfor -%}
+                      </select>
+                    {%- when 'checkbox' -%}
+                      <label class="product-form__checkbox">
+                        <input type="checkbox" name="properties[{{ pname }}]" value="{{ block.settings.checkbox_value | default: 'Yes' | escape }}" {% if req %}required{% endif %}>
+                        <span>{{ pname }}{% if req %} <span aria-hidden="true">*</span>{% endif %}</span>
+                      </label>
+                    {%- else -%}
+                      <input type="text" id="{{ fid }}" name="properties[{{ pname }}]" {% if req %}required{% endif %} placeholder="{{ block.settings.placeholder | escape }}">
+                  {%- endcase -%}
+                  {%- if block.settings.help != blank -%}<small class="field__help">{{ block.settings.help }}</small>{%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
           <div class="product-form__actions">
             <div class="qty" data-qty>
               <button type="button" data-qty-change="down" aria-label="Decrease quantity">&minus;</button>
@@ -161,6 +200,12 @@
   }
   .product-main__sku { font-size: 0.8rem; font-weight: 400; color: rgb(var(--color-text) / 0.6); }
   .product-form__variants { display: grid; gap: 1rem; margin-bottom: 1rem; }
+  .product-form__options { display: grid; gap: 1rem; margin-bottom: 1.25rem; }
+  .product-form__option { margin: 0; }
+  .product-form__checkbox { display: flex; align-items: flex-start; gap: 0.6rem; cursor: pointer; }
+  .product-form__checkbox input { width: 1.1rem; height: 1.1rem; margin-top: 0.15rem; flex-shrink: 0; }
+  .product-form__checkbox span { font-size: 0.95rem; }
+  .field__help { font-size: 0.8rem; color: rgb(var(--color-text) / 0.55); }
   .product-form__actions { display: flex; gap: 0.75rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
   .qty {
     display: inline-flex;
@@ -225,6 +270,21 @@
     }
 
     selects.forEach(function (s) { s.addEventListener('change', update); });
+
+    // Drop empty optional custom fields so blank lines don't land on the order
+    form.addEventListener('submit', function () {
+      var wrap = form.querySelector('[data-product-options]');
+      if (!wrap) return;
+      wrap.querySelectorAll('input, select, textarea').forEach(function (el) {
+        if (el.name && el.name.indexOf('properties[') === 0 && !el.required) {
+          if (el.type === 'checkbox') {
+            if (!el.checked) el.disabled = true;
+          } else if (!el.value.trim()) {
+            el.disabled = true;
+          }
+        }
+      });
+    });
   })();
 </script>
 
@@ -232,7 +292,29 @@
 {
   "name": "Product information",
   "settings": [],
-  "blocks": [],
+  "blocks": [
+    {
+      "type": "custom_field",
+      "name": "Custom option",
+      "settings": [
+        {
+          "type": "select", "id": "field_type", "label": "Field type", "default": "dropdown",
+          "options": [
+            { "value": "dropdown", "label": "Dropdown" },
+            { "value": "text", "label": "Text (one line)" },
+            { "value": "textarea", "label": "Text (paragraph)" },
+            { "value": "checkbox", "label": "Checkbox" }
+          ]
+        },
+        { "type": "text", "id": "label", "label": "Label", "info": "Shown to the customer and on the order", "default": "Option" },
+        { "type": "textarea", "id": "options", "label": "Dropdown choices", "info": "One per line", "default": "Choice A\nChoice B\nChoice C" },
+        { "type": "text", "id": "placeholder", "label": "Placeholder / empty text", "default": "Choose" },
+        { "type": "text", "id": "checkbox_value", "label": "Checkbox value on order", "default": "Yes" },
+        { "type": "text", "id": "help", "label": "Help text below the field" },
+        { "type": "checkbox", "id": "required", "label": "Required", "default": false }
+      ]
+    }
+  ],
   "tag": "section"
 }
 {% endschema %}
