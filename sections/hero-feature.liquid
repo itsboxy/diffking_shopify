@@ -1,9 +1,28 @@
 {%- liquid
   assign collection = section.settings.collection
   assign count = section.settings.products_to_show | default: 4
+  assign has_image = false
+  if section.settings.image != blank
+    assign has_image = true
+  endif
 -%}
 
-<section class="hero-feature">
+<section class="hero-feature{% if has_image %} hero-feature--image{% endif %}">
+  {%- if has_image -%}
+    <div class="hero-feature__bg" aria-hidden="true">
+      {{
+        section.settings.image
+        | image_url: width: 2600
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          widths: '750, 1100, 1500, 2000, 2600',
+          sizes: '100vw',
+          alt: ''
+      }}
+      <span class="hero-feature__scrim" style="--overlay: {{ section.settings.overlay | default: 55 | divided_by: 100.0 }}"></span>
+    </div>
+  {%- endif -%}
   <div class="page-width">
     <div class="hero-feature__top">
       <div class="hero-feature__intro">
@@ -96,12 +115,52 @@
 
 {% stylesheet %}
   .hero-feature {
+    position: relative;
+    isolation: isolate;
     padding-block: clamp(2.75rem, 6vw, 4.5rem);
     background:
       radial-gradient(55% 45% at 95% 0%, rgb(var(--color-primary) / 0.07) 0%, transparent 60%),
       rgb(var(--color-background));
     border-bottom: 1px solid rgb(var(--color-line));
   }
+
+  /* Background image variant */
+  .hero-feature--image { background: rgb(var(--color-dark)); border-bottom: 0; color: #fff; }
+  .hero-feature__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+  .hero-feature__bg img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-feature__scrim {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgb(var(--color-darker) / 0.3), rgb(var(--color-darker) / calc(var(--overlay, 0.55) + 0.2))),
+      linear-gradient(90deg, rgb(var(--color-darker) / var(--overlay, 0.55)) 0%, rgb(var(--color-darker) / 0.2) 70%);
+  }
+  .hero-feature--image .eyebrow { color: rgb(var(--color-primary)); }
+  .hero-feature--image .hero-feature__heading { color: #fff; }
+  .hero-feature--image .hero-feature__text { color: rgb(255 255 255 / 0.82); }
+  .hero-feature--image .button--secondary { color: #fff; border-color: rgb(255 255 255 / 0.4); }
+  .hero-feature--image .button--secondary:hover { background: #fff; color: rgb(var(--color-dark)); border-color: #fff; }
+  .hero-feature--image .hero-feature__badges li {
+    background: rgb(255 255 255 / 0.08);
+    border-color: rgb(255 255 255 / 0.16);
+    border-left-color: rgb(var(--color-primary));
+    box-shadow: none;
+    backdrop-filter: blur(6px);
+  }
+  .hero-feature--image .hero-feature__badge-icon { background: rgb(var(--color-primary)); color: rgb(var(--color-primary-contrast)); }
+  .hero-feature--image .hero-feature__badge-text strong { color: #fff; }
+  .hero-feature--image .hero-feature__badge-text span { color: rgb(255 255 255 / 0.6); }
+  .hero-feature--image .hero-feature__shelf { border-top-color: rgb(255 255 255 / 0.16); }
+  .hero-feature--image .hero-feature__shelf-title { color: rgb(255 255 255 / 0.65); }
+  .hero-feature--image .hero-feature__shelf-link { color: #fff; }
+  .hero-feature--image .hf-card {
+    background: rgb(255 255 255 / 0.06);
+    border-color: rgb(255 255 255 / 0.14);
+    color: #fff;
+    backdrop-filter: blur(6px);
+  }
+  .hero-feature--image .hf-card__media { background: rgb(255 255 255 / 0.08); }
+  .hero-feature--image .hf-card__title { color: rgb(255 255 255 / 0.9); }
+  .hero-feature--image .hf-card__price { color: #fff; }
   .hero-feature__top {
     display: grid;
     grid-template-columns: 1fr;
@@ -241,6 +300,8 @@
 {
   "name": "Hero (feature)",
   "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image", "info": "Optional. Text and cards switch to light when an image is set." },
+    { "type": "range", "id": "overlay", "label": "Image darkening", "min": 0, "max": 90, "step": 5, "unit": "%", "default": 55 },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Melbourne differential specialists" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Differentials, built and backed by specialists" },
     { "type": "textarea", "id": "text", "label": "Text", "default": "Repairs, servicing, 9 inch conversions, custom axles and our own Disc Trac helical LSD. Shipped Australia wide from Dandenong." },
