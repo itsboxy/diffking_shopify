@@ -43,12 +43,16 @@ Ford / HQ pattern HD 31SP, Wilwood brakes & Ford drum|161/162|5×120.65mm~5×114
       </div>
     {%- endif -%}
 
-    {%- if section.settings.diagram != blank -%}
+    {%- unless section.settings.hide_diagram -%}
       <figure class="axle-listing__diagram">
-        {{ section.settings.diagram | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '600, 900, 1400', sizes: '(min-width: 900px) 60vw, 100vw', alt: 'Axle dimension diagram' }}
+        {%- if section.settings.diagram != blank -%}
+          {{ section.settings.diagram | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '600, 900, 1400', sizes: '(min-width: 900px) 60vw, 100vw', alt: 'Axle dimension diagram' }}
+        {%- else -%}
+          {% render 'axle-diagram' %}
+        {%- endif -%}
         {%- if section.settings.diagram_caption != blank -%}<figcaption>{{ section.settings.diagram_caption }}</figcaption>{%- endif -%}
       </figure>
-    {%- endif -%}
+    {%- endunless -%}
 
     <div class="axle-listing__tools">
       <label class="field axle-listing__search">
@@ -203,8 +207,9 @@ Ford / HQ pattern HD 31SP, Wilwood brakes & Ford drum|161/162|5×120.65mm~5×114
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reference" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Axle listing" },
     { "type": "textarea", "id": "text", "label": "Text", "default": "Drawing numbers and dimensions for our custom axle blanks. Lengths are L (long), M (medium) and S (short) sides. Talk to us for anything not listed." },
-    { "type": "image_picker", "id": "diagram", "label": "Dimension diagram", "info": "The axle drawing showing the A to I callouts" },
-    { "type": "text", "id": "diagram_caption", "label": "Diagram caption", "default": "Dimension reference for the table below" },
+    { "type": "checkbox", "id": "hide_diagram", "label": "Hide the reference drawing", "default": false },
+    { "type": "image_picker", "id": "diagram", "label": "Dimension diagram", "info": "Optional. Replaces the built-in drawing with your own image" },
+    { "type": "text", "id": "diagram_caption", "label": "Diagram caption", "default": "Where each lettered dimension is measured" },
     { "type": "richtext", "id": "legend", "label": "Legend / notes", "default": "<p>All dimensions in mm. Ø is diameter. SP is spline count. PCD is pitch circle diameter.</p>" },
     {
       "type": "select", "id": "color_scheme", "label": "Background", "default": "default",

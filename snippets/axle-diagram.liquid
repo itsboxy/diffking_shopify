@@ -1,0 +1,106 @@
+{% doc %}
+  Built-in reference drawing for the axle listing table. Shows where each
+  lettered dimension (A to I), the spline and the stud PCD are measured.
+
+  @example
+  {% render 'axle-diagram' %}
+{% enddoc %}
+
+<svg class="axle-diagram" viewBox="0 0 860 340" role="img" aria-label="Axle dimension reference drawing" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="axle-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  {%- comment -%} Side elevation {%- endcomment -%}
+  <g class="axle-diagram__part" fill="rgb(var(--color-text) / 0.08)" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+    <path d="M70 145 H190 V195 H70 Z"/>
+    <path d="M190 150 H470 V190 H190 Z"/>
+    <path d="M470 155 H520 V185 H470 Z"/>
+    <path d="M520 150 H545 V190 H520 Z"/>
+    <path d="M545 70 H580 V270 H545 Z"/>
+    <path d="M580 120 H600 V220 H580 Z"/>
+  </g>
+
+  {%- comment -%} Spline hatching {%- endcomment -%}
+  <g stroke="currentColor" stroke-width="1" opacity="0.55">
+    <line x1="82" y1="145" x2="82" y2="195"/>
+    <line x1="98" y1="145" x2="98" y2="195"/>
+    <line x1="114" y1="145" x2="114" y2="195"/>
+    <line x1="130" y1="145" x2="130" y2="195"/>
+    <line x1="146" y1="145" x2="146" y2="195"/>
+    <line x1="162" y1="145" x2="162" y2="195"/>
+    <line x1="178" y1="145" x2="178" y2="195"/>
+  </g>
+
+  {%- comment -%} Dimension lines {%- endcomment -%}
+  <g class="axle-diagram__dim" stroke="rgb(var(--color-primary))" stroke-width="1.4" fill="rgb(var(--color-primary))">
+    <line x1="70" y1="40" x2="600" y2="40" marker-start="url(#axle-arrow)" marker-end="url(#axle-arrow)"/>
+    <line x1="70" y1="34" x2="70" y2="46" stroke-width="1"/>
+    <line x1="600" y1="34" x2="600" y2="46" stroke-width="1"/>
+
+    <line x1="330" y1="150" x2="330" y2="190" marker-start="url(#axle-arrow)" marker-end="url(#axle-arrow)"/>
+    <line x1="495" y1="118" x2="495" y2="155" stroke-dasharray="3 3"/>
+    <line x1="470" y1="118" x2="520" y2="118" stroke-width="1"/>
+    <line x1="495" y1="155" x2="495" y2="185" marker-end="url(#axle-arrow)"/>
+
+    <line x1="470" y1="240" x2="545" y2="240" marker-start="url(#axle-arrow)" marker-end="url(#axle-arrow)"/>
+    <line x1="470" y1="192" x2="470" y2="246" stroke-width="1"/>
+    <line x1="545" y1="192" x2="545" y2="246" stroke-width="1"/>
+
+    <line x1="545" y1="52" x2="580" y2="52" marker-start="url(#axle-arrow)" marker-end="url(#axle-arrow)"/>
+    <line x1="545" y1="46" x2="545" y2="70" stroke-width="1"/>
+    <line x1="580" y1="46" x2="580" y2="70" stroke-width="1"/>
+
+    <line x1="628" y1="70" x2="628" y2="270" marker-start="url(#axle-arrow)" marker-end="url(#axle-arrow)"/>
+    <line x1="580" y1="70" x2="632" y2="70" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="580" y1="270" x2="632" y2="270" stroke-width="1" stroke-dasharray="3 3"/>
+
+    <line x1="655" y1="120" x2="655" y2="220" marker-start="url(#axle-arrow)" marker-end="url(#axle-arrow)"/>
+    <line x1="600" y1="120" x2="659" y2="120" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="600" y1="220" x2="659" y2="220" stroke-width="1" stroke-dasharray="3 3"/>
+  </g>
+
+  {%- comment -%} Labels {%- endcomment -%}
+  <g class="axle-diagram__label" fill="currentColor" font-size="15" font-weight="700">
+    <text x="335" y="26" text-anchor="middle">E  overall length</text>
+    <text x="330" y="215" text-anchor="middle">A&#8709;</text>
+    <text x="503" y="112" text-anchor="start">C&#8709;</text>
+    <text x="507" y="262" text-anchor="middle">B</text>
+    <text x="562" y="40" text-anchor="middle">I</text>
+    <text x="644" y="60" text-anchor="middle">H&#8709;</text>
+    <text x="672" y="172" text-anchor="start">G</text>
+    <text x="125" y="230" text-anchor="middle">Spline</text>
+  </g>
+
+  {%- comment -%} End view: stud pattern {%- endcomment -%}
+  <g transform="translate(760 175)">
+    <circle r="62" fill="rgb(var(--color-text) / 0.08)" stroke="currentColor" stroke-width="1.5"/>
+    <circle r="42" fill="none" stroke="rgb(var(--color-primary))" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <circle r="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="0" cy="-42" r="5" fill="currentColor"/>
+    <circle cx="40" cy="-13" r="5" fill="currentColor"/>
+    <circle cx="25" cy="34" r="5" fill="currentColor"/>
+    <circle cx="-25" cy="34" r="5" fill="currentColor"/>
+    <circle cx="-40" cy="-13" r="5" fill="currentColor"/>
+    <text x="0" y="90" text-anchor="middle" fill="currentColor" font-size="13" font-weight="700">Stud PCD</text>
+  </g>
+</svg>
+
+{% stylesheet %}
+  .axle-diagram {
+    width: 100%;
+    max-width: 46rem;
+    height: auto;
+    color: rgb(var(--color-text));
+    border: 1px solid rgb(var(--color-line));
+    border-radius: var(--border-radius);
+    background: rgb(var(--color-background));
+    padding: 1rem;
+  }
+  .axle-diagram text {
+    font-family: var(--font-heading), -apple-system, sans-serif;
+    letter-spacing: 0.02em;
+  }
+{% endstylesheet %}
