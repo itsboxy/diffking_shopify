@@ -315,8 +315,8 @@ select {
   will-change: transform, opacity;
 }
 .section-media--parallax-up img,
-.section-media--fixed img { top: -14%; height: 128%; }
-.section-media--parallax-zoom img { top: -7%; height: 114%; }
+.section-media--fixed img { top: -16%; height: 132%; }
+.section-media--parallax-zoom img { top: -8%; height: 116%; }
 .section-media--fade img { opacity: var(--fade, 0); transition: opacity 0.1s linear; }
 
 .section-media__veil {

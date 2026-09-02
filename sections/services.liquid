@@ -1,26 +1,16 @@
 {%- liquid
   assign bg = section.settings.background_image
+  assign wrap_class = ' surface-alt'
+  if bg != blank
+    if section.settings.bg_overlay_color == 'light'
+      assign wrap_class = ' has-section-media surface-alt'
+    else
+      assign wrap_class = ' has-section-media surface-dark'
+    endif
+  endif
 -%}
-<div
-  class="section services{% unless bg %} surface-alt{% else %} services--image{% endunless %}"
-  {% if bg %}data-parallax-section{% if section.settings.parallax %} data-parallax="on"{% endif %}{% endif %}
->
-  {%- if bg -%}
-    <div class="services__bg" aria-hidden="true">
-      <img
-        src="{{ bg | image_url: width: 2400 }}"
-        srcset="{{ bg | image_url: width: 900 }} 900w, {{ bg | image_url: width: 1400 }} 1400w, {{ bg | image_url: width: 2000 }} 2000w, {{ bg | image_url: width: 2400 }} 2400w"
-        sizes="100vw"
-        alt=""
-        loading="lazy"
-        width="2400"
-        height="{{ 2400 | times: bg.height | divided_by: bg.width }}"
-        data-parallax-img
-      >
-      <span class="services__bg-veil" style="--veil: {{ section.settings.image_overlay | default: 30 | divided_by: 100.0 }}"></span>
-      <span class="services__bg-wipe" data-parallax-wipe></span>
-    </div>
-  {%- endif -%}
+<div class="section services{{ wrap_class }}">
+  {% render 'section-media', s: section.settings %}
   <div class="page-width">
     {%- if section.settings.heading != blank or section.settings.text != blank -%}
       <div class="section-heading">
@@ -44,7 +34,6 @@
           {{ block.shopify_attributes }}
         >
           <span class="service-card__index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
-          <span class="service-card__icon">{% render 'icon', name: block.settings.icon, size: 26 %}</span>
           <h3 class="service-card__title">{{ block.settings.title }}</h3>
           {%- if block.settings.text != blank -%}<p class="service-card__text">{{ block.settings.text }}</p>{%- endif -%}
           {%- if block.settings.link != blank -%}
@@ -57,46 +46,8 @@
 </div>
 
 {% stylesheet %}
-  .services--image {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    background: rgb(var(--color-dark));
-    color: #fff;
-  }
-  .services--image .section-heading h2 { color: #fff; }
-  .services--image .section-heading p { color: rgb(255 255 255 / 0.72); }
-  .services--image .eyebrow { color: rgb(var(--color-primary)); }
-  .services--image .service-card { color: rgb(var(--color-text)); }
-  .services__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
-  .services__bg img {
-    position: absolute;
-    left: 0;
-    top: -12%;
-    width: 100%;
-    height: 124%;
-    object-fit: cover;
-    will-change: transform;
-  }
-  /* dark wash so the section heading stays readable over the photo */
-  .services__bg-veil {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(90deg, rgb(var(--color-darker) / calc(var(--veil, 0.3) + 0.25)) 0%, rgb(var(--color-darker) / var(--veil, 0.3)) 55%),
-      rgb(var(--color-darker) / calc(var(--veil, 0.3) * 0.4));
-  }
-  /* dark panel that retreats left-to-right as the section scrolls into view */
-  .services__bg-wipe {
-    position: absolute;
-    inset: 0;
-    background: rgb(var(--color-dark));
-    clip-path: inset(0 0 0 var(--wipe, 0%));
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .services__bg-wipe { display: none; }
-    .services__bg img { position: absolute; inset: 0; width: 100%; height: 100%; top: 0; transform: none !important; }
-  }
+  .services.has-section-media .eyebrow { color: rgb(var(--color-primary)); }
+  .services.has-section-media .service-card { color: rgb(var(--color-text)); }
 
   .services__grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
   @media (min-width: 700px) { .services__grid { grid-template-columns: repeat(2, 1fr); } }
@@ -129,19 +80,9 @@
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: rgb(var(--color-text) / 0.3);
+    color: rgb(var(--color-primary));
   }
-  .service-card__icon {
-    display: grid; place-items: center;
-    width: 3rem; height: 3rem;
-    margin-top: 0.25rem;
-    border-radius: var(--border-radius-sm);
-    background: rgb(var(--color-primary) / 0.1);
-    color: rgb(var(--color-primary-dark));
-    transition: background-color 0.22s var(--ease), color 0.22s var(--ease);
-  }
-  .service-card:hover .service-card__icon { background: rgb(var(--color-primary)); color: rgb(var(--color-primary-contrast)); }
-  .service-card__title { margin: 0.4rem 0 0; font-size: 1.1rem; }
+  .service-card__title { margin: 0.75rem 0 0; font-size: 1.1rem; }
   .service-card__text { margin: 0; color: rgb(var(--color-text) / 0.7); font-size: 0.92rem; line-height: 1.55; }
   .service-card__more { margin-top: auto; padding-top: 0.6rem; }
 {% endstylesheet %}
@@ -154,26 +95,31 @@
     { "type": "text", "id": "heading", "label": "t:sections.services.heading", "default": "Our services" },
     { "type": "textarea", "id": "text", "label": "t:sections.services.text", "default": "Everything under one roof, backed by a 1 year / 20,000 km workmanship warranty." },
     { "type": "range", "id": "columns", "label": "t:sections.services.columns", "min": 2, "max": 4, "step": 1, "default": 3 },
-    { "type": "header", "content": "Background" },
-    { "type": "image_picker", "id": "background_image", "label": "Background image", "info": "A black panel wipes off left to right on scroll to reveal it, behind the cards" },
-    { "type": "range", "id": "image_overlay", "label": "Dark wash over image", "min": 0, "max": 80, "step": 5, "unit": "%", "default": 35 },
-    { "type": "checkbox", "id": "parallax", "label": "Parallax on scroll", "default": true }
+    { "type": "header", "content": "Background image" },
+    { "type": "image_picker", "id": "background_image", "label": "Image", "info": "Sits behind the cards" },
+    {
+      "type": "select", "id": "bg_effect", "label": "Scroll effect", "default": "wipe-lr",
+      "options": [
+        { "value": "none", "label": "Static" },
+        { "value": "parallax-up", "label": "Parallax drift" },
+        { "value": "parallax-zoom", "label": "Parallax zoom" },
+        { "value": "fixed", "label": "Fixed" },
+        { "value": "fade", "label": "Fade in" },
+        { "value": "wipe-lr", "label": "Wipe left to right" },
+        { "value": "wipe-rl", "label": "Wipe right to left" }
+      ]
+    },
+    {
+      "type": "select", "id": "bg_overlay_color", "label": "Overlay tone", "default": "dark",
+      "options": [ { "value": "dark", "label": "Dark" }, { "value": "light", "label": "Light" } ]
+    },
+    { "type": "range", "id": "bg_overlay", "label": "Overlay strength", "min": 0, "max": 90, "step": 5, "unit": "%", "default": 40 }
   ],
   "blocks": [
     {
       "type": "service",
       "name": "t:sections.service_item.name",
       "settings": [
-        {
-          "type": "select", "id": "icon", "label": "t:sections.service_item.icon", "default": "wrench",
-          "options": [
-            { "value": "wrench", "label": "Wrench" },
-            { "value": "gear", "label": "Gear" },
-            { "value": "truck", "label": "Truck" },
-            { "value": "shield", "label": "Shield" },
-            { "value": "spark", "label": "Spark" }
-          ]
-        },
         { "type": "text", "id": "title", "label": "t:sections.service_item.title", "default": "Service title" },
         { "type": "textarea", "id": "text", "label": "t:sections.service_item.text", "default": "Short description of this service." },
         { "type": "url", "id": "link", "label": "t:sections.service_item.link" }
@@ -184,12 +130,12 @@
     {
       "name": "t:sections.services.name",
       "blocks": [
-        { "type": "service", "settings": { "icon": "wrench", "title": "Diff repairs & service", "text": "Same-day diff repair and service for all makes and models." } },
-        { "type": "service", "settings": { "icon": "gear", "title": "9″ conversions", "text": "Complete 9 inch diff conversions with LSD & spool options." } },
-        { "type": "service", "settings": { "icon": "gear", "title": "Custom build diffs & axles", "text": "Custom differential components and axles at competitive prices." } },
-        { "type": "service", "settings": { "icon": "spark", "title": "Tail shafts & balancing", "text": "Custom-built tail shafts, recondition, repair and balancing." } },
-        { "type": "service", "settings": { "icon": "truck", "title": "Changeover diffs & ratios", "text": "Reconditioned diffs and gear ratios ready for changeover." } },
-        { "type": "service", "settings": { "icon": "shield", "title": "Diff spares shop", "text": "Quality differential components and second hand parts." } }
+        { "type": "service", "settings": { "title": "Diff repairs & service", "text": "Same-day diff repair and service for all makes and models." } },
+        { "type": "service", "settings": { "title": "9″ conversions", "text": "Complete 9 inch diff conversions with LSD & spool options." } },
+        { "type": "service", "settings": { "title": "Custom build diffs & axles", "text": "Custom differential components and axles at competitive prices." } },
+        { "type": "service", "settings": { "title": "Tail shafts & balancing", "text": "Custom-built tail shafts, recondition, repair and balancing." } },
+        { "type": "service", "settings": { "title": "Changeover diffs & ratios", "text": "Reconditioned diffs and gear ratios ready for changeover." } },
+        { "type": "service", "settings": { "title": "Diff spares shop", "text": "Quality differential components and second hand parts." } }
       ]
     }
   ]

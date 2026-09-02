@@ -68,16 +68,6 @@
       effect: media.getAttribute('data-effect')
     });
   });
-  // Legacy services parallax section
-  [].forEach.call(document.querySelectorAll('[data-parallax-section]'), function (section) {
-    effectTargets.push({
-      host: section,
-      vars: section,
-      img: section.querySelector('[data-parallax-img]'),
-      effect: section.querySelector('[data-parallax-wipe]') ? 'wipe-lr' : 'none',
-      legacyParallax: section.hasAttribute('data-parallax')
-    });
-  });
 
   if (effectTargets.length && !reduceMotion) {
     var fxTicking = false;
@@ -97,10 +87,10 @@
           t.vars.style.setProperty('--fade', clamp01((progress - 0.05) / 0.4).toFixed(3));
         }
         if (t.img) {
-          if (t.effect === 'parallax-up' || t.legacyParallax) {
-            t.img.style.transform = 'translate3d(0,' + ((progress - 0.5) * 110).toFixed(1) + 'px,0)';
+          if (t.effect === 'parallax-up') {
+            t.img.style.transform = 'translate3d(0,' + ((progress - 0.5) * 72).toFixed(1) + 'px,0)';
           } else if (t.effect === 'fixed') {
-            t.img.style.transform = 'translate3d(0,' + (rect.top * -0.16).toFixed(1) + 'px,0)';
+            t.img.style.transform = 'translate3d(0,' + Math.max(-90, Math.min(90, rect.top * -0.12)).toFixed(1) + 'px,0)';
           } else if (t.effect === 'parallax-zoom') {
             t.img.style.transform = 'scale(' + (1 + progress * 0.14).toFixed(3) + ')';
           }
