@@ -72,6 +72,7 @@
     "team": {
       "type": "image-with-text",
       "settings": {
+        "image": "shopify://shop_images/656849931_18198998635340288_4562846628889807966_n_e85df064-b415-4fcc-8402-abbfc20c08ba.jpg",
         "layout": "left",
         "eyebrow": "The team",
         "heading": "A dedicated, experienced team",
