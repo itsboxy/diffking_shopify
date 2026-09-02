@@ -199,8 +199,8 @@
         "color_scheme": "dark",
         "background_image": "shopify://shop_images/656849931_18198998635340288_4562846628889807966_n.jpg",
         "bg_effect": "parallax-up",
-        "bg_overlay_color": "dark",
-        "bg_overlay": 65
+        "bg_overlay_color": "light",
+        "bg_overlay": 75
       }
     },
     "specs": {
