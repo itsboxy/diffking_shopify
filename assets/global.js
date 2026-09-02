@@ -55,6 +55,44 @@
     onScroll();
   }
 
+  /* ---- Parallax + left-to-right wipe on scroll -------------------- */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var parallaxSections = [].slice.call(document.querySelectorAll('[data-parallax-section]'));
+  if (parallaxSections.length && !reduceMotion) {
+    var ticking = false;
+    var updateParallax = function () {
+      var vh = window.innerHeight;
+      parallaxSections.forEach(function (section) {
+        var rect = section.getBoundingClientRect();
+        if (rect.bottom < -200 || rect.top > vh + 200) return;
+        var progress = (vh - rect.top) / (vh + rect.height);
+        progress = Math.min(1, Math.max(0, progress));
+
+        var wipe = section.querySelector('[data-parallax-wipe]');
+        if (wipe) {
+          // reveal completes over the first ~60% of the section's pass through the viewport
+          var w = Math.min(1, Math.max(0, (progress - 0.12) / 0.55));
+          section.style.setProperty('--wipe', (w * 100).toFixed(1) + '%');
+        }
+
+        var img = section.querySelector('[data-parallax-img]');
+        if (img && section.hasAttribute('data-parallax')) {
+          var shift = (progress - 0.5) * 90;
+          img.style.transform = 'translate3d(0,' + shift.toFixed(1) + 'px,0)';
+        }
+      });
+      ticking = false;
+    };
+    var requestParallax = function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateParallax);
+    };
+    window.addEventListener('scroll', requestParallax, { passive: true });
+    window.addEventListener('resize', requestParallax, { passive: true });
+    updateParallax();
+  }
+
   /* ---- Quantity steppers ----------------------------------------- */
   document.addEventListener('click', function (event) {
     var button = event.target.closest('[data-qty-change]');
