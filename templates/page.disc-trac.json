@@ -10,21 +10,20 @@
 {
   "sections": {
     "hero": {
-      "type": "hero",
+      "type": "disc-trac-hero",
       "blocks": {
-        "t1": { "type": "trust", "settings": { "icon": "gear", "text": "7 helical gears" } },
-        "t2": { "type": "trust", "settings": { "icon": "shield", "text": "Forged 2MNCR5 casing" } },
-        "t3": { "type": "trust", "settings": { "icon": "spark", "text": "Hardened 45 to 50 HRC" } },
-        "t4": { "type": "trust", "settings": { "icon": "gear", "text": "50/50 torque split" } }
+        "t1": { "type": "badge", "settings": { "icon": "gear", "label": "50/50 power distribution" } },
+        "t2": { "type": "badge", "settings": { "icon": "shield", "label": "2MNCR5 material" } },
+        "t3": { "type": "badge", "settings": { "icon": "spark", "label": "Highly customisable" } },
+        "t4": { "type": "badge", "settings": { "icon": "gear", "label": "7 pinion gears" } },
+        "t5": { "type": "badge", "settings": { "icon": "shield", "label": "Patented design" } }
       },
-      "block_order": ["t1", "t2", "t3", "t4"],
+      "block_order": ["t1", "t2", "t3", "t4", "t5"],
       "settings": {
-        "height": "medium",
         "eyebrow": "Diff King engineering",
         "heading": "Disc Trac helical LSD",
-        "text": "Ultimate traction from a 7 helical gear limited slip differential, built inside a forged 2MNCR5 casing and hardened for the track.",
-        "primary_label": "Get a quote",
-        "secondary_label": "Shop helical LSDs"
+        "text": "Ultimate traction from a forged 2MNCR5 casing, a 7 helical gear system, hardened 45 to 50 HRC.",
+        "button_label": "Get a quote"
       }
     },
     "intro": {
@@ -74,16 +73,6 @@
       },
       "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9"]
     },
-    "banner": {
-      "type": "image-banner",
-      "settings": {
-        "asset_image": "disc-trac-banner.jpg",
-        "asset_width": 1920,
-        "asset_height": 820,
-        "alt": "Disc Trac helical LSD, forged casing, 7 helical gears, hardened 45 to 50 HRC",
-        "constrain": false
-      }
-    },
     "collection": {
       "type": "featured-collection",
       "settings": {
@@ -104,5 +93,5 @@
       }
     }
   },
-  "order": ["hero", "intro", "pillars", "specs", "banner", "collection", "quote"]
+  "order": ["hero", "intro", "pillars", "specs", "collection", "quote"]
 }
