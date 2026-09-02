@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "height": "slim",
+        "eyebrow": "Reference",
+        "heading": "Axle listing",
+        "text": "",
+        "primary_label": "Get an axle quote",
+        "secondary_label": "Custom build axles",
+        "secondary_link": "/pages/custom-build-axles"
+      }
+    },
+    "listing": {
+      "type": "axle-listing",
+      "settings": {
+        "eyebrow": "Custom axle blanks",
+        "heading": "Drawing numbers and dimensions",
+        "text": "Our custom axle blanks with stud patterns, flange details and dimensions. Lengths are given for the L (long), M (medium) and S (short) sides. Search by name, drawing number or spline count.",
+        "diagram_caption": "Dimension reference for the table below",
+        "legend": "<p>All dimensions in mm. Ø is diameter. SP is spline count. PCD is pitch circle diameter. D is machining feed rate. If your axle is not listed, send the details and we can most likely make it.</p>",
+        "color_scheme": "default"
+      }
+    },
+    "cta": {
+      "type": "cta-banner",
+      "settings": {
+        "heading": "Need an axle made?",
+        "text": "Send the vehicle, housing, stud pattern, spline count and length required and we will price it up.",
+        "primary_label": "Get a quote",
+        "secondary_label": "Call (03) 9792 4834",
+        "secondary_link": "tel:0397924834",
+        "color_scheme": "accent"
+      }
+    }
+  },
+  "order": ["hero", "listing", "cta"]
+}
