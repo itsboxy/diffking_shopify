@@ -3,36 +3,17 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vehicle": {
-          "type": "custom_field",
-          "settings": {
-            "field_type": "text",
-            "label": "Vehicle",
-            "placeholder": "Year, make, model",
-            "help": "So we can check fitment",
-            "required": false
-          }
-        },
-        "diff": {
-          "type": "custom_field",
-          "settings": {
-            "field_type": "text",
-            "label": "Differential / housing",
-            "placeholder": "e.g. Ford 9 inch, BorgWarner, Dana 60",
-            "required": false
-          }
-        },
         "notes": {
           "type": "custom_field",
           "settings": {
             "field_type": "textarea",
             "label": "Notes",
-            "placeholder": "Ratio, spline count, brake pattern, anything else we should know",
+            "placeholder": "Vehicle, differential, ratio, spline count, brake pattern, anything else we should know",
             "required": false
           }
         }
       },
-      "block_order": ["vehicle", "diff", "notes"]
+      "block_order": ["notes"]
     },
     "related": {
       "type": "featured-collection",
