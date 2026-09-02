@@ -14,8 +14,8 @@
       "settings": {
         "asset_image": "",
         "overlay": 55,
-        "bg_effect": "none",
-        "height": "slim",
+        "bg_effect": "parallax-up",
+        "height": "small",
         "eyebrow": "Reference",
         "heading": "Axle listing",
         "text": "",
