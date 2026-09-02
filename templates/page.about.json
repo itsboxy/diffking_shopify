@@ -59,7 +59,7 @@
         "button_link": "",
         "color_scheme": "alt",
         "background_image": "shopify://shop_images/655293393_18163820740414178_7910094480766411627_n.jpg",
-        "bg_effect": "fade",
+        "bg_effect": "parallax-up",
         "bg_overlay_color": "dark",
         "bg_overlay": 75,
         "stat_1_value": "1992",
