@@ -171,7 +171,10 @@
         "eyebrow": "What we do",
         "heading": "Our services",
         "text": "Everything a differential needs, under one roof.",
-        "columns": 3
+        "columns": 3,
+        "background_image": "shopify://shop_images/658015523_18543301981069661_3591422349422762760_n.jpg",
+        "image_overlay": 70,
+        "parallax": true
       }
     },
     "workshop": {
