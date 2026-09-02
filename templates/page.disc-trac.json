@@ -95,11 +95,12 @@
       }
     },
     "quote": {
-      "type": "contact-form",
+      "type": "cta-banner",
       "settings": {
         "heading": "Request a Disc Trac quote",
-        "text": "Send us your vehicle, differential and spline count and we will come back with pricing and lead time. Bulk orders welcome.",
-        "show_details": true
+        "text": "Send your vehicle, differential and spline count for pricing and lead time. Bulk orders welcome.",
+        "primary_label": "Get a quote",
+        "color_scheme": "accent"
       }
     }
   },

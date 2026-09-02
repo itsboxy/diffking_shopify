@@ -91,14 +91,14 @@
       "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"]
     },
     "contact": {
-      "type": "contact-form",
+      "type": "cta-banner",
       "settings": {
-        "eyebrow": "Get in touch",
         "heading": "Talk to the team",
-        "text": "Call or email for a free quote, or send your vehicle and differential details through the form.",
-        "form_heading": "Send an enquiry",
-        "hours": "Mon to Fri, 8:30am to 5:00pm",
-        "show_details": true
+        "text": "Call or email the workshop, or send your vehicle and differential details for a free quote.",
+        "primary_label": "Get in touch",
+        "secondary_label": "Call (03) 9792 4834",
+        "secondary_link": "tel:0397924834",
+        "color_scheme": "accent"
       }
     }
   },
