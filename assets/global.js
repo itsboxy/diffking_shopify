@@ -55,42 +55,67 @@
     onScroll();
   }
 
-  /* ---- Parallax + left-to-right wipe on scroll -------------------- */
+  /* ---- Scroll effects: parallax, zoom, fade, wipe ---------------- */
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var parallaxSections = [].slice.call(document.querySelectorAll('[data-parallax-section]'));
-  if (parallaxSections.length && !reduceMotion) {
-    var ticking = false;
-    var updateParallax = function () {
+  var effectTargets = [];
+
+  // Shared section-media system
+  [].forEach.call(document.querySelectorAll('[data-section-media]'), function (media) {
+    effectTargets.push({
+      host: media.parentElement,
+      vars: media,
+      img: media.querySelector('[data-section-media-img]') || media.querySelector('img'),
+      effect: media.getAttribute('data-effect')
+    });
+  });
+  // Legacy services parallax section
+  [].forEach.call(document.querySelectorAll('[data-parallax-section]'), function (section) {
+    effectTargets.push({
+      host: section,
+      vars: section,
+      img: section.querySelector('[data-parallax-img]'),
+      effect: section.querySelector('[data-parallax-wipe]') ? 'wipe-lr' : 'none',
+      legacyParallax: section.hasAttribute('data-parallax')
+    });
+  });
+
+  if (effectTargets.length && !reduceMotion) {
+    var fxTicking = false;
+    var clamp01 = function (n) { return Math.min(1, Math.max(0, n)); };
+    var updateEffects = function () {
       var vh = window.innerHeight;
-      parallaxSections.forEach(function (section) {
-        var rect = section.getBoundingClientRect();
-        if (rect.bottom < -200 || rect.top > vh + 200) return;
-        var progress = (vh - rect.top) / (vh + rect.height);
-        progress = Math.min(1, Math.max(0, progress));
+      effectTargets.forEach(function (t) {
+        var rect = t.host.getBoundingClientRect();
+        if (rect.bottom < -400 || rect.top > vh + 400) return;
+        var progress = clamp01((vh - rect.top) / (vh + rect.height));
 
-        var wipe = section.querySelector('[data-parallax-wipe]');
-        if (wipe) {
-          // reveal completes over the first ~60% of the section's pass through the viewport
-          var w = Math.min(1, Math.max(0, (progress - 0.12) / 0.55));
-          section.style.setProperty('--wipe', (w * 100).toFixed(1) + '%');
+        if ((t.effect === 'wipe-lr' || t.effect === 'wipe-rl')) {
+          var w = clamp01((progress - 0.12) / 0.55);
+          t.vars.style.setProperty('--wipe', (w * 100).toFixed(1) + '%');
         }
-
-        var img = section.querySelector('[data-parallax-img]');
-        if (img && section.hasAttribute('data-parallax')) {
-          var shift = (progress - 0.5) * 90;
-          img.style.transform = 'translate3d(0,' + shift.toFixed(1) + 'px,0)';
+        if (t.effect === 'fade') {
+          t.vars.style.setProperty('--fade', clamp01((progress - 0.05) / 0.4).toFixed(3));
+        }
+        if (t.img) {
+          if (t.effect === 'parallax-up' || t.legacyParallax) {
+            t.img.style.transform = 'translate3d(0,' + ((progress - 0.5) * 110).toFixed(1) + 'px,0)';
+          } else if (t.effect === 'fixed') {
+            t.img.style.transform = 'translate3d(0,' + (rect.top * -0.16).toFixed(1) + 'px,0)';
+          } else if (t.effect === 'parallax-zoom') {
+            t.img.style.transform = 'scale(' + (1 + progress * 0.14).toFixed(3) + ')';
+          }
         }
       });
-      ticking = false;
+      fxTicking = false;
     };
-    var requestParallax = function () {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(updateParallax);
+    var requestEffects = function () {
+      if (fxTicking) return;
+      fxTicking = true;
+      window.requestAnimationFrame(updateEffects);
     };
-    window.addEventListener('scroll', requestParallax, { passive: true });
-    window.addEventListener('resize', requestParallax, { passive: true });
-    updateParallax();
+    window.addEventListener('scroll', requestEffects, { passive: true });
+    window.addEventListener('resize', requestEffects, { passive: true });
+    updateEffects();
   }
 
   /* ---- Quantity steppers ----------------------------------------- */

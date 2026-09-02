@@ -1,0 +1,43 @@
+{% doc %}
+  Renders a customisable scrolling background layer for a section:
+  image + effect + overlay. Pair with the shared `section-media-settings`
+  block of schema settings and add class `has-section-media` (plus a
+  `surface-dark` / `surface-alt` class) to the section wrapper.
+
+  @param {object} s - the section.settings object
+  @param {string} [class] - extra class for the media wrapper
+
+  @example
+  {% render 'section-media', s: section.settings %}
+{% enddoc %}
+
+{%- liquid
+  assign img = s.background_image
+-%}
+{%- if img != blank -%}
+  {%- assign effect = s.bg_effect | default: 'parallax-up' -%}
+  {%- assign ov = s.bg_overlay | default: 45 | divided_by: 100.0 -%}
+  {%- assign light = false -%}
+  {%- if s.bg_overlay_color == 'light' -%}{%- assign light = true -%}{%- endif -%}
+  <div
+    class="section-media section-media--{{ effect }}{% if light %} section-media--light{% endif %} {{ class }}"
+    data-section-media
+    data-effect="{{ effect }}"
+    aria-hidden="true"
+  >
+    <img
+      src="{{ img | image_url: width: 2400 }}"
+      srcset="{{ img | image_url: width: 800 }} 800w, {{ img | image_url: width: 1200 }} 1200w, {{ img | image_url: width: 1800 }} 1800w, {{ img | image_url: width: 2400 }} 2400w"
+      sizes="100vw"
+      alt=""
+      loading="lazy"
+      width="2400"
+      height="{{ 2400 | times: img.height | divided_by: img.width }}"
+      data-section-media-img
+    >
+    <span class="section-media__veil" style="--ov: {{ ov }}"></span>
+    {%- if effect == 'wipe-lr' or effect == 'wipe-rl' -%}
+      <span class="section-media__wipe" data-section-media-wipe></span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

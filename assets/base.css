@@ -299,6 +299,47 @@ select {
 /* header/footer use surface-dark but manage their own borders */
 .header.surface-dark, .footer.surface-dark { border: 0; }
 
+/* Section background media (image + parallax / fade / wipe) ----------- */
+
+.has-section-media { position: relative; overflow: hidden; isolation: isolate; }
+.has-section-media.surface-dark { background-image: none; }
+.has-section-media.surface-dark::before { display: none; }
+.has-section-media.surface-alt { border: 0; }
+
+.section-media { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.section-media img {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  will-change: transform, opacity;
+}
+.section-media--parallax-up img,
+.section-media--fixed img { top: -14%; height: 128%; }
+.section-media--parallax-zoom img { top: -7%; height: 114%; }
+.section-media--fade img { opacity: var(--fade, 0); transition: opacity 0.1s linear; }
+
+.section-media__veil {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgb(var(--color-darker) / calc(var(--ov, 0.45) + 0.18)) 0%, rgb(var(--color-darker) / var(--ov, 0.45)) 60%),
+    rgb(var(--color-darker) / calc(var(--ov, 0.45) * 0.5));
+}
+.section-media--light .section-media__veil {
+  background:
+    linear-gradient(90deg, rgb(var(--color-background) / calc(var(--ov, 0.45) + 0.18)) 0%, rgb(var(--color-background) / var(--ov, 0.45)) 60%),
+    rgb(var(--color-background) / calc(var(--ov, 0.45) * 0.5));
+}
+.section-media__wipe { position: absolute; inset: 0; background: rgb(var(--color-dark)); }
+.section-media--light .section-media__wipe { background: rgb(var(--color-background)); }
+.section-media--wipe-lr .section-media__wipe { clip-path: inset(0 0 0 var(--wipe, 0%)); }
+.section-media--wipe-rl .section-media__wipe { clip-path: inset(0 var(--wipe, 0%) 0 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .section-media__wipe { display: none; }
+  .section-media img { top: 0 !important; height: 100% !important; transform: none !important; opacity: 1 !important; }
+}
+
 .rte > :first-child { margin-top: 0; }
 .rte > :last-child { margin-bottom: 0; }
 .rte h2, .rte h3 { margin-top: 1.75rem; }

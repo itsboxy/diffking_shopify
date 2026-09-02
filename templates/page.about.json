@@ -78,6 +78,16 @@
       },
       "block_order": ["f1", "f2", "f3", "f4"]
     },
+    "team": {
+      "type": "image-with-text",
+      "settings": {
+        "layout": "left",
+        "eyebrow": "The team",
+        "heading": "A dedicated, experienced team",
+        "text": "<p>Our Dandenong workshop runs top of the line equipment and in house facilities, staffed by a professionally experienced team who work on differentials every day. From a straightforward service to a full custom build, your car is in the right hands.</p>",
+        "button_label": "Book a service"
+      }
+    },
     "specs": {
       "type": "spec-grid",
       "settings": {
@@ -111,5 +121,5 @@
       }
     }
   },
-  "order": ["hero", "priority", "problems", "capabilities", "specs", "contact"]
+  "order": ["hero", "priority", "team", "problems", "capabilities", "specs", "contact"]
 }
