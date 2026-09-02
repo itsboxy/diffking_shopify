@@ -1,17 +1,52 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
-      "type": "main-product"
+      "type": "main-product",
+      "settings": {}
     },
     "related": {
       "type": "featured-collection",
       "settings": {
+        "eyebrow": "In the shop",
         "heading": "More diff parts",
+        "collection": "",
         "products_to_show": 4,
         "columns": "4",
-        "show_view_all": false
+        "show_view_all": false,
+        "color_scheme": "default"
       }
+    },
+    "1788322653eac4f91b": {
+      "type": "apps",
+      "blocks": {
+        "optis_product_options_option_set_zAWf9V": {
+          "type": "shopify://apps/optis-product-options/blocks/option-set/2c446099-c349-4e73-80cd-49c9770b7807",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "optis_product_options_option_set_zAWf9V"
+      ],
+      "settings": {}
+    },
+    "178832265593799cd4": {
+      "type": "apps",
+      "settings": {}
     }
   },
-  "order": ["main", "related"]
+  "order": [
+    "main",
+    "related",
+    "1788322653eac4f91b",
+    "178832265593799cd4"
+  ]
 }
