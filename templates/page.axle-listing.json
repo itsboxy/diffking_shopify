@@ -28,9 +28,9 @@
     "listing": {
       "type": "axle-listing",
       "settings": {
-        "eyebrow": "Custom axle blanks",
+        "eyebrow": "All Available axles",
         "heading": "Drawing numbers and dimensions",
-        "text": "Our custom axle blanks with stud patterns, flange details and dimensions. Lengths are given for the L (long), M (medium) and S (short) sides. Search by name, drawing number or spline count.",
+        "text": "Our all available Axles with stud patterns, flange details and dimensions. Lengths are given for the L (long), M (medium) and S (short) sides. Search by name, drawing number or spline count.",
         "hide_diagram": false,
         "diagram": "shopify://shop_images/Axle-Image-General.webp",
         "diagram_caption": "Where each lettered dimension is measured on the axle",
