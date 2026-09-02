@@ -52,6 +52,8 @@
         "d4"
       ],
       "settings": {
+        "image": "shopify://shop_images/Multidiff.jpg",
+        "overlay": 90,
         "eyebrow": "Melbourne differential specialists",
         "heading": "Differentials, built and backed by specialists",
         "text": "Repairs, servicing, 9 inch conversions, custom axles and our own Disc Trac helical LSD. Shipped Australia wide from Dandenong.",
