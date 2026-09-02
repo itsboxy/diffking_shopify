@@ -93,12 +93,27 @@
         "button_label": "See what we do",
         "button_link": "",
         "color_scheme": "default",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 45,
         "stat_1_value": "",
         "stat_1_label": "",
         "stat_2_value": "",
         "stat_2_label": "",
         "stat_3_value": "",
         "stat_3_label": ""
+      }
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "In the shop",
+        "heading": "Shop diff parts",
+        "collection": "",
+        "products_to_show": 4,
+        "columns": "4",
+        "show_view_all": true,
+        "color_scheme": "default"
       }
     },
     "services": {
@@ -199,19 +214,10 @@
         "primary_link": "",
         "secondary_label": "Call (03) 9792 4834",
         "secondary_link": "tel:0397924834",
-        "color_scheme": "accent"
-      }
-    },
-    "featured": {
-      "type": "featured-collection",
-      "settings": {
-        "eyebrow": "In the shop",
-        "heading": "Shop diff parts",
-        "collection": "",
-        "products_to_show": 4,
-        "columns": "4",
-        "show_view_all": true,
-        "color_scheme": "default"
+        "color_scheme": "accent",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 45
       }
     },
     "drb": {
@@ -240,6 +246,9 @@
         "button_label": "Browse diff spares",
         "button_link": "",
         "color_scheme": "alt",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 45,
         "stat_1_value": "",
         "stat_1_label": "",
         "stat_2_value": "",
@@ -252,10 +261,10 @@
   "order": [
     "hero",
     "welcome",
+    "featured",
     "services",
     "workshop",
     "cta",
-    "featured",
     "drb"
   ]
 }
