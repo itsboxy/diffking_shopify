@@ -142,6 +142,7 @@
         "text": "If your car is doing any of this, bring it in for a look.",
         "icon": "spark",
         "columns": 2,
+        "marker_style": "tint",
         "button_label": "Book a diagnosis",
         "button_link": "",
         "color_scheme": "alt",
