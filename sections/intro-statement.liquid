@@ -52,21 +52,26 @@
   .intro-statement__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.75rem;
   }
-  @media (min-width: 900px) {
-    .intro-statement__grid { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 4rem; align-items: start; }
-    .intro-statement__aside { position: sticky; top: 6.5rem; }
+  @media (min-width: 850px) {
+    .intro-statement__grid {
+      grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+      gap: clamp(2.5rem, 5vw, 4.5rem);
+      align-items: start;
+    }
   }
+  .intro-statement__aside { margin-bottom: 0; }
   .intro-statement__heading {
     margin: 0;
-    padding-left: 1.25rem;
+    padding-left: 1.1rem;
     border-left: 4px solid rgb(var(--color-primary));
-    font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+    font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+    line-height: 1.1;
   }
-  .intro-statement__cta { margin-top: 1.75rem; }
+  .intro-statement__cta { margin-top: 1.5rem; }
 
-  .intro-statement__body { max-width: 46rem; }
+  .intro-statement__body { max-width: 44rem; }
   .intro-statement__lead {
     font-size: clamp(1.15rem, 1.8vw, 1.4rem);
     font-weight: 500;

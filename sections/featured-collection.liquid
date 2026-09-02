@@ -1,8 +1,13 @@
 {%- liquid
   assign collection = section.settings.collection
   assign limit = section.settings.products_to_show
+  assign has_products = false
+  if collection != blank and collection.products_count > 0
+    assign has_products = true
+  endif
 -%}
 
+{%- if has_products or request.design_mode -%}
 <div class="section featured-collection{% if section.settings.color_scheme == 'alt' %} surface-alt{% elsif section.settings.color_scheme == 'dark' %} surface-dark{% endif %}">
   <div class="page-width">
     <div class="featured-collection__head">
@@ -43,6 +48,7 @@
     {%- endif -%}
   </div>
 </div>
+{%- endif -%}
 
 {% stylesheet %}
   .featured-collection__head {

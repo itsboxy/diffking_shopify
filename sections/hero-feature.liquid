@@ -45,7 +45,17 @@
       {%- endif -%}
     </div>
 
-    {%- if section.settings.show_products -%}
+    {%- liquid
+      assign show_shelf = false
+      if section.settings.show_products
+        if collection != blank and collection.products_count > 0
+          assign show_shelf = true
+        elsif request.design_mode
+          assign show_shelf = true
+        endif
+      endif
+    -%}
+    {%- if show_shelf -%}
       <div class="hero-feature__shelf">
         <div class="hero-feature__shelf-head">
           <span class="hero-feature__shelf-title">{{ section.settings.shelf_title | default: 'Featured parts' }}</span>
@@ -86,25 +96,25 @@
 
 {% stylesheet %}
   .hero-feature {
-    padding-block: clamp(2.5rem, 6vw, 5rem);
+    padding-block: clamp(2.75rem, 6vw, 4.5rem);
     background:
-      radial-gradient(60% 50% at 92% 0%, rgb(var(--color-primary) / 0.06) 0%, transparent 60%),
+      radial-gradient(55% 45% at 95% 0%, rgb(var(--color-primary) / 0.07) 0%, transparent 60%),
       rgb(var(--color-background));
     border-bottom: 1px solid rgb(var(--color-line));
   }
   .hero-feature__top {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2.5rem;
-    align-items: end;
+    gap: 2.25rem;
+    align-items: center;
   }
   @media (min-width: 950px) {
-    .hero-feature__top { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 4rem; }
+    .hero-feature__top { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(2.5rem, 5vw, 4rem); }
   }
 
   .hero-feature__heading {
-    font-size: clamp(2.3rem, 5vw, 3.9rem);
-    line-height: 1.02;
+    font-size: clamp(2.1rem, 4.2vw, 3.3rem);
+    line-height: 1.04;
     letter-spacing: -0.02em;
     margin: 0 0 1.1rem;
     text-wrap: balance;
@@ -125,7 +135,7 @@
     display: grid;
     gap: 0.9rem;
   }
-  @media (min-width: 500px) and (max-width: 949px) {
+  @media (min-width: 500px) {
     .hero-feature__badges { grid-template-columns: 1fr 1fr; }
   }
   .hero-feature__badges li {
