@@ -126,9 +126,10 @@
         "button_label": "Get ratio advice",
         "button_link": "",
         "color_scheme": "alt",
-        "bg_effect": "parallax-up",
-        "bg_overlay_color": "dark",
-        "bg_overlay": 45
+        "background_image": "shopify://shop_images/00IMG22456_8298810d-4775-4cac-9f3c-972727973193.png",
+        "bg_effect": "wipe-lr",
+        "bg_overlay_color": "light",
+        "bg_overlay": 55
       }
     },
     "work": {
