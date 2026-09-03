@@ -241,22 +241,6 @@
         "bg_overlay_color": "dark",
         "bg_overlay": 45
       }
-    },
-    "quote": {
-      "type": "cta-banner",
-      "settings": {
-        "eyebrow": "",
-        "heading": "Get a changeover quote",
-        "text": "Send your vehicle, current ratio, tyre size and how you use the car, and we will recommend a ratio and price it up.",
-        "primary_label": "Get a quote",
-        "primary_link": "",
-        "secondary_label": "Call (03) 9792 4834",
-        "secondary_link": "tel:0397924834",
-        "color_scheme": "accent",
-        "bg_effect": "parallax-up",
-        "bg_overlay_color": "dark",
-        "bg_overlay": 45
-      }
     }
   },
   "order": [
@@ -264,7 +248,6 @@
     "intro",
     "when",
     "work",
-    "specs",
-    "quote"
+    "specs"
   ]
 }
