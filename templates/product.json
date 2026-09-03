@@ -32,6 +32,15 @@
     },
     "1788415712f49f2711": {
       "type": "apps",
+      "blocks": {
+        "big_post_shipping_widget_eYARYe": {
+          "type": "shopify://apps/big-post-shipping/blocks/widget/79063d4c-2276-4025-970f-f612be14d9fe",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "big_post_shipping_widget_eYARYe"
+      ],
       "settings": {}
     },
     "related": {
