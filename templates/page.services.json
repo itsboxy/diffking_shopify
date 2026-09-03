@@ -75,15 +75,16 @@
         "eyebrow": "",
         "heading": "All mechanical repairs and maintenance",
         "text": "We provide professional differential services and repairs for all makes and models. We have state of the art diagnostic equipment to investigate common and complex differential problems, such as:",
-        "icon": "check",
-        "columns": 1,
-        "marker_style": "solid",
+        "icon": "shield",
+        "columns": 3,
+        "marker_style": "tint",
         "button_label": "",
         "button_link": "",
         "color_scheme": "alt",
-        "bg_effect": "parallax-up",
-        "bg_overlay_color": "dark",
-        "bg_overlay": 45
+        "background_image": "shopify://shop_images/pixelcut_5-5.png",
+        "bg_effect": "parallax-zoom",
+        "bg_overlay_color": "light",
+        "bg_overlay": 75
       }
     },
     "equipment": {
@@ -165,6 +166,7 @@
         "e9"
       ],
       "settings": {
+        "image": "shopify://shop_images/IMG-20250116-WA0008_d1c6ed77-cd14-4a4d-9a47-38d9d8c05480.jpg",
         "layout": "left",
         "eyebrow": "",
         "heading": "We have state of the art tooling, machines and equipment to assist us in:",
