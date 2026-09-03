@@ -17,7 +17,10 @@
           "settings": {
             "field_type": "textarea",
             "label": "Notes",
+            "options": "Choice A\nChoice B\nChoice C",
             "placeholder": "Vehicle, differential, ratio, spline count, brake pattern, anything else we should know",
+            "checkbox_value": "Yes",
+            "help": "",
             "required": false
           }
         }
@@ -27,18 +30,35 @@
       ],
       "settings": {}
     },
+    "1788415712f49f2711": {
+      "type": "apps",
+      "blocks": {
+        "big_post_shipping_widget_7FyDQU": {
+          "type": "shopify://apps/big-post-shipping/blocks/widget/79063d4c-2276-4025-970f-f612be14d9fe",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "big_post_shipping_widget_7FyDQU"
+      ],
+      "settings": {}
+    },
     "related": {
       "type": "featured-collection",
       "settings": {
+        "eyebrow": "In the shop",
         "heading": "More diff parts",
+        "collection": "",
         "products_to_show": 4,
         "columns": "4",
-        "show_view_all": false
+        "show_view_all": false,
+        "color_scheme": "default"
       }
     }
   },
   "order": [
     "main",
+    "1788415712f49f2711",
     "related"
   ]
 }
