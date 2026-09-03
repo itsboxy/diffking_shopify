@@ -13,7 +13,7 @@
       "type": "hero",
       "settings": {
         "asset_image": "",
-        "overlay": 55,
+        "overlay": 80,
         "bg_effect": "none",
         "height": "medium",
         "eyebrow": "What we do",
