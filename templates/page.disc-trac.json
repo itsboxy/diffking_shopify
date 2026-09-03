@@ -12,86 +12,253 @@
     "hero": {
       "type": "disc-trac-hero",
       "blocks": {
-        "t1": { "type": "badge", "settings": { "icon": "gear", "label": "50/50 power distribution" } },
-        "t2": { "type": "badge", "settings": { "icon": "shield", "label": "20MnCr5 material" } },
-        "t3": { "type": "badge", "settings": { "icon": "spark", "label": "Highly customisable" } },
-        "t4": { "type": "badge", "settings": { "icon": "gear", "label": "7 pinion gears" } },
-        "t5": { "type": "badge", "settings": { "icon": "shield", "label": "Patented design" } }
+        "t1": {
+          "type": "badge",
+          "settings": {
+            "icon": "gear",
+            "label": "50/50 power distribution"
+          }
+        },
+        "t2": {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "label": "20MnCr5 material"
+          }
+        },
+        "t3": {
+          "type": "badge",
+          "settings": {
+            "icon": "spark",
+            "label": "Highly customisable"
+          }
+        },
+        "t4": {
+          "type": "badge",
+          "settings": {
+            "icon": "gear",
+            "label": "7 pinion gears"
+          }
+        },
+        "t5": {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "label": "Patented design"
+          }
+        }
       },
-      "block_order": ["t1", "t2", "t3", "t4", "t5"],
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5"
+      ],
       "settings": {
         "eyebrow": "Diff King engineering",
         "heading": "Disc Trac helical LSD",
         "text": "Ultimate traction from a forged 20MnCr5 casing, a 7 helical gear system, hardened 45 to 50 HRC.",
-        "button_label": "Get a quote"
+        "button_label": "Get a quote",
+        "button_link": ""
       }
     },
     "intro": {
       "type": "rich-text",
-      "settings": { "alignment": "center" },
       "blocks": {
-        "e": { "type": "heading", "settings": { "text": "Cutting edge traction technology" } },
-        "b": { "type": "text", "settings": { "text": "<p>The Disc Trac helical LSD is engineered to deliver superior performance on the track. A 7 helical gear system drives smooth, seamless power to both wheels for maximum traction and stability, while a patented power transfer mechanism keeps power losses low so you hold speed and control through corners. The forged 20MnCr5 casing is hardened between 45 and 50 HRC, so the unit stands up to extreme loads and keeps performing lap after lap.</p>" } }
+        "e": {
+          "type": "heading",
+          "settings": {
+            "text": "Cutting edge traction technology"
+          }
+        },
+        "b": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The Disc Trac helical LSD is engineered to deliver superior performance on the track. A 7 helical gear system drives smooth, seamless power to both wheels for maximum traction and stability, while a patented power transfer mechanism keeps power losses low so you hold speed and control through corners. The forged 20MnCr5 casing is hardened between 45 and 50 HRC, so the unit stands up to extreme loads and keeps performing lap after lap.</p>"
+          }
+        }
       },
-      "block_order": ["e", "b"]
+      "block_order": [
+        "e",
+        "b"
+      ],
+      "settings": {
+        "alignment": "center",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 45
+      }
     },
     "pillars": {
       "type": "feature-columns",
+      "blocks": {
+        "p1": {
+          "type": "item",
+          "settings": {
+            "icon": "gear",
+            "title": "Customisable disc preload",
+            "text": "A variable disc preload system lets you fine tune how aggressively the diff engages. Run it tighter for high speed grip or looser for smoother transitions, so the LSD suits your driving style and the track on the day."
+          }
+        },
+        "p2": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "Forged external casing",
+            "text": "The casing is forged from 20MnCr5 steel, then precision CNC machined and hardened. It resists deformation under high torque, sheds heat well, and is designed to drop into a range of differential housings for a straightforward fit."
+          }
+        },
+        "p3": {
+          "type": "item",
+          "settings": {
+            "icon": "spark",
+            "title": "7 helical gear internals",
+            "text": "The 7 helical gear set gives progressive, smooth engagement with no harsh locking. Paired with strategic friction surfaces for a balanced 50/50 torque split, it runs quietly and needs far less maintenance than a clutch type LSD."
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
       "settings": {
         "eyebrow": "How it is built",
         "heading": "Three parts, one seamless unit",
         "text": "Every Disc Trac is designed around adjustability, strength and smooth engagement.",
         "columns": 3,
-        "color_scheme": "alt"
-      },
-      "blocks": {
-        "p1": { "type": "item", "settings": { "icon": "gear", "title": "Customisable disc preload", "text": "A variable disc preload system lets you fine tune how aggressively the diff engages. Run it tighter for high speed grip or looser for smoother transitions, so the LSD suits your driving style and the track on the day." } },
-        "p2": { "type": "item", "settings": { "icon": "shield", "title": "Forged external casing", "text": "The casing is forged from 20MnCr5 steel, then precision CNC machined and hardened. It resists deformation under high torque, sheds heat well, and is designed to drop into a range of differential housings for a straightforward fit." } },
-        "p3": { "type": "item", "settings": { "icon": "spark", "title": "7 helical gear internals", "text": "The 7 helical gear set gives progressive, smooth engagement with no harsh locking. Paired with strategic friction surfaces for a balanced 50/50 torque split, it runs quietly and needs far less maintenance than a clutch type LSD." } }
-      },
-      "block_order": ["p1", "p2", "p3"]
+        "color_scheme": "alt",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 45
+      }
     },
     "specs": {
       "type": "spec-grid",
+      "blocks": {
+        "s1": {
+          "type": "spec",
+          "settings": {
+            "label": "Type",
+            "value": "Helical gear type limited slip differential"
+          }
+        },
+        "s2": {
+          "type": "spec",
+          "settings": {
+            "label": "Gear set",
+            "value": "7 helical pinion gear system"
+          }
+        },
+        "s3": {
+          "type": "spec",
+          "settings": {
+            "label": "Casing",
+            "value": "Forged 20MnCr5 steel, CNC machined"
+          }
+        },
+        "s4": {
+          "type": "spec",
+          "settings": {
+            "label": "Hardness",
+            "value": "Hardened 45 to 50 HRC"
+          }
+        },
+        "s5": {
+          "type": "spec",
+          "settings": {
+            "label": "Torque distribution",
+            "value": "Balanced 50/50"
+          }
+        },
+        "s6": {
+          "type": "spec",
+          "settings": {
+            "label": "Housing fit",
+            "value": "Suits a range of differential housings"
+          }
+        },
+        "s7": {
+          "type": "spec",
+          "settings": {
+            "label": "Preload",
+            "value": "Adjustable variable disc preload"
+          }
+        },
+        "s8": {
+          "type": "spec",
+          "settings": {
+            "label": "Maintenance",
+            "value": "Minimal, no clutch packs to service"
+          }
+        },
+        "s9": {
+          "type": "spec",
+          "settings": {
+            "label": "Best for",
+            "value": "Track, motorsport and high performance street"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+      ],
       "settings": {
         "eyebrow": "Specifications",
         "heading": "Built to a spec, not a price",
         "text": "Race grade materials and tolerances in every unit.",
         "button_label": "Enquire about fitment",
-        "color_scheme": "alt"
-      },
-      "blocks": {
-        "s1": { "type": "spec", "settings": { "label": "Type", "value": "Helical gear type limited slip differential" } },
-        "s2": { "type": "spec", "settings": { "label": "Gear set", "value": "7 helical pinion gear system" } },
-        "s3": { "type": "spec", "settings": { "label": "Casing", "value": "Forged 20MnCr5 steel, CNC machined" } },
-        "s4": { "type": "spec", "settings": { "label": "Hardness", "value": "Hardened 45 to 50 HRC" } },
-        "s5": { "type": "spec", "settings": { "label": "Torque distribution", "value": "Balanced 50/50" } },
-        "s6": { "type": "spec", "settings": { "label": "Housing fit", "value": "Suits a range of differential housings" } },
-        "s7": { "type": "spec", "settings": { "label": "Preload", "value": "Adjustable variable disc preload" } },
-        "s8": { "type": "spec", "settings": { "label": "Maintenance", "value": "Minimal, no clutch packs to service" } },
-        "s9": { "type": "spec", "settings": { "label": "Best for", "value": "Track, motorsport and high performance street" } }
-      },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9"]
+        "button_link": "",
+        "color_scheme": "alt",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 45
+      }
     },
     "collection": {
       "type": "featured-collection",
       "settings": {
         "eyebrow": "In the shop",
         "heading": "Helical LSDs and Truetracs",
+        "collection": "disc-trac",
         "products_to_show": 4,
         "columns": "4",
-        "show_view_all": true
+        "show_view_all": true,
+        "color_scheme": "default"
       }
     },
     "quote": {
       "type": "cta-banner",
       "settings": {
+        "eyebrow": "",
         "heading": "Request a Disc Trac quote",
         "text": "Send your vehicle, differential and spline count for pricing and lead time. Bulk orders welcome.",
         "primary_label": "Get a quote",
-        "color_scheme": "accent"
+        "primary_link": "",
+        "secondary_label": "",
+        "secondary_link": "",
+        "color_scheme": "accent",
+        "bg_effect": "parallax-up",
+        "bg_overlay_color": "dark",
+        "bg_overlay": 45
       }
     }
   },
-  "order": ["hero", "intro", "pillars", "specs", "collection", "quote"]
+  "order": [
+    "hero",
+    "intro",
+    "pillars",
+    "specs",
+    "collection",
+    "quote"
+  ]
 }
