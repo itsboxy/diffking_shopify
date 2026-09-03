@@ -32,15 +32,6 @@
     },
     "1788415712f49f2711": {
       "type": "apps",
-      "blocks": {
-        "big_post_shipping_widget_7FyDQU": {
-          "type": "shopify://apps/big-post-shipping/blocks/widget/79063d4c-2276-4025-970f-f612be14d9fe",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "big_post_shipping_widget_7FyDQU"
-      ],
       "settings": {}
     },
     "related": {
@@ -48,7 +39,7 @@
       "settings": {
         "eyebrow": "In the shop",
         "heading": "More diff parts",
-        "collection": "",
+        "collection": "frontpage",
         "products_to_show": 4,
         "columns": "4",
         "show_view_all": false,
