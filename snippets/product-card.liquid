@@ -46,7 +46,11 @@
   </h3>
 
   <div class="card__price">
-    {% render 'price', product: product, show_from: true %}
+    {%- if product.price_min > 0 -%}
+      {{ product.price_min | money }}
+    {%- else -%}
+      {{ product.selected_or_first_available_variant.price | money }}
+    {%- endif -%}
   </div>
 </div>
 
